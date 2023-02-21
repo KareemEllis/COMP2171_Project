@@ -26,16 +26,17 @@ session_start();
         <aside class="sidebar">
             <ul>
                 <a href="#" class="currentPage"><li><i class="material-icons">home</i>Home</li></a>
-                <a href="#"><li><i class="material-icons">assignment</i>Application Processing</li></a>
-                <a href="#"><li><i class="material-icons">hotel</i>Room Assignment</li></a>
-                <a href="#"><li><i class="material-icons">people_outline</i>Residents</li></a>
-                <a href="#"><li><i class="material-icons">web</i>Notice Board</li></a>
-                <a href="#"><li><i class="material-icons">assessment</i>Report Generation</li></a>
+                <a href="./applicationProcessing.php"><li><i class="material-icons">assignment</i>Application Processing</li></a>
+                <a href="./roomAssignment.php"><li><i class="material-icons">hotel</i>Room Assignment</li></a>
+                <a href=".//residentProcessing.php"><li><i class="material-icons">people_outline</i>Residents</li></a>
+                <a href="./noticeBoard.php"><li><i class="material-icons">web</i>Notice Board</li></a>
+                <a href="./reportGeneration.php"><li><i class="material-icons">assessment</i>Report Generation</li></a>
                 <hr>
-                <a href="#"><li><i class="material-icons">exit_to_app</i>Logout</li></a>
+                <a href="./logout.php"><li><i class="material-icons">exit_to_app</i>Logout</li></a>
             </ul>
         </aside>
 
+        <!-- ENTER CODE HERE -->
         <main>
             <header>
                 <h1 class="title">Dashboard</h1>
