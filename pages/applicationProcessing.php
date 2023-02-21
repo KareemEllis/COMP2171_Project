@@ -1,10 +1,14 @@
 <?php
 session_start();
+
 // if(!isset($_SESSION['id'])){
 //     session_destroy();
 //     header('Location: index.php');
 //     exit;
 // }
+include 'classAutoloader.php';
+
+$applicationList = new ApplicationListing();
 
 ?>
 <!DOCTYPE html>
@@ -44,6 +48,27 @@ session_start();
 
             <section>
                 <h2>Title</h2>
+
+                <table>
+                    <colgroup>
+                        <col style="width: 25%">
+                        <col style="width: 25%">
+                        <col style="width: 25%">
+                        <col style="width: 15%">
+                        <col style="width: 10%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Application ID</th> <th>Name</th> <th>Gender</th> <th>Status</th> <th></th>
+                        </tr> 
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <?php $applicationList->displayApplications(); ?>     
+                        </tr>
+                    </tbody>
+                </table>
+
             </section>
                 
         </main>

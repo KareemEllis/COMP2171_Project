@@ -1,0 +1,60 @@
+/*****TABLES******/
+table{
+    margin-top: 20px;
+    border-collapse: collapse;
+    font-size: 1em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    text-align: left;
+    font-weight: 500;
+    font-size: 16px;
+}
+thead tr{
+    background-color: rgb(233, 233, 233);
+    color: black;
+    font-weight: bold;
+}
+th,td{
+    padding: 12px 15px;
+}
+
+tbody tr{
+    border-bottom: 1px solid #dddddd;
+
+    transition: 0.2s;
+}
+
+tbody tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}
+tbody tr:last-of-type{
+    border-bottom: 2px solid rgb(233, 233, 233);
+}
+
+td:first-child{
+    font-weight: bold;
+}
+
+.sales-lead{
+    background-color: rgb(255, 206, 72);
+    padding: 5px 15px;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+
+.support{
+    background-color: rgb(109, 107, 255);
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+table a{
+    color: rgb(89, 86, 255);
+
+    transition: 0.1s;
+}
+table a:hover{
+    border-bottom: 1px solid rgb(89, 86, 255);
+}

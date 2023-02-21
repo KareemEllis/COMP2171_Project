@@ -2,11 +2,12 @@
 
 class ApplicationListing {
   
-    private $db = new DB();
+    public $db;
     private $applicationList;
 
     //Gets Applications from DB on instantiation
     public function __construct() {
+        $this->db = new DB();
         $this->applicationList = $this->getAllApplications();
     }
 
@@ -165,45 +166,15 @@ class ApplicationListing {
         $application_to_update->setStatus($newStatus);
     }
 
-    public function displayApplications(){
-        echo(
-            "<table>".
-            "<colgroup>".
-              "<col style=\"width:10%\">".
-              "<col style=\"width:25%\">".
-              "<col style=\"width:25%\">".
-              "<col style=\"width:25%\">".
-              "<col style=\"width:5%\">".
-            "</colgroup>".
-              "<thead>".
-                "<tr>".
-                  "<th>Application ID</th> <th>Name</th> <th>Gender</th> <th>Status</th> <th></th>".
-                "</tr>".  
-              "</thead>".  
-              "<tbody>"
-          );
-          
+    public function displayApplications(){     
           foreach ($this->applicationList as $application){
             echo "<tr>";
-            echo "<td>".$application->getID()."</td>" . "<td>".$application->getFirstName(). " " . $application->getLastName() . "</td>" . "<td>".$application->getGender()."</td>";
-            // "<td>".
-            // "<div class=\"dropdown\">
-            //     <input type=\"text\" class=\"textBox ". $application['Status'] ."\" name = \"" . $application['ApplicationID']. "\" value=\"". $application['Status'] ."\" readonly>
-            //             <div class=\"option\">
-            //                 <div onclick=\"statusShow('Pending', ". $application['ApplicationID'] . ")\">Pending</div>
-            //                 <div onclick=\"statusShow('Accepted', ". $application['ApplicationID'] . ")\">Accepted</div>
-            //                 <div onclick=\"statusShow('Rejected', ". $application['ApplicationID'] . ")\">Rejected</div>
-            //             </div>
-            // </div>
-            
-            // </td>".
-            // "<td><button onclick=\"detailShow(". $application['ApplicationID'] . ")\"><i class=\"material-icons\">search</i></button></td>";
+            echo "<td>".$application->getApplicationID()."</td>";
+            echo "<td>".$application->getFirstName(). " " . $application->getLastName() . "</td>";
+            echo "<td>".$application->getGender()."</td>";
+            echo "<td>".$application->getStatus()."</td>"; 
+            echo "<td>" . "</td>"; //Should be a button to view the application details
             echo "</tr>";
           }
-          
-          echo(
-              "<tbody>".
-            "</table>"
-          );
     }
 }

@@ -24,6 +24,7 @@ a, button{
 /******HEADER******/
 nav{
     display: flex;
+    z-index: -10px;
     justify-content: flex-start;
     align-items: center;
     padding: 30px;
@@ -33,6 +34,8 @@ nav{
     font-size: 30px;
     font-weight: bolder;
     color: white;
+
+    box-shadow: 0 0px 5px rgb(0, 5, 36);
 }
 nav img{
     margin-right: 15px;
