@@ -20,7 +20,7 @@ session_start();
     <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
-    <?php include 'header.php'; ?>
+    <?php include '_header.php'; ?>
 
     <div class="container">
         <aside class="sidebar">
@@ -28,7 +28,7 @@ session_start();
                 <a href="#" class="currentPage"><li><i class="material-icons">home</i>Home</li></a>
                 <a href="./applicationProcessing.php"><li><i class="material-icons">assignment</i>Application Processing</li></a>
                 <a href="./roomAssignment.php"><li><i class="material-icons">hotel</i>Room Assignment</li></a>
-                <a href=".//residentProcessing.php"><li><i class="material-icons">people_outline</i>Residents</li></a>
+                <a href="./residentProcessing.php"><li><i class="material-icons">people_outline</i>Residents</li></a>
                 <a href="./noticeBoard.php"><li><i class="material-icons">web</i>Notice Board</li></a>
                 <a href="./reportGeneration.php"><li><i class="material-icons">assessment</i>Report Generation</li></a>
                 <hr>
@@ -49,6 +49,6 @@ session_start();
         </main>
     </div>
 
-    <?php include 'footer.php' ?>
+    <?php include '_footer.php' ?>
 </body>
 </html>
