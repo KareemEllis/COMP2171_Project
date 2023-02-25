@@ -7,6 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    
+    Front Page
+    <a href="./applicationForm.php">Application Form</a>
+    <a href="./dashboard.php">Dashboard (Need to implement login)</a>
 </body>
 </html>

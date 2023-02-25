@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $programme, $faculty, $school, $roomType, $roommatePreference
     );
 
-    header("Location: http://www.google.com/");
+    header("Location: ./applicationSuccess.php");
     exit();
 }
 
