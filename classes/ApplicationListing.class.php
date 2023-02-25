@@ -2,13 +2,17 @@
 
 class ApplicationListing {
   
-    public $db;
+    private $db;
     private $applicationList;
 
     //Gets Applications from DB on instantiation
     public function __construct() {
         $this->db = new DB();
         $this->applicationList = $this->getAllApplications();
+    }
+
+    public function getApplicationList() {
+        return $this->applicationList;
     }
 
     //Gets Applications from Application Table in DB
@@ -36,16 +40,18 @@ class ApplicationListing {
 
     //Find an Application
     public function findApplication($applicationID) {
-        $index = null;
+        $found = false;
+        $index = 0;
         //Find the index of the application to be deleted
-        foreach ($this->applicationList as $i => $application) {
+        foreach ($this->applicationList as $application) {
             if($application->getApplicationID() == $applicationID){
-              $index == $i;
+              $found = true;
               break;
             }
+            $index = $index + 1;
         }
 
-        if ($index == null) {
+        if (!$found) {
             // If the Application was found
             return null;
         }
@@ -57,21 +63,13 @@ class ApplicationListing {
 
     //Cretes an instance of an Application and adds it to the Database
     public function addApplication(
-        $applicationID, $status, $firstName, $lastName, $middleInitial, 
+        $firstName, $lastName, $middleInitial, 
         $DOB, $nationality, $gender, $maritalStatus, $familyType, 
         $homeAddress, $mailingAddress, $emailAddress, $studentID, $contactName, 
         $contactRelationship, $contactPhone, $contactAddress, $contactEmail, $levelOfStudy,
         $yearOfStudy, $programme, $faculty, $school, $roomType, $roommatePreference
     )
-    {
-        $application = new Application(
-          $applicationID, $status, $firstName, $lastName, $middleInitial, 
-          $DOB, $nationality, $gender, $maritalStatus, $familyType, 
-          $homeAddress, $mailingAddress, $emailAddress, $studentID, $contactName, 
-          $contactRelationship, $contactPhone, $contactAddress, $contactEmail, $levelOfStudy,
-          $yearOfStudy, $programme, $faculty, $school, $roomType, $roommatePreference
-        );
-        
+    {   
         //ADD APPLICATION TO THE DATABASE
         //Add default status of Pending to status
         $stmt = $this->db->connect()->prepare(
@@ -117,7 +115,6 @@ class ApplicationListing {
         }
         else{
             //If the application was successfully added to the database
-            array_push($this->applicationList, $application); //Add new instance of Application to List
             echo "Application Successfully Submitted";
         }
 
@@ -173,7 +170,7 @@ class ApplicationListing {
             echo "<td>".$application->getFirstName(). " " . $application->getLastName() . "</td>";
             echo "<td>".$application->getGender()."</td>";
             echo "<td>".$application->getStatus()."</td>"; 
-            echo "<td>" . "</td>"; //Should be a button to view the application details
+            echo "<td> <a href=\" ./applicationDetails.php?id=". $application->getApplicationID() ."\" target=\"_blank\">View</a></td>"; //Should be a button to view the application details
             echo "</tr>";
           }
     }

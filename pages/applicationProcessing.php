@@ -63,12 +63,9 @@ $applicationList = new ApplicationListing();
                         </tr> 
                     </thead>
                     <tbody>
-                        <tr>
                             <?php $applicationList->displayApplications(); ?>     
-                        </tr>
                     </tbody>
                 </table>
-
             </section>
                 
         </main>

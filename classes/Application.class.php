@@ -33,6 +33,7 @@ class Application {
         $contactRelationship, $contactPhone, $contactAddress, $contactEmail, $levelOfStudy,
         $yearOfStudy, $programme, $faculty, $school, $roomType, $roommatePreference
     ){
+        //NEED TO DO SOMETHING TO GET APPLICATION NUMBER
         $this->applicationID = $applicationID;
         $this->status = $status;
         $this->firstName = $firstName;
@@ -101,7 +102,7 @@ class Application {
     public function getMailingAddress(){
         return $this->mailingAddress;
     }
-    public function getEmailAddres(){
+    public function getEmailAddress(){
         return $this->emailAddress;
     }
     public function getStudentID(){
@@ -135,5 +136,12 @@ class Application {
     //SETTERS
     public function setStatus($newStatus){
         $this->status = $newStatus;
+    }
+
+    public function __toString()
+    {
+        echo "Application ID#" . $this->getApplicationID();
+        echo "Name: " . $this->getFirstName() . " " . $this->getLastName();
+        echo "Status: " . $this->getStatus();
     }
 }
