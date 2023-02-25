@@ -61,6 +61,18 @@ label{
 .required{
     color: red;
 }
+.error{
+    color: red;
+    display: flex;
+    align-items: center;
+    margin-top: 3px;
+    margin-bottom: 15px;
+}
+
+.error .material-icons{
+    margin-right: 5px;
+    font-size: 18px;
+}
 
 input, select{
     width: 100%;
@@ -107,6 +119,27 @@ hr{
     margin-top: 10px;
 }
 
+
+.controls{
+    background-color: rgb(233, 233, 233);
+
+    height: 60px;
+    padding: 20px;
+    border-radius: 5px;
+
+    grid-column: span 2; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.msg{
+    width: 85%;
+}
+.fail{
+    background-color: rgb(255, 97, 97);
+    color: white;
+}
 button{
     width: 150px;
     height: 50px;
@@ -117,7 +150,7 @@ button{
     display: inline-block;
     margin: 0 auto;
     text-align: center;
-    background-color: rgba(0,113,156,1);
+    background-color: #47AB11;
     color: #fff;
     border-radius: 4px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
@@ -126,5 +159,5 @@ button{
     transition: 0.3s;
 }
 button:hover{
-    background-color: rgb(0, 92, 129);
+    background-color: #378f08;
 }

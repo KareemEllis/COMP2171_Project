@@ -1,3 +1,49 @@
+<?php
+
+include 'classAutoloader.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $applicationList = new ApplicationListing();
+
+    $fname = $_POST['fname'];
+    $lname = $_POST['lname'];
+    $initial = $_POST['initial'];
+    $dob = $_POST['dob'];
+    $nationality = $_POST['nationality'];
+    $gender = $_POST['gender'];
+    $maritalStatus = $_POST['maritalStatus'];
+    $familyType = $_POST['familyType'];
+    $homeAddress = $_POST['homeAddress'];
+    $mailingAddress = $_POST['mailingAddress'];
+    $email = $_POST['email'];
+    $id = $_POST['id'];
+    $contactName = $_POST['contactName'];
+    $contactRelationship = $_POST['contactRelationship'];
+    $contactPhone = $_POST['contactPhone'];
+    $contactAddress = $_POST['contactAddress'];
+    $contactEmail = $_POST['contactEmail'];
+    $levelOfStudy = $_POST['level'];
+    $yearOfStudy = $_POST['year'];
+    $programme = $_POST['programme'];
+    $faculty = $_POST['faculty'];
+    $school = $_POST['school'];
+    $roomType = $_POST['roomType'];
+    $roommatePreference = $_POST['roommatePref'];
+
+    $applicationList->addApplication(
+        $fname, $lname, $initial, $dob, $nationality,
+        $gender, $maritalStatus, $familyType, $homeAddress, 
+        $mailingAddress, $email, $id, $contactName, $contactRelationship,
+        $contactPhone, $contactAddress, $contactEmail, $levelOfStudy, $yearOfStudy, 
+        $programme, $faculty, $school, $roomType, $roommatePreference
+    );
+
+    header("Location: http://www.google.com/");
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +51,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>George Alleyne Hall Application</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="./css/applicationForm.css">
+    <script src="./js/applicationForm.js"></script>
 </head>
 <body>
     <main>
@@ -18,10 +67,12 @@
                 <div class="box">
                     <label>First Name <span class="required">*</span></label>
                     <input type="text" name="fname" id="fname">
+                    <div class="fnameMsg error"></div>
                 </div>
                 <div class="box">
                     <label>Last Name <span class="required">*</span></label>
                     <input type="text" name="lname" id="lname">
+                    <div class="lnameMsg error"></div>
                 </div>
             </div>
 
@@ -30,9 +81,11 @@
 
             <label>DOB <span class="required">*</span></label>
             <input type="date" name="dob" id="dob">
+            <div class="dobMsg error"></div>
 
             <label>Nationality <span class="required">*</span></label>
             <input type="text" name="nationality" id="nationality">
+            <div class="nationalityMsg error"></div>
             
             <label>Gender</label>
             <select name="gender" id="gender">
@@ -58,29 +111,42 @@
             
             <label>Home Address <span class="required">*</span></label>
             <textarea name="homeAddress" id="homeAddress" cols="30" rows="10"></textarea>
+            <div class="homeAddressMsg error"></div>
             
             <label>Mailing Address <span class="required">*</span></label>
             <textarea name="mailingAddress" id="mailingAddress" cols="30" rows="10"></textarea>
+            <div class="mailAddressMsg error"></div>
             
             <label>Email Address <span class="required">*</span></label>
             <input type="email" name="email" id="email">
+            <div class="emailMsg error"></div>
             
             <label>Student ID <span class="required">*</span></label>
             <input type="number" name="id" id="id">
+            <div class="idMsg error"></div>
             
-            <label>Contact</label>
+            <label>Emergency Contact</label>
             <hr>
             <div class="contact">
                 <label>Name <span class="required">*</span></label>
-                <input type="text" name="contactName" id="contactID">
+                <input type="text" name="contactName" id="contactName">
+                <div class="contactNameMsg error"></div>
+
                 <label>Relationship <span class="required">*</span></label>
                 <input type="text" name="contactRelationship" id="contactRelationship">
+                <div class="contactRelationshipMsg error"></div>
+
                 <label>Phone <span class="required">*</span></label>
                 <input type="tel" name="contactPhone" id="contactPhone">
+                <div class="contactPhoneMsg error"></div>
+
                 <label>Address <span class="required">*</span></label>
                 <textarea name="contactAddress" id="contactAddress" cols="30" rows="10"></textarea>
+                <div class="contactAddressMsg error"></div>
+
                 <label>Email <span class="required">*</span></label>
                 <input type="email" name="contactEmail" id="contactEmail">
+                <div class="contactEmailMsg error"></div>
             </div>
             
             <label>Level of Study <span class="required">*</span></label>
@@ -91,15 +157,19 @@
             
             <label>Year of Study <span class="required">*</span></label>
             <input type="number" name="year" id="year">
+            <div class="yearMsg error"></div>
             
             <label>Programme <span class="required">*</span></label>
             <input type="text" name="programme" id="programme">
+            <div class="programmeMsg error"></div>
             
             <label>Faculty <span class="required">*</span></label>
             <input type="text" name="faculty" id="faculty">
+            <div class="facultyMsg error"></div>
             
             <label>School <span class="required">*</span></label>
             <input type="text" name="school" id="school">
+            <div class="schoolMsg error"></div>
             
             <label>Room Type <span class="required">*</span></label>
             <select name="roomType" id="roomType">
@@ -110,7 +180,10 @@
             <label>Roommate Preference</label>
             <input type="text" name="roommatePref" id="roommatePref">
 
-            <button>Submit Application</button>
+            
+            <div class="controls">
+                <div class="msg"></div><button type="submit">Submit Application</button>
+            </div>
         </form>
         
     </main>
