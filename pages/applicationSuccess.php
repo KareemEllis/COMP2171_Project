@@ -9,11 +9,12 @@
     <style>
         @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
         body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
             font-family: 'Lato', sans-serif;
-        }
-        img{
-            width: 150px;
         }
         div{
             position: absolute;
@@ -22,15 +23,21 @@
             -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
         }
+        .svg{
+            width: 100%;
+            height: 200px;
+        }
     </style>
 </head>
 <body>
     <div>
-        <img src="../../resources/success.png" alt="Checkmark Image">
+        <lottie-player class="svg" src="https://assets3.lottiefiles.com/packages/lf20_pqnfmone.json"  background="transparent"  speed="1" autoplay></lottie-player>
         <h1>Thank you!</h1>
         <p>Your application has been submitted.</p>
 
         <a href="../index.php">Go back to Home</a>
     </div>
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </body>
 </html>
