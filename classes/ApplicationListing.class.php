@@ -61,6 +61,40 @@ class ApplicationListing {
         }
     }
 
+    //Comparison functions to sort by ID
+    public function compareApplicationID($a, $b){
+        return $a->getApplicationID() - $b->getApplicationID();
+    }
+
+    public function compareApplicationID_Reverse($a, $b){
+        return $b->getApplicationID() - $a->getApplicationID();
+    }
+
+    public function sortByApplicationID_Ascending(){
+        usort($applicationList, 'compareApplicationID');
+    }
+    public function sortByApplicationID_Descending(){
+        usort($applicationList, 'compareApplicationID_Reverse');
+    }
+
+    public function compareName($a, $b){
+        $aName = $a->getFirstName() . " " . $a->getLastName();
+        $bName = $b->getFirstName() . " " . $b->getLastName();
+        return strcmp($aName, $bName);
+    }
+    public function compareName_Reverse($a, $b){
+        $aName = $a->getFirstName() . " " . $a->getLastName();
+        $bName = $b->getFirstName() . " " . $b->getLastName();
+        return strcmp($bName, $aName);
+    }
+    
+    public function sortByName_Ascending(){
+        usort($applicationList, 'compareName');
+    }
+    public function sortByName_Descending(){
+        usort($applicationList, 'compareName_Reverse');
+    }
+
     //Cretes an instance of an Application and adds it to the Database
     public function addApplication(
         $firstName, $lastName, $middleInitial, 
@@ -164,14 +198,32 @@ class ApplicationListing {
     }
 
     public function displayApplications(){     
-          foreach ($this->applicationList as $application){
-            echo "<tr>";
-            echo "<td>".$application->getApplicationID()."</td>";
-            echo "<td>".$application->getFirstName(). " " . $application->getLastName() . "</td>";
-            echo "<td>".$application->getGender()."</td>";
-            echo "<td>".$application->getStatus()."</td>"; 
-            echo "<td> <a href=\" ./applicationDetails.php?id=". $application->getApplicationID() ."\" target=\"_blank\">View</a></td>"; //Should be a button to view the application details
-            echo "</tr>";
-          }
+        $dataToDisplay = "";  
+        foreach ($this->applicationList as $application){
+            $dataToDisplay .= "<tr>";
+            $dataToDisplay .= "<td>".$application->getApplicationID()."</td>";
+            $dataToDisplay .= "<td>".$application->getFirstName(). " " . $application->getLastName() . "</td>";
+            $dataToDisplay .= "<td>".$application->getGender()."</td>";
+            $dataToDisplay .= "<td>".$application->getStatus()."</td>"; 
+            $dataToDisplay .= "<td> <a href=\" ./applicationDetails.php?id=". $application->getApplicationID() ."\" target=\"_blank\">View</a></td>"; //Should be a button to view the application details
+            $dataToDisplay .= "</tr>";
+        }
+        return $dataToDisplay;
+    }
+
+    public function displayApplicationsByStatus($status){
+        $dataToDisplay = "";
+        foreach ($this->applicationList as $application){
+            if($application->getStatus() == $status){
+                $dataToDisplay .= "<tr>";
+                $dataToDisplay .= "<td>".$application->getApplicationID()."</td>";
+                $dataToDisplay .= "<td>".$application->getFirstName(). " " . $application->getLastName() . "</td>";
+                $dataToDisplay .= "<td>".$application->getGender()."</td>";
+                $dataToDisplay .= "<td>".$application->getStatus()."</td>"; 
+                $dataToDisplay .= "<td> <a href=\" ./applicationDetails.php?id=". $application->getApplicationID() ."\" target=\"_blank\">View</a></td>"; //Should be a button to view the application details
+                $dataToDisplay .= "</tr>";
+            }
+        }
+        return $dataToDisplay;
     }
 }

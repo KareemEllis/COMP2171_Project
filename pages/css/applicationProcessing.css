@@ -1,4 +1,60 @@
 /*****TABLES******/
+h2{
+    margin-bottom: 15px;
+}
+
+.controls{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-wrap: wrap;
+}
+.controls i{
+    margin-right: 10px;
+}
+.controls a{
+    margin-left: 20px;
+    background: none;
+    border: none;
+    color: rgb(48, 48, 48);
+    text-decoration: none;
+    transition: 0.15s;
+}
+.controls .filter-all:hover{
+    border-bottom: 3px solid rgba(0,113,156,1);
+    color: rgba(0,113,156,1);
+}
+.controls .filter-rejected:hover{
+    border-bottom: 3px solid rgb(235, 76, 76);
+    color: rgb(235, 76, 76);
+}
+.controls .filter-pending:hover{
+    border-bottom: 3px solid rgba(0,113,156,1);
+    color: rgba(0,113,156,1);
+}
+.controls .filter-accepted:hover{
+    border-bottom: 3px solid rgb(0, 156, 13);
+    color: rgb(0, 156, 13);
+}
+
+.controls .filter-all.active{
+    border-bottom: 3px solid rgba(0,113,156,1);
+    color: rgba(0,113,156,1);
+}
+.controls .filter-rejected.active{
+    border-bottom: 3px solid rgb(235, 76, 76);
+    color: rgb(235, 76, 76);
+}
+.controls .filter-pending.active{
+    border-bottom: 3px solid rgba(0,113,156,1);
+    color: rgba(0,113,156,1);
+}
+.controls .filter-accepted.active{
+    border-bottom: 3px solid rgb(0, 156, 13);
+    color: rgb(0, 156, 13);
+}
+
+
 table{
     margin-top: 20px;
     border-collapse: collapse;
@@ -37,24 +93,7 @@ td:first-child{
     font-weight: bold;
 }
 
-.sales-lead{
-    background-color: rgb(255, 206, 72);
-    padding: 5px 15px;
-    border-radius: 5px;
-    white-space: nowrap;
-}
-
-.support{
-    background-color: rgb(109, 107, 255);
-    padding: 5px 15px;
-    border-radius: 5px;
-}
-
 table a{
     color: rgb(89, 86, 255);
 
-    transition: 0.1s;
-}
-table a:hover{
-    border-bottom: 1px solid rgb(89, 86, 255);
 }

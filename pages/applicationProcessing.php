@@ -10,6 +10,30 @@ include 'classAutoloader.php';
 
 $applicationList = new ApplicationListing();
 
+$tableData = $applicationList->displayApplications();
+$filter = 'all';
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET'){
+    if(isset($_GET['filter'])){
+        if($_GET['filter'] == "all"){
+            $tableData = $applicationList->displayApplications();
+            $filter = 'all';
+        }
+        if($_GET['filter'] == "accepted"){
+            $tableData = $applicationList->displayApplicationsByStatus("Accepted");
+            $filter = 'accepted';
+        }
+        if($_GET['filter'] == "rejected"){
+            $tableData = $applicationList->displayApplicationsByStatus("Rejected");
+            $filter = 'rejected';
+        }
+        if($_GET['filter'] == "pending"){
+            $tableData = $applicationList->displayApplicationsByStatus("Pending");
+            $filter = 'pending';
+        }
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +46,7 @@ $applicationList = new ApplicationListing();
     <link rel="shortcut icon" href="../resources/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/applicationProcessing.css">
+
 </head>
 <body>
     <?php include '_header.php'; ?>
@@ -47,8 +72,15 @@ $applicationList = new ApplicationListing();
             </header>
 
             <section>
-                <h2>Title</h2>
-
+                <h2>Applications</h2>
+                <div class="controls">
+                    <i class="material-icons">filter_list</i>
+                    <h3>Filter By:</h3>
+                    <a href="./applicationProcessing.php?filter=all" class="<?php if($filter == 'all'){echo 'active';} ?>  filter-all">All</a>
+                    <a href="./applicationProcessing.php?filter=rejected" class="<?php if($filter == 'rejected'){echo 'active';} ?> filter-rejected">Rejected</a>
+                    <a href="./applicationProcessing.php?filter=pending" class="<?php if($filter == 'pending'){echo 'active';} ?> filter-pending">Pending</a>
+                    <a href="./applicationProcessing.php?filter=accepted" class="<?php if($filter == 'accepted'){echo 'active';} ?> filter-accepted">Accepted</a>
+                </div>
                 <table>
                     <colgroup>
                         <col style="width: 25%">
@@ -63,7 +95,7 @@ $applicationList = new ApplicationListing();
                         </tr> 
                     </thead>
                     <tbody>
-                            <?php $applicationList->displayApplications(); ?>     
+                            <?php echo $tableData; ?>     
                     </tbody>
                 </table>
             </section>
