@@ -1,0 +1,42 @@
+h2{
+    font-size: 35px;
+    font-weight: bolder;
+    color: rgb(38, 117, 219);
+}
+h3{
+    margin-top: 5px;
+}
+
+.category-title{
+    margin-bottom: 5px;
+    margin-top: 20px;
+}
+
+.category{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px;
+    background-color: rgb(234, 234, 234);
+    border-radius: 5px;
+    height: 100%;
+}
+.category-box{
+    width: 50%;
+    margin: 5px 0;
+}
+
+.personalInfo{
+    background-color: rgb(209, 229, 255);
+}
+.contactInfo{
+
+}
+.emergencyContactInfo{
+    background-color: rgb(209, 229, 255);
+}
+.educationInfo{
+
+}
+.accommodationInfo{
+    background-color: rgb(209, 229, 255);
+}

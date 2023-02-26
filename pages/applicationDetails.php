@@ -54,30 +54,93 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             </header>
 
             <section>
-                <h2>Name: <?php echo $application_to_view->getFirstName() . " " . $application_to_view->getMiddleInitial() . " " . $application_to_view->getLastName(); ?></h2>
+                
+                <h2><?php echo $application_to_view->getFirstName() . " " . $application_to_view->getMiddleInitial() . " " . $application_to_view->getLastName(); ?></h2>
                 <h3>Application #<?php echo $application_to_view->getApplicationID(); ?></h3>
-                <h4>DOB: </h4> <p> <?php echo $application_to_view->getDOB(); ?> </p>
-                <h4>Nationality: </h4> <p> <?php echo $application_to_view->getNationality(); ?> </p>
-                <h4>Gender: </h4> <p> <?php echo $application_to_view->getGender(); ?> </p>
-                <h4>Marital Status: </h4> <p> <?php echo $application_to_view->getMaritalStatus(); ?> </p>
-                <h4>Family Type: </h4> <p> <?php echo $application_to_view->getFamilyType(); ?> </p>
-                <h4>Home Address: </h4> <p> <?php echo $application_to_view->getHomeAddress(); ?> </p>
-                <h4>Mailing Address: </h4> <p> <?php echo $application_to_view->getMailingAddress(); ?> </p>
-                <h4>Email Address: </h4> <p> <?php echo $application_to_view->getEmailAddress(); ?> </p>
-                <h4>Student ID: </h4> <p> <?php echo $application_to_view->getStudentID(); ?> </p>
-                <h4>Contact: </h4> 
-                    <p>Name: <?php echo $application_to_view->getContact()["name"]; ?> </p>
-                    <p>Relationship: <?php echo $application_to_view->getContact()["relationship"]; ?> </p>
-                    <p>Phone: <?php echo $application_to_view->getContact()["phone"]; ?> </p>
-                    <p>Address: <?php echo $application_to_view->getContact()["address"]; ?> </p>
-                    <p>Email: <?php echo $application_to_view->getContact()["email"]; ?> </p>
-                <h4>Level of Study: </h4> <p> <?php echo $application_to_view->getLevelOfStudy(); ?> </p>
-                <h4>Year of Study: </h4> <p> <?php echo $application_to_view->getYearOfStudy(); ?> </p>
-                <h4>Programme: </h4> <p> <?php echo $application_to_view->getProgramme(); ?> </p>
-                <h4>Faculty: </h4> <p> <?php echo $application_to_view->getFaculty(); ?> </p>
-                <h4>School: </h4> <p> <?php echo $application_to_view->getSchool(); ?> </p>
-                <h4>Room Type: </h4> <p> <?php echo $application_to_view->getRoomType(); ?> </p>
-                <h4>Roommate Preference: </h4> <p> <?php echo $application_to_view->getRoommatePreference(); ?> </p>
+
+                <h3 class="category-title">Personal Information</h3>
+                <div class="category personalInfo">
+                    <div class="category-box">
+                        <h4>Gender: </h4> <p> <?php echo $application_to_view->getGender(); ?> </p>
+                    </div>
+                    <div class="category-box">
+                        <h4>DOB: </h4> <p> <?php echo $application_to_view->getDOB(); ?> </p>
+                    </div>
+                    <div class="category-box">
+                        <h4>Nationality: </h4> <p> <?php echo $application_to_view->getNationality(); ?> </p>
+                    </div>
+                    <div class="category-box">
+                        <h4>Marital Status: </h4> <p> <?php echo $application_to_view->getMaritalStatus(); ?> </p>
+                    </div>
+                    <div class="category-box">
+                        <h4>Family Type: </h4> <p> <?php echo $application_to_view->getFamilyType(); ?> </p>
+                    </div>
+                </div>
+                
+                <h3 class="category-title">Contact Information</h3>
+                <div class="category contactInfo">
+                    <div class="category-box">
+                        <h4>Email Address: </h4> <p> <?php echo $application_to_view->getEmailAddress(); ?> </p>
+                    </div>
+                    <div class="category-box">
+                        <h4>Home Address: </h4> <p> <?php echo $application_to_view->getHomeAddress(); ?> </p>
+                    </div>
+                    <div class="category-box">
+                        <h4>Mailing Address: </h4> <p> <?php echo $application_to_view->getMailingAddress(); ?> </p>
+                    </div>
+                </div>
+                
+                <h3 class="category-title">Emergency Contact</h3>
+                <div class="category emergencyContactInfo">
+                    <div class="category-box">
+                        <h4>Name: </h4><p> <?php echo $application_to_view->getContact()["name"]; ?> </p>
+                    </div>
+                    <div class="category-box">
+                        <h4>Relationship: </h4><p> <?php echo $application_to_view->getContact()["relationship"]; ?> </p>
+                    </div>
+                    <div class="category-box">
+                        <h4>Phone: </h4><p> <?php echo $application_to_view->getContact()["phone"]; ?> </p>
+                    </div>
+                    <div class="category-box">
+                        <h4>Email: </h4><p> <?php echo $application_to_view->getContact()["email"]; ?> </p>
+                    </div>
+                    <div class="category-box">
+                        <h4>Address: </h4><p> <?php echo $application_to_view->getContact()["address"]; ?> </p>
+                    </div>
+                </div>
+      
+                <h3 class="category-title">Education</h3>
+                <div class="category educationInfo">
+                    <div class="category-box">
+                        <h4>Student ID: </h4> <p> <?php echo $application_to_view->getStudentID(); ?> </p>
+                    </div>
+                    <div class="category-box">
+                        <h4>Level of Study: </h4> <p> <?php echo $application_to_view->getLevelOfStudy(); ?> </p>
+                    </div>
+                    <div class="category-box">
+                        <h4>Year of Study: </h4> <p> <?php echo $application_to_view->getYearOfStudy(); ?> </p>
+                    </div>
+                    <div class="category-box">
+                        <h4>Programme: </h4> <p> <?php echo $application_to_view->getProgramme(); ?> </p>
+                    </div>
+                    <div class="category-box">
+                        <h4>Faculty: </h4> <p> <?php echo $application_to_view->getFaculty(); ?> </p>
+                    </div>
+                    <div class="category-box">
+                        <h4>School: </h4> <p> <?php echo $application_to_view->getSchool(); ?> </p>
+                    </div>
+                </div>
+                
+                <h3 class="category-title">Accommodation</h3>
+                <div class="category accommodationInfo">
+                    <div class="category-box">
+                        <h4>Room Type: </h4> <p> <?php echo $application_to_view->getRoomType(); ?> </p>
+                    </div>
+                    <div class="category-box">
+                        <h4>Roommate Preference: </h4> <p> <?php echo $application_to_view->getRoommatePreference(); ?> </p>
+                    </div>
+                </div>  
+                
             </section>
                 
         </main>
