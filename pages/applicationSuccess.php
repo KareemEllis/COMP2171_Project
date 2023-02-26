@@ -35,7 +35,7 @@
         <h1>Thank you!</h1>
         <p>Your application has been submitted.</p>
 
-        <a href="../index.php">Go back to Home</a>
+        <a href="./index.php">Go back to Home</a>
     </div>
 
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>

@@ -300,6 +300,7 @@ window.addEventListener('load', ()=>{
             })
             .then(data => {
                 console.log(data)
+                window.location.replace("./applicationSuccess.php");
             })
             .catch(error => {
                 console.log(`ERROR: ${error}`)

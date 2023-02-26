@@ -3,6 +3,7 @@
 include 'classAutoloader.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    
     $applicationList = new ApplicationListing();
 
     $fname = $_POST['fname'];
@@ -38,7 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $programme, $faculty, $school, $roomType, $roommatePreference
     );
 
-    header("Location: ./applicationSuccess.php");
     exit();
 }
 
