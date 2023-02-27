@@ -8,9 +8,9 @@ session_start();
 // }
 include 'classAutoloader.php';
 
-$applicationList = new ApplicationListing();
+$applicationManagement = new ApplicationManagement();
 
-$application_to_view = $applicationList->findApplication($_GET['id']);
+$application_to_view = $applicationManagement->findApplication($_GET['id']);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 

@@ -8,27 +8,27 @@ session_start();
 // }
 include 'classAutoloader.php';
 
-$applicationList = new ApplicationListing();
+$applicationManagement = new ApplicationManagement();
 
-$tableData = $applicationList->displayApplications();
+$tableData = $applicationManagement->displayApplications();
 $filter = 'all';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     if(isset($_GET['filter'])){
         if($_GET['filter'] == "all"){
-            $tableData = $applicationList->displayApplications();
+            $tableData = $applicationManagement->displayApplications();
             $filter = 'all';
         }
         if($_GET['filter'] == "accepted"){
-            $tableData = $applicationList->displayApplicationsByStatus("Accepted");
+            $tableData = $applicationManagement->displayApplicationsByStatus("Accepted");
             $filter = 'accepted';
         }
         if($_GET['filter'] == "rejected"){
-            $tableData = $applicationList->displayApplicationsByStatus("Rejected");
+            $tableData = $applicationManagement->displayApplicationsByStatus("Rejected");
             $filter = 'rejected';
         }
         if($_GET['filter'] == "pending"){
-            $tableData = $applicationList->displayApplicationsByStatus("Pending");
+            $tableData = $applicationManagement->displayApplicationsByStatus("Pending");
             $filter = 'pending';
         }
     }

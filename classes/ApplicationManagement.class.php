@@ -1,6 +1,6 @@
 <?php
 
-class ApplicationListing {
+class ApplicationManagement {
   
     private $db;
     private $applicationList;

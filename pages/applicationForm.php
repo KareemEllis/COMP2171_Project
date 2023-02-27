@@ -4,7 +4,7 @@ include 'classAutoloader.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     
-    $applicationList = new ApplicationListing();
+    $applicationManagement = new ApplicationManagement();
 
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $roomType = $_POST['roomType'];
     $roommatePreference = $_POST['roommatePref'];
 
-    $applicationList->addApplication(
+    $applicationManagement->addApplication(
         $fname, $lname, $initial, $dob, $nationality,
         $gender, $maritalStatus, $familyType, $homeAddress, 
         $mailingAddress, $email, $id, $contactName, $contactRelationship,
