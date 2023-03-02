@@ -67,7 +67,7 @@ window.addEventListener('load', ()=>{
         else
         {
             console.log("Fields not okay")
-            msgBox.textContent = "Couldn't create new user"
+            msgBox.textContent = "Could not submit application"
             controls.classList.add('fail')
         }
 
