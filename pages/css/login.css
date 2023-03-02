@@ -121,6 +121,10 @@ button{
 button:hover{
     box-shadow: 3px 3px 0 rgb(223, 223, 223);
 }
+button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
 .loading{
     fill: white;
 }

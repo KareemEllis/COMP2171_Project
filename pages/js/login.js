@@ -7,14 +7,15 @@ window.addEventListener('load', ()=>{
     const passwordMsg = document.querySelector(".password-msg")
     const generalMsg = document.querySelector(".general-msg")
 
+    const button = document.querySelector("button")
+
     const btnText = document.querySelector("button p")
     const loadingSVG = document.querySelector(".loading")
-
-    let postingData = false
 
     form.addEventListener("submit", (e)=>{
         e.preventDefault()
 
+        generalMsg.classList.add("hide")
         fieldsOK = true
 
         if(username.value.trim() == ""){
@@ -33,8 +34,8 @@ window.addEventListener('load', ()=>{
             passwordMsg.classList.add("hide")
         }
 
-        if(fieldsOK && !postingData){
-            postingData = true
+        if(fieldsOK){
+            button.disabled = true
             loadingSVG.classList.remove("hide")
             btnText.classList.add("hide")
 
@@ -50,13 +51,20 @@ window.addEventListener('load', ()=>{
             })
             .then(data => {
                 console.log(data)
-                //window.location.replace("./applicationSuccess.php");
+                button.disabled = false
+
+                // if(data == true){
+                //     window.location.replace("./dashboard.php");
+                // }
+                // else{
+                //     generalMsg.classList.remove("hide")
+                // }
+
             })
             .catch(error => {
                 console.log(`ERROR: ${error}`)
+                button.disabled = false
             })
-
-            postingData = false
 
         }
         else

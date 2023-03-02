@@ -31,6 +31,10 @@ window.addEventListener('load', ()=>{
     const msgBox = document.querySelector(".msg")
     const button = document.querySelector("button")
 
+    const btnText = document.querySelector("button p")
+    const loadingSVG = document.querySelector(".loading")
+
+
     form.addEventListener("submit", (e)=>{
         e.preventDefault()
 
@@ -43,7 +47,11 @@ window.addEventListener('load', ()=>{
         //IF THE FORM FIELDS ARE OKAY
         if(fieldsOK)
         {
+            button.disabled = true
             controls.classList.remove('fail')
+            loadingSVG.classList.remove("hide")
+            btnText.classList.add("hide")
+
             msgBox.textContent = ""
 
             console.log("FIELDSOK")   
@@ -58,11 +66,12 @@ window.addEventListener('load', ()=>{
             .then(data => {
                 console.log(data)
                 window.location.replace("./applicationSuccess.php");
+                button.disabled = false
             })
             .catch(error => {
                 console.log(`ERROR: ${error}`)
+                button.disabled = false
             })
-            
         }
         else
         {
@@ -70,7 +79,8 @@ window.addEventListener('load', ()=>{
             msgBox.textContent = "Could not submit application"
             controls.classList.add('fail')
         }
-
+        loadingSVG.classList.add("hide")
+        btnText.classList.remove("hide")
 
     })
 
