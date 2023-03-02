@@ -35,10 +35,50 @@ window.addEventListener('load', ()=>{
         e.preventDefault()
 
         fieldsOK = true
+        
+        checkFields()
 
-        //CHECK IF INPUT FIELDS ARE EMPTY
+        const formData = new FormData(form)
 
-        //FIRST NAME INPUT
+        //IF THE FORM FIELDS ARE OKAY
+        if(fieldsOK)
+        {
+            controls.classList.remove('fail')
+            msgBox.textContent = ""
+
+            console.log("FIELDSOK")   
+            fetch('./applicationForm.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if(response.ok){return response.text()}
+                else{return Promise.reject('Something was wrong with fetch request!')}
+            })
+            .then(data => {
+                console.log(data)
+                window.location.replace("./applicationSuccess.php");
+            })
+            .catch(error => {
+                console.log(`ERROR: ${error}`)
+            })
+            
+        }
+        else
+        {
+            console.log("Fields not okay")
+            msgBox.textContent = "Couldn't create new user"
+            controls.classList.add('fail')
+        }
+
+
+    })
+
+
+
+
+
+    function checkFields(){
         if(fName.value.trim() == "")
         {
             fieldsOK = false
@@ -278,42 +318,5 @@ window.addEventListener('load', ()=>{
             msg.innerHTML = ''
             msg.classList.remove('error')
         }
-
-
-        const formData = new FormData(form)
-
-
-        //IF THE FORM FIELDS ARE OKAY
-        if(fieldsOK)
-        {
-            controls.classList.remove('fail')
-            msgBox.textContent = ""
-
-            console.log("FIELDSOK")   
-            fetch('./applicationForm.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if(response.ok){return response.text()}
-                else{return Promise.reject('Something was wrong with fetch request!')}
-            })
-            .then(data => {
-                console.log(data)
-                window.location.replace("./applicationSuccess.php");
-            })
-            .catch(error => {
-                console.log(`ERROR: ${error}`)
-            })
-            
-        }
-        else
-        {
-            console.log("Fields not okay")
-            msgBox.textContent = "Couldn't create new user"
-            controls.classList.add('fail')
-        }
-
-
-    })
+    }
 })
