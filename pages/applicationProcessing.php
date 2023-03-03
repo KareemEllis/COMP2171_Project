@@ -10,25 +10,25 @@ include 'classAutoloader.php';
 
 $applicationManagement = new ApplicationManagement();
 
-$tableData = $applicationManagement->displayApplications();
+$tableData = $applicationManagement->displayApplicants();
 $filter = 'all';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     if(isset($_GET['filter'])){
         if($_GET['filter'] == "all"){
-            $tableData = $applicationManagement->displayApplications();
+            $tableData = $applicationManagement->displayApplicants();
             $filter = 'all';
         }
         if($_GET['filter'] == "accepted"){
-            $tableData = $applicationManagement->displayApplicationsByStatus("Accepted");
+            $tableData = $applicationManagement->displayApplicantsByStatus("Accepted");
             $filter = 'accepted';
         }
         if($_GET['filter'] == "rejected"){
-            $tableData = $applicationManagement->displayApplicationsByStatus("Rejected");
+            $tableData = $applicationManagement->displayApplicantsByStatus("Rejected");
             $filter = 'rejected';
         }
         if($_GET['filter'] == "pending"){
-            $tableData = $applicationManagement->displayApplicationsByStatus("Pending");
+            $tableData = $applicationManagement->displayApplicantsByStatus("Pending");
             $filter = 'pending';
         }
     }

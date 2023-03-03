@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $roomType = $_POST['roomType'];
     $roommatePreference = $_POST['roommatePref'];
 
-    $applicationManagement->addApplication(
+    $applicationManagement->addApplicant(
         $fname, $lname, $initial, $dob, $nationality,
         $gender, $maritalStatus, $familyType, $homeAddress, 
         $mailingAddress, $email, $id, $contactName, $contactRelationship,

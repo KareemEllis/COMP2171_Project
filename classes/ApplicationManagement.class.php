@@ -3,29 +3,29 @@
 class ApplicationManagement {
   
     private $db;
-    private $applicationList;
+    private $applicantList;
 
-    //Gets Applications from DB on instantiation
+    //Gets Applicants from DB on instantiation
     public function __construct() {
         $this->db = new DB();
-        $this->applicationList = $this->getAllApplications();
+        $this->applicantList = $this->getAllApplicants();
     }
 
-    public function getApplicationList() {
-        return $this->applicationList;
+    public function getApplicantList() {
+        return $this->applicantList;
     }
 
-    //Gets Applications from Application Table in DB
-    public function getAllApplications() {
+    //Gets Applicants from Application Table in DB
+    public function getAllApplicants() {
         $stmt = $this->db->connect()->prepare("SELECT * FROM Applicants");
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $applicationList = [];
+        $applicantList = [];
 
         foreach ($results as $row){
             //Creating Instances of Application Class from database data
-            $application = new Application(
+            $application = new Applicant(
               $row['ApplicationID'], $row['Status'], $row['First Name'], $row['Last Name'], $row['Middle Initial'],
               $row["DOB"], $row['Nationality'], $row['Gender'], $row['Marital Status'], $row['Family Type'], $row['Home Address'],
               $row['Mailing Address'], $row['Email Address'], $row['ID Number'], $row['Contact Name'], $row['Contact Relationship'],
@@ -33,18 +33,18 @@ class ApplicationManagement {
               $row['Programme Name'], $row['Faculty Name'], $row['Name of School'], $row['Room Type'], $row['Roommate Preference']
             );
 
-            array_push($applicationList, $application);
+            array_push($applicantList, $application);
         }
-        return $applicationList;
+        return $applicantList;
     }
 
     //Find an Application
-    public function findApplication($applicationID) {
+    public function findApplicant($applicantID) {
         $found = false;
         $index = 0;
         //Find the index of the application to be deleted
-        foreach ($this->applicationList as $application) {
-            if($application->getApplicationID() == $applicationID){
+        foreach ($this->applicantList as $applicant) {
+            if($applicant->getApplicantID() == $applicantID){
               $found = true;
               break;
             }
@@ -57,24 +57,24 @@ class ApplicationManagement {
         }
         else {
             // If the Application was not found
-            return $this->applicationList[$index];
+            return $this->applicantList[$index];
         }
     }
 
     //Comparison functions to sort by ID
-    public function compareApplicationID($a, $b){
-        return $a->getApplicationID() - $b->getApplicationID();
+    public function compareApplicantID($a, $b){
+        return $a->getApplicantID() - $b->getApplicantID();
     }
 
-    public function compareApplicationID_Reverse($a, $b){
-        return $b->getApplicationID() - $a->getApplicationID();
+    public function compareApplicantID_Reverse($a, $b){
+        return $b->getApplicantID() - $a->getApplicantID();
     }
 
-    public function sortByApplicationID_Ascending(){
-        usort($applicationList, 'compareApplicationID');
+    public function sortByApplicantID_Ascending(){
+        usort($applicantList, 'compareApplicantID');
     }
-    public function sortByApplicationID_Descending(){
-        usort($applicationList, 'compareApplicationID_Reverse');
+    public function sortByApplicantID_Descending(){
+        usort($applicantList, 'compareApplicantID_Reverse');
     }
 
     public function compareName($a, $b){
@@ -89,14 +89,14 @@ class ApplicationManagement {
     }
     
     public function sortByName_Ascending(){
-        usort($applicationList, 'compareName');
+        usort($applicantList, 'compareName');
     }
     public function sortByName_Descending(){
-        usort($applicationList, 'compareName_Reverse');
+        usort($applicantList, 'compareName_Reverse');
     }
 
     //Cretes an instance of an Application and adds it to the Database
-    public function addApplication(
+    public function addApplicant(
         $firstName, $lastName, $middleInitial, 
         $DOB, $nationality, $gender, $maritalStatus, $familyType, 
         $homeAddress, $mailingAddress, $emailAddress, $studentID, $contactName, 
@@ -119,14 +119,14 @@ class ApplicationManagement {
         $stmt->bindValue(':firstName', $firstName, PDO::PARAM_STR);
         $stmt->bindValue(':lastName', $lastName, PDO::PARAM_STR);
         $stmt->bindValue(':middleInitial', $middleInitial, PDO::PARAM_STR);
-        $stmt->bindValue(':dob', $DOB, PDO::PARAM_STR);                     //CHEK THE DOB FORMAT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        $stmt->bindValue(':dob', $DOB, PDO::PARAM_STR);   
         $stmt->bindValue(':nationality', $nationality, PDO::PARAM_STR);
         $stmt->bindValue(':gender', $gender, PDO::PARAM_STR);
         $stmt->bindValue(':maritalStatus', $maritalStatus, PDO::PARAM_STR);
         $stmt->bindValue(':familyType', $familyType, PDO::PARAM_STR);
         $stmt->bindValue(':homeAddress', $homeAddress, PDO::PARAM_STR);
         $stmt->bindValue(':mailingAddress', $mailingAddress, PDO::PARAM_STR);
-        $stmt->bindValue(':emailAddress', $emailAddress, PDO::PARAM_STR);   //CHECK FOR EMAIL FORMAT 
+        $stmt->bindValue(':emailAddress', $emailAddress, PDO::PARAM_STR); 
         $stmt->bindValue(':studentID', $studentID, PDO::PARAM_STR);
         $stmt->bindValue(':contactName', $contactName, PDO::PARAM_STR);
         $stmt->bindValue(':contactRelationship', $contactRelationship, PDO::PARAM_STR);
@@ -156,71 +156,71 @@ class ApplicationManagement {
     }
 
     //Delete an application from the database and removes from array
-    public function deleteApplication($applicationID) {
+    public function deleteApplicant($applicantID) {
         $index = null;
         //Find the index of the application to be deleted
-        foreach ($this->applicationList as $i => $application) {
-            if($application->getApplicationID() == $applicationID){
+        foreach ($this->applicantList as $i => $applicant) {
+            if($applicant->getApplicantID() == $applicantID){
               $index == $i;
               break;
             }
         }
 
         if ($index != null) {
-            $application_to_delete = $this->applicationList[$index];
+            $applicant_to_delete = $this->applicantList[$index];
 
-            $stmt = $this->db->connect()->prepare("DELETE FROM Applicants WHERE ApplicationID = $application_to_delete->getApplicationID();");
+            $stmt = $this->db->connect()->prepare("DELETE FROM Applicants WHERE ApplicationID = $applicant_to_delete->getApplicantID();");
 
             // Executes SQL statement and checks if successful
             if ($stmt->execute() == false) {
                 // If SQL Execution was unsuccessful
-                echo "Failed to delete Application from Database";
+                echo "Failed to delete Applicant from Database";
                 echo "ERROR: " . $stmt->errorInfo();
             }
             else{
                 // If SQL Execution was successful
-                echo "Successfully deleted Application";
-                unset($this->applicationList[$index]); //Removes Application from the list
+                echo "Successfully deleted Applicant";
+                unset($this->applicantList[$index]); //Removes Applicant from the list
             }
             
             $stmt = null;
         }
         else {
-          echo "An application does not exit for Application #" . $applicationID;
+          echo "An application does not exist for Application #" . $applicantID;
         }
 
     }
 
     //Sets status of Application to Accepted, Rejected or Pending
-    public function updateApplicationStatus($applicationID, $newStatus) {
-        $application_to_update =  $this->findApplication($applicationID);
-        $application_to_update->setStatus($newStatus);
+    public function updateApplicationStatus($applicantID, $newStatus) {
+        $applicant_to_update =  $this->findApplicant($applicantID);
+        $applicant_to_update->setStatus($newStatus);
     }
 
-    public function displayApplications(){     
+    public function displayApplicants(){     
         $dataToDisplay = "";  
-        foreach ($this->applicationList as $application){
+        foreach ($this->applicantList as $applicant){
             $dataToDisplay .= "<tr>";
-            $dataToDisplay .= "<td>".$application->getApplicationID()."</td>";
-            $dataToDisplay .= "<td>".$application->getFirstName(). " " . $application->getLastName() . "</td>";
-            $dataToDisplay .= "<td>".$application->getGender()."</td>";
-            $dataToDisplay .= "<td>".$application->getStatus()."</td>"; 
-            $dataToDisplay .= "<td> <a href=\" ./applicationDetails.php?id=". $application->getApplicationID() ."\" target=\"_blank\">View</a></td>"; //Should be a button to view the application details
+            $dataToDisplay .= "<td>".$applicant->getApplicantID()."</td>";
+            $dataToDisplay .= "<td>".$applicant->getPersonalDetails()->getFirstName(). " " . $applicant->getPersonalDetails()->getLastName() . "</td>";
+            $dataToDisplay .= "<td>".$applicant->getPersonalDetails()->getGender()."</td>";
+            $dataToDisplay .= "<td>".$applicant->getApplication()->getStatus()."</td>"; 
+            $dataToDisplay .= "<td> <a href=\" ./applicationDetails.php?id=". $applicant->getApplicantID() ."\" target=\"_blank\">View</a></td>"; //Should be a button to view the application details
             $dataToDisplay .= "</tr>";
         }
         return $dataToDisplay;
     }
 
-    public function displayApplicationsByStatus($status){
+    public function displayApplicantsByStatus($status){
         $dataToDisplay = "";
-        foreach ($this->applicationList as $application){
-            if($application->getStatus() == $status){
+        foreach ($this->applicantList as $applicant){
+            if($applicant->getApplication()->getStatus() == $status){
                 $dataToDisplay .= "<tr>";
-                $dataToDisplay .= "<td>".$application->getApplicationID()."</td>";
-                $dataToDisplay .= "<td>".$application->getFirstName(). " " . $application->getLastName() . "</td>";
-                $dataToDisplay .= "<td>".$application->getGender()."</td>";
-                $dataToDisplay .= "<td>".$application->getStatus()."</td>"; 
-                $dataToDisplay .= "<td> <a href=\" ./applicationDetails.php?id=". $application->getApplicationID() ."\" target=\"_blank\">View</a></td>"; //Should be a button to view the application details
+                $dataToDisplay .= "<td>".$applicant->getApplicantID()."</td>";
+                $dataToDisplay .= "<td>".$applicant->getPersonalDetails()->getFirstName(). " " . $applicant->getPersonalDetails()->getLastName() . "</td>";
+                $dataToDisplay .= "<td>".$applicant->getPersonalDetails()->getGender()."</td>";
+                $dataToDisplay .= "<td>".$applicant->getApplication()->getStatus()."</td>"; 
+                $dataToDisplay .= "<td> <a href=\" ./applicationDetails.php?id=". $applicant->getApplicantID() ."\" target=\"_blank\">View</a></td>"; //A link to view the application details
                 $dataToDisplay .= "</tr>";
             }
         }
