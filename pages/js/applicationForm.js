@@ -70,6 +70,8 @@ window.addEventListener('load', ()=>{
             })
             .catch(error => {
                 console.log(`ERROR: ${error}`)
+                loadingSVG.classList.add("hide")
+                btnText.classList.remove("hide")
                 button.disabled = false
             })
         }
@@ -79,8 +81,7 @@ window.addEventListener('load', ()=>{
             msgBox.textContent = "Could not submit application"
             controls.classList.add('fail')
         }
-        loadingSVG.classList.add("hide")
-        btnText.classList.remove("hide")
+        
 
     })
 

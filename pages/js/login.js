@@ -52,6 +52,8 @@ window.addEventListener('load', ()=>{
             .then(data => {
                 console.log(data)
                 button.disabled = false
+                loadingSVG.classList.add("hide")
+                btnText.classList.remove("hide")    
 
                 // if(data == true){
                 //     window.location.replace("./dashboard.php");
@@ -64,6 +66,8 @@ window.addEventListener('load', ()=>{
             .catch(error => {
                 console.log(`ERROR: ${error}`)
                 button.disabled = false
+                loadingSVG.classList.add("hide")
+                btnText.classList.remove("hide")
             })
 
         }
