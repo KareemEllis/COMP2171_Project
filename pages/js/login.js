@@ -41,7 +41,7 @@ window.addEventListener('load', ()=>{
 
             const formData = new FormData(form)
 
-            fetch('', {
+            fetch('./login.php', {
                 method: 'POST',
                 body: formData
             })

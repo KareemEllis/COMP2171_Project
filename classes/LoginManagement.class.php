@@ -20,11 +20,11 @@ class LoginManagement {
         $stmt->execute();
 
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
 
         //If Username was found
         if(count($result) == 1){
             //Checks Hash password in database
+
             if (password_verify($password, $result[0]['Password'])) {
                 $_SESSION['username'] = $result[0]['Username'];
                 $_SESSION['id'] = $result[0]['ID'];

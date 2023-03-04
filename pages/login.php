@@ -1,14 +1,26 @@
 <?php
 
-session_start();
+include 'classAutoloader.php';
 
-//Check if user is logged in. If logged in, redirect to dashboard.
-// if(!isset($_SESSION['id'])){
-//     session_destroy();
-//     header('Location: index.php');
-//     exit;
-// }
+$loginManagement = new LoginManagement();
+$loginManagement->startSession();
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $success = $loginManagement->login($_POST['username'], $_POST['password']);
+    if($success == true){
+        //Login was successful. Redirect to dashboard
+        echo "success";
+    }
+    else{
+        //Print error message
+        echo "fail";
+    }
+    exit();
+}
+
+if($loginManagement->checkIfLoggedIn() == true){
+    header("Location: ./dashboard.php");
+}
 
 ?>
 
