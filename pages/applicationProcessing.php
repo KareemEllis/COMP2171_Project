@@ -1,12 +1,13 @@
 <?php
-session_start();
 
-// if(!isset($_SESSION['id'])){
-//     session_destroy();
-//     header('Location: index.php');
-//     exit;
-// }
 include 'classAutoloader.php';
+
+$loginManagement = new LoginManagement();
+$loginManagement->startSession();
+
+if($loginManagement->checkIfLoggedIn() == false){
+    header("Location: ./login.php");
+}
 
 $applicationManagement = new ApplicationManagement();
 

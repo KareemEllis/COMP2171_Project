@@ -52,15 +52,16 @@ window.addEventListener('load', ()=>{
             .then(data => {
                 console.log(data)
                 button.disabled = false
-                loadingSVG.classList.add("hide")
-                btnText.classList.remove("hide")    
 
-                // if(data == true){
-                //     window.location.replace("./dashboard.php");
-                // }
-                // else{
-                //     generalMsg.classList.remove("hide")
-                // }
+                if(data == "success"){
+                    console.log("??")
+                    window.location.replace("./dashboard.php");
+                }
+                else{
+                    loadingSVG.classList.add("hide")
+                    btnText.classList.remove("hide")    
+                    generalMsg.classList.remove("hide")
+                }
 
             })
             .catch(error => {
@@ -75,8 +76,6 @@ window.addEventListener('load', ()=>{
         {
             console.log("Fields not filled or data is already being posted")
         }
-        loadingSVG.classList.add("hide")
-        btnText.classList.remove("hide")
         
     })
 
