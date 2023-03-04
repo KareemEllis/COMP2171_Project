@@ -1,19 +1,24 @@
 <?php
-session_start();
 
-// if(!isset($_SESSION['id'])){
-//     session_destroy();
-//     header('Location: index.php');
-//     exit;
-// }
 include 'classAutoloader.php';
 
+$loginManagement = new LoginManagement();
 $applicationManagement = new ApplicationManagement();
+$authentification = new Authentification();
+
+$loginManagement->startSession();
 
 $application_to_view = $applicationManagement->findApplicant($_GET['id']);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
+}
+
+if($loginManagement->checkIfLoggedIn() == false){
+    header("Location: ./login.php");
+}
+if($authentification->authApplicationProcessing() == false){
+    header("Location: ./dashboard.php");
 }
 
 ?>

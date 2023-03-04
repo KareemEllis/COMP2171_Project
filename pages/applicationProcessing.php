@@ -3,13 +3,17 @@
 include 'classAutoloader.php';
 
 $loginManagement = new LoginManagement();
+$applicationManagement = new ApplicationManagement();
+$authentification = new Authentification();
+
 $loginManagement->startSession();
 
 if($loginManagement->checkIfLoggedIn() == false){
     header("Location: ./login.php");
 }
-
-$applicationManagement = new ApplicationManagement();
+if($authentification->authApplicationProcessing() == false){
+    header("Location: ./dashboard.php");
+}
 
 $tableData = $applicationManagement->displayApplicants();
 $filter = 'all';
