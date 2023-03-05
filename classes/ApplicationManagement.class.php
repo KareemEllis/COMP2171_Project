@@ -193,8 +193,11 @@ class ApplicationManagement {
 
     //Sets status of Application to Accepted, Rejected or Pending
     public function updateApplicationStatus($applicantID, $newStatus) {
-        $applicant_to_update =  $this->findApplicant($applicantID);
-        $applicant_to_update->setStatus($newStatus);
+        $stmt = $this->db->connect()->prepare("UPDATE Applicants SET Status = :status WHERE ApplicationID = :id");
+        $stmt->bindValue(':status', $newStatus, PDO::PARAM_STR);
+        $stmt->bindValue(':id', $applicantID, PDO::PARAM_STR);
+
+        $stmt->execute();
     }
 
     public function displayApplicants(){     

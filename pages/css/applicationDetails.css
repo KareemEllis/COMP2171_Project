@@ -14,18 +14,18 @@ h3{
     margin-bottom: 5px;
 }
 
-span{
+.status{
     padding: 3px 10px;
     border-radius: 3px;
     color: white;
 }
-span.Accepted{
+.status.Accepted{
     background: rgb(41, 172, 41);
 }
-span.Pending{
+.status.Pending{
     background: rgb(68, 68, 68);
 }
-span.Rejected{
+.status.Rejected{
     background: rgb(221, 66, 66);
 
 }

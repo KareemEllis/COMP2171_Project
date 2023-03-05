@@ -10,10 +10,6 @@ $loginManagement->startSession();
 
 $application_to_view = $applicationManagement->findApplicant($_GET['id']);
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-
-}
-
 if($loginManagement->checkIfLoggedIn() == false){
     header("Location: ./login.php");
 }
@@ -34,6 +30,8 @@ if($authentification->authApplicationProcessing() == false){
     <link rel="shortcut icon" href="../resources/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/applicationDetails.css">
+
+    <script src="./js/applicationDetails.js"></script>
 </head>
 <body>
     <?php include '_header.php'; ?>
@@ -62,7 +60,7 @@ if($authentification->authApplicationProcessing() == false){
                 <div class="top">
                     <div>
                         <h2><?php echo $application_to_view->getPersonalDetails()->getFirstName() . " " . $application_to_view->getPersonalDetails()->getMiddleInitial() . " " . $application_to_view->getPersonalDetails()->getLastName(); ?></h2>
-                        <h3>Application #<?php echo $application_to_view->getApplicantID(); ?></h3>
+                        <h3>Application # <span class="ID"><?php echo $application_to_view->getApplicantID(); ?></span></h3>
                     </div>
                     <div>
                         <button class="btn-accept">Accept</button>
@@ -71,7 +69,7 @@ if($authentification->authApplicationProcessing() == false){
                 </div>
                 
                 <h3>Application Status: 
-                    <span class=" <?php echo $application_to_view->getApplication()->getStatus(); ?> "> 
+                    <span class="status <?php echo $application_to_view->getApplication()->getStatus(); ?> "> 
                         <?php echo $application_to_view->getApplication()->getStatus(); ?>
                     </span>
                 </h3>
