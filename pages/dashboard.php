@@ -46,7 +46,7 @@ if($loginManagement->checkIfLoggedIn() == false){
             </header>
 
             <section>
-                <h2>Welcome {name}</h2>
+                <h2>Welcome <?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName'] ?></h2>
             </section>
                 
         </main>

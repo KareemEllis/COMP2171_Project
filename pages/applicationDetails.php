@@ -59,9 +59,22 @@ if($authentification->authApplicationProcessing() == false){
             </header>
 
             <section>
+                <div class="top">
+                    <div>
+                        <h2><?php echo $application_to_view->getPersonalDetails()->getFirstName() . " " . $application_to_view->getPersonalDetails()->getMiddleInitial() . " " . $application_to_view->getPersonalDetails()->getLastName(); ?></h2>
+                        <h3>Application #<?php echo $application_to_view->getApplicantID(); ?></h3>
+                    </div>
+                    <div>
+                        <button class="btn-accept">Accept</button>
+                        <button class="btn-reject">Reject</button>
+                    </div>
+                </div>
                 
-                <h2><?php echo $application_to_view->getPersonalDetails()->getFirstName() . " " . $application_to_view->getPersonalDetails()->getMiddleInitial() . " " . $application_to_view->getPersonalDetails()->getLastName(); ?></h2>
-                <h3>Application #<?php echo $application_to_view->getApplicantID(); ?></h3>
+                <h3>Application Status: 
+                    <span class=" <?php echo $application_to_view->getApplication()->getStatus(); ?> "> 
+                        <?php echo $application_to_view->getApplication()->getStatus(); ?>
+                    </span>
+                </h3>
 
                 <h3 class="category-title">Personal Information</h3>
                 <div class="category personalInfo">
