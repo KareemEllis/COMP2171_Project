@@ -1,9 +1,14 @@
 <?php
 
 class DB {
-    private $host = 'db4free.net';
-    private $username = 'swenstar';
-    private $password = 'ihatecomsci123';
+    // private $host = 'db4free.net';
+    // private $username = 'swenstar';
+    // private $password = 'ihatecomsci123';
+    // private $dbname = 'georgealleyne';
+
+    private $host = 'localhost';
+    private $username = 'root';
+    private $password = '';
     private $dbname = 'georgealleyne';
 
     public function connect() {

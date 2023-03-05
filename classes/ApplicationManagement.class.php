@@ -207,7 +207,7 @@ class ApplicationManagement {
             $dataToDisplay .= "<td>".$applicant->getApplicantID()."</td>";
             $dataToDisplay .= "<td>".$applicant->getPersonalDetails()->getFirstName(). " " . $applicant->getPersonalDetails()->getLastName() . "</td>";
             $dataToDisplay .= "<td>".$applicant->getPersonalDetails()->getGender()."</td>";
-            $dataToDisplay .= "<td>".$applicant->getApplication()->getStatus()."</td>"; 
+            $dataToDisplay .= "<td> <span class=\"" . $applicant->getApplication()->getStatus() . "\">" . $applicant->getApplication()->getStatus(). "<span> </td>"; 
             $dataToDisplay .= "<td> <a href=\" ./applicationDetails.php?id=". $applicant->getApplicantID() ."\" target=\"_blank\">View</a></td>"; //Should be a button to view the application details
             $dataToDisplay .= "</tr>";
         }
@@ -222,7 +222,7 @@ class ApplicationManagement {
                 $dataToDisplay .= "<td>".$applicant->getApplicantID()."</td>";
                 $dataToDisplay .= "<td>".$applicant->getPersonalDetails()->getFirstName(). " " . $applicant->getPersonalDetails()->getLastName() . "</td>";
                 $dataToDisplay .= "<td>".$applicant->getPersonalDetails()->getGender()."</td>";
-                $dataToDisplay .= "<td>".$applicant->getApplication()->getStatus()."</td>"; 
+                $dataToDisplay .= "<td> <span class=\"" . $applicant->getApplication()->getStatus() . "\">" . $applicant->getApplication()->getStatus(). "<span> </td>"; 
                 $dataToDisplay .= "<td> <a href=\" ./applicationDetails.php?id=". $applicant->getApplicantID() ."\" target=\"_blank\">View</a></td>"; //A link to view the application details
                 $dataToDisplay .= "</tr>";
             }

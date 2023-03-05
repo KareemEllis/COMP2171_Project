@@ -65,6 +65,7 @@ if($authentification->authApplicationProcessing() == false){
                     <div>
                         <button class="btn-accept">Accept</button>
                         <button class="btn-reject">Reject</button>
+                        <button class="btn-pending">Pending</button>
                     </div>
                 </div>
                 

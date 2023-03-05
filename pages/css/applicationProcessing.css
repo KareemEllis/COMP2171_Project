@@ -76,6 +76,25 @@ th,td{
     padding: 12px 15px;
 }
 
+.Accepted{
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(41, 172, 41);
+}
+.Rejected{
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background: rgb(68, 68, 68);
+}
+.Pending{
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background: rgb(221, 66, 66);
+}
+
 tbody tr{
     border-bottom: 1px solid #dddddd;
 

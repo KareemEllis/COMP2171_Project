@@ -19,8 +19,10 @@ if($loginManagement->checkIfLoggedIn() == false){
     <title>Dashboard</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="shortcut icon" href="../resources/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/main.css">
+    
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/main.css">
+    
 </head>
 <body>
     <?php include '_header.php'; ?>
