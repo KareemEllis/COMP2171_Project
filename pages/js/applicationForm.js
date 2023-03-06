@@ -34,46 +34,25 @@ window.addEventListener('load', ()=>{
     const btnText = document.querySelector("button p")
     const loadingSVG = document.querySelector(".loading")
 
+    const modal = document.querySelector('dialog')
+    const closeModalBtn = document.querySelector('dialog .close')
+    const confirmModalBtn = document.querySelector('dialog .confirm')
+
+    //CLOSE MODAL
+    closeModalBtn.addEventListener('click', () => {
+        modal.close()
+    })
 
     form.addEventListener("submit", (e)=>{
         e.preventDefault()
-
         fieldsOK = true
         
         checkFields()
 
-        const formData = new FormData(form)
-
         //IF THE FORM FIELDS ARE OKAY
         if(fieldsOK)
         {
-            button.disabled = true
-            controls.classList.remove('fail')
-            loadingSVG.classList.remove("hide")
-            btnText.classList.add("hide")
-
-            msgBox.textContent = ""
-
-            console.log("FIELDSOK")   
-            fetch('./applicationForm.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if(response.ok){return response.text()}
-                else{return Promise.reject('Something was wrong with fetch request!')}
-            })
-            .then(data => {
-                console.log(data)
-                window.location.replace("./applicationSuccess.php");
-                button.disabled = false
-            })
-            .catch(error => {
-                console.log(`ERROR: ${error}`)
-                loadingSVG.classList.add("hide")
-                btnText.classList.remove("hide")
-                button.disabled = false
-            })
+            modal.showModal()
         }
         else
         {
@@ -81,8 +60,39 @@ window.addEventListener('load', ()=>{
             msgBox.textContent = "Could not submit application"
             controls.classList.add('fail')
         }
-        
+    })
 
+    //CONFIRM SUBMISSION
+    confirmModalBtn.addEventListener('click', () => {
+        button.disabled = true
+        controls.classList.remove('fail')
+        loadingSVG.classList.remove("hide")
+        btnText.classList.add("hide")
+
+        const formData = new FormData(form)
+
+        msgBox.textContent = ""
+
+        console.log("FIELDSOK")   
+        fetch('./applicationForm.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if(response.ok){return response.text()}
+            else{return Promise.reject('Something was wrong with fetch request!')}
+        })
+        .then(data => {
+            console.log(data)
+            window.location.replace("./applicationSuccess.php");
+            button.disabled = false
+        })
+        .catch(error => {
+            console.log(`ERROR: ${error}`)
+            loadingSVG.classList.add("hide")
+            btnText.classList.remove("hide")
+            button.disabled = false
+        })
     })
 
 

@@ -197,5 +197,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         </form>
         
     </main>
+
+    <dialog class="modal">
+        <h2>Are you sure you want to submit this application?</h2>
+        <p>Please confirm the your details before submitting</p>
+
+        <button class="confirm">Confirm</button> <button class="close">Close</button>
+    </dialog>
 </body>
 </html>
