@@ -3,6 +3,29 @@ h2{
     margin-bottom: 15px;
 }
 
+.top{
+    display: flex;
+    justify-content: space-between;
+}
+.top button{
+    height: 35px;
+    font-size: 15px;
+    font-weight: 300;
+    color: white;
+    border: 0;
+    border-radius: 3px;
+    transition: 0.2s;
+}
+.top button:hover{
+    opacity: 0.8;
+}
+.btn-convert{
+    background: linear-gradient(90deg, rgb(38, 117, 219) 0%, rgb(0, 62, 87) 100%);
+}
+.btn-delete{
+    background: rgb(158, 42, 42);
+}
+
 .controls{
     display: flex;
     align-items: center;
@@ -86,13 +109,13 @@ th,td{
     padding: 5px;
     border-radius: 5px;
     color: white;
-    background: rgb(68, 68, 68);
+    background: rgb(221, 66, 66);
 }
 .Pending{
     padding: 5px;
     border-radius: 5px;
     color: white;
-    background: rgb(221, 66, 66);
+    background: rgb(68, 68, 68);
 }
 
 tbody tr{

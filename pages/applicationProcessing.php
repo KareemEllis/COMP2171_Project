@@ -39,6 +39,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     }
 }
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if(isset($_POST['query'])){
+        if($_POST['query'] == 'convert'){
+            $applicationManagement->convertToResident();
+        }
+
+        elseif($_POST['query'] == 'delete'){
+            $applicationManagement->deleteRejectedApplicants();
+        }
+    }
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,6 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     <link rel="shortcut icon" href="../resources/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/applicationProcessing.css">
+    <script src="./js/applicationProcessing.js"></script>
 
 </head>
 <body>
@@ -77,7 +91,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
             </header>
 
             <section>
-                <h2>Applications</h2>
+                <div class="top">
+                    <h2>Applications</h2>
+                    <div>
+                        <button class="btn-convert">Convert to Residents</button>
+                        <button class="btn-delete">Delete Rejected Applicants</button>
+                    </div>
+                </div>
                 <div class="controls">
                     <i class="material-icons">filter_list</i>
                     <h3>Filter By:</h3>

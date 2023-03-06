@@ -62,7 +62,7 @@ CREATE TABLE `Residents` (
   `Home Address` varchar(100) NOT NULL default ' ',
   `Mailing Address` varchar(100) NOT NULL default ' ',
   `Email Address` varchar(75) NOT NULL default ' ',
-  `Phone Number` varchar(15) NOT NULL default ' ',
+  `Phone Number` varchar(15) default ' ',
   `ID Number` int(11) NOT NULL,
   `Contact Name` varchar(50) NOT NULL default ' ',
   `Contact Relationship` varchar(50) NOT NULL default ' ',
@@ -74,7 +74,7 @@ CREATE TABLE `Residents` (
   `Programme Name` varchar(50) NOT NULL default ' ',
   `Faculty Name` varchar(75) NOT NULL default ' ',
   `Name of School` varchar(75) NOT NULL default ' ',
-  `Room Number` varchar(10) NOT NULL default ' ',
+  `Room Number` varchar(10) default ' ',
 PRIMARY KEY (`Resident ID`)
 );
 

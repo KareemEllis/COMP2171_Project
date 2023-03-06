@@ -229,4 +229,26 @@ class ApplicationManagement {
         }
         return $dataToDisplay;
     }
+
+    public function convertToResident(){
+        $stmt = $this->db->connect()->prepare(
+            "INSERT INTO Residents (`First Name`, `Last Name`, `Middle Initial`, `DOB`, `Nationality`, `Gender`, 
+            `Marital Status`, `Family Type`, `Home Address`, `Mailing Address`, `Email Address`, `ID Number`, `Contact Name`, 
+            `Contact Relationship`, `Contact Telephone`, `Contact Address`, `Contact Email`, `Level of Study`, `Year of Study`, `Programme Name`, `Faculty Name`, `Name of School`)
+            SELECT `First Name`, `Last Name`, `Middle Initial`, `DOB`, `Nationality`, `Gender`, 
+            `Marital Status`, `Family Type`, `Home Address`, `Mailing Address`, `Email Address`, `ID Number`, `Contact Name`,
+            `Contact Relationship`, `Contact Telephone`, `Contact Address`, `Contact Email`, `Level of Study`, `Year of Study`, `Programme Name`, `Faculty Name`, `Name of School`
+            FROM Applicants
+            WHERE `Status` = 'Accepted';
+            DELETE FROM Applicants WHERE `Status` = 'Accepted';"
+        );
+        $stmt->execute();
+    }
+
+    public function deleteRejectedApplicants(){
+        $stmt = $this->db->connect()->prepare(
+            "DELETE FROM Applicants WHERE `Status` = 'Rejected';"
+        );
+        $stmt->execute();
+    }
 }
