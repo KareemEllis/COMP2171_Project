@@ -39,6 +39,8 @@ PRIMARY KEY (`ApplicationID`)
 DROP TABLE IF EXISTS `Notices`;
 CREATE TABLE `Notices` (
   `id` int(11) NOT NULL auto_increment,
+  `author` int(11) NOT NULL,
+  `post_date` date DEFAULT NULL,
   `title` varchar(100) NOT NULL default ' ',
   `date` varchar(100) NOT NULL default ' ',
   `time` varchar(100) NOT NULL default ' ',
@@ -116,11 +118,6 @@ INSERT INTO `Applicants` (`ApplicationID`, `Status`, `First Name`, `Last Name`, 
 (28, 'Pending', 'Maria', 'Rodriguez', 'L.', '2002-08-21', 'Mexican', 'Female', 'Single', 'Single-parent', '789 Elm St,\r\nAnytown,\r\nUSA', '789 Elm St,\r\nAnytown,\r\nUSA', 'maria.rodriguez@email.com', '246813579', 'Juan Rodriguez', 'Father', '555-555-5555', '789 Elm St,\r\nAnytown,\r\nUSA', 'juan.rodriguez@email.com', 'Graduate', '1', 'Psychology', 'Social Sciences', 'University of Anytown', 'Single', ''),
 (29, 'Pending', 'Emily', 'Johnson', 'A.', '1998-05-05', 'American', 'Female', 'Single', 'Single-parent', '1234 Elm St,\r\nAnytown,\r\nUSA', '1234 Elm St,\r\nAnytown,\r\nUSA', 'emily.johnson@email.com', '086055907', 'Sarah Johnson', 'Sister', '555-123-4567', '1234 Elm St,\r\nAnytown,\r\nUSA', 'sarah.johnson@email.com', 'Undergraduate', '1', 'Business Administration', 'Business', 'University of Anytown', 'Single', ''),
 (30, 'Pending', 'Maria', 'Garcia', 'D.', '2004-07-22', 'Mexican', 'Female', 'Single', 'Extended', '3456 Main St,\r\nMexico City,\r\nMexico', '3456 Main St,\r\nMexico City,\r\nMexico', 'maria.garcia@email.com', '456789012', 'Juan Garcia', 'Father', '555-345-6789', '3456 Main St,\r\nMexico City,\r\nMexico', 'juan.garcia@email.com', 'Undergraduate', '2', 'Education', 'Humanities', 'Mexico City University', 'Single', '');
-
--- --------------------------------------------------------
--- Dumping data for table `Notices`
-INSERT INTO `Notices` (`id`, `title`, `date`, `time`, `location`, `description`) VALUES
-(1, 'Big Party', '2022-12-16', '22:00', 'Student Union', ' Image:\r\nhttps://freepsdflyer.com/wp-content/uploads/2022/11/Elegant-Birthday-Party-Free-Flyer-Template-360x463.webp more');
 
 -- --------------------------------------------------------
 

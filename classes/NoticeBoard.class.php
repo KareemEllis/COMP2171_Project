@@ -6,7 +6,7 @@ class NoticeBoard {
 
     public function __construct() {
         $this->db = new DB();
-        $this->noticeList = array();
+        $this->noticeList = $this->getAllNotices();
     }
 
     // Getter method for noticeList
@@ -14,29 +14,134 @@ class NoticeBoard {
         return $this->noticeList;
     }
 
-    // Method to get all notices
+    // Method to get all notices from database
     public function getAllNotices() {
-        // TODO: Implement method to get all notices
+        $stmt = $this->db->connect()->prepare("SELECT * FROM notices");
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $noticeList = [];
+
+        foreach ($results as $row){
+            //Creating Instances of Notice Class from database data
+            $notice = new Notice(
+              $row['id'], $row['author'], $row['post_date'], $row['title'], $row['date'],
+              $row['time'], $row['location'], $row['description']
+            );
+
+            array_push($noticeList, $notice);
+        }
+        return $noticeList;
     }
 
     // Method to find a notice by ID
     public function findNotice($noticeID) {
-        // TODO: Implement method to find a notice by ID
+        $found = false;
+        $index = 0;
+        //Find the index of the notice to be deleted
+        foreach ($this->noticeList as $notice) {
+            if($notice->getNoticeID() == $noticeID){
+              $found = true;
+              break;
+            }
+            $index = $index + 1;
+        }
+
+        if (!$found) {
+            // If the notice was found
+            return null;
+        }
+        else {
+            // If the notice was not found
+            return $this->noticeList[$index];
+        }
     }
 
     // Method to add a new notice
     public function addNotice($title, $date, $time, $description, $location, $author, $postDate) {
-        // TODO: Implement method to add a new notice
+        $stmt = $this->db->connect()->prepare(
+            "INSERT INTO notices (author, post_date, title, date, time, location, description) 
+            
+            VALUES (:author, :post_date, :title, :date, :time, :location, :description)
+        ");
+
+        $stmt->bindValue(':author', $author, PDO::PARAM_STR);
+        $stmt->bindValue(':post_date', $postDate, PDO::PARAM_STR);
+        $stmt->bindValue(':title', $title, PDO::PARAM_STR);
+        $stmt->bindValue(':date', $date, PDO::PARAM_STR);   
+        $stmt->bindValue(':time', $time, PDO::PARAM_STR);  
+        $stmt->bindValue(':location', $location, PDO::PARAM_STR);  
+        $stmt->bindValue(':description', $description, PDO::PARAM_STR);  
+
+        // Executes SQL statement and checks if successful
+        if($stmt->execute() == false){
+            //If adding the notice to the database was unsuccessful
+            echo "Notice not posted";
+            echo "ERROR: " . $stmt->errorInfo();
+        }
+        else{
+            //If the notice was successfully added to the database
+            echo "Notice Successfully Posted";
+        }
+
+        $stmt = null;
     }
 
     // Method to delete a notice by ID
     public function deleteNotice($noticeID) {
-        // TODO: Implement method to delete a notice by ID
+        $index = null;
+        //Find the index of the notice to be deleted
+        foreach ($this->noticeList as $i => $notice) {
+            if($notice->getNoticeID() == $noticeID){
+              $index == $i;
+              break;
+            }
+        }
+
+        if ($index != null) {
+            $notice_to_delete = $this->noticeList[$index];
+
+            $stmt = $this->db->connect()->prepare("DELETE FROM notices WHERE id = $notice_to_delete->getNoticeID();");
+
+            // Executes SQL statement and checks if successful
+            if ($stmt->execute() == false) {
+                // If SQL Execution was unsuccessful
+                echo "Failed to delete Notice from Database";
+                echo "ERROR: " . $stmt->errorInfo();
+            }
+            else{
+                // If SQL Execution was successful
+                echo "Successfully deleted Notice";
+                unset($this->noticeList[$index]); //Removes Notice from the list
+            }
+            
+            $stmt = null;
+        }
+        else {
+          echo "A notice does not exist for Notice #" . $noticeID;
+        }
     }
 
     // Method to update the details of a notice by ID
     public function updateNoticeDetails($noticeID, $title, $date, $time, $description, $location) {
-        // TODO: Implement method to update the details of a notice by ID
+        $stmt = $this->db->connect()->prepare(
+            "UPDATE Applicants 
+            SET 
+            title = :title, 
+            date = :date, 
+            time = :time, 
+            location = :location, 
+            description = :description 
+            WHERE id = :id"
+        );
+        $stmt->bindValue(':title', $title, PDO::PARAM_STR);
+        $stmt->bindValue(':date', $date, PDO::PARAM_STR);
+        $stmt->bindValue(':time', $time, PDO::PARAM_STR);
+        $stmt->bindValue(':location', $location, PDO::PARAM_STR);
+        $stmt->bindValue(':description', $description, PDO::PARAM_STR);
+        $stmt->bindValue(':id', $noticeID, PDO::PARAM_STR);
+
+        $stmt->execute();
     }
 
     // Method to display all notices
