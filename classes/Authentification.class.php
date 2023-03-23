@@ -33,9 +33,14 @@ class Authentification {
         
     // }
 
-    // public function authNoticeBoardEdit(){
-        
-    // }
+    public function authNoticeBoardEdit(){
+        if($_SESSION['position'] == "Resident Advisor" || $_SESSION['position'] == "Block Representative"){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
 
 ?>

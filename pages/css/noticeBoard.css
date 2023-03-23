@@ -1,0 +1,85 @@
+.post-notice{
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: end;
+}
+.post-notice a{
+    color: white;
+    background-color: rgb(38, 117, 219);
+    padding: 8px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+.post-notice a:hover{
+    background-color: rgb(22, 86, 170);
+}
+
+.notice{
+    width: 300px;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 0 5px rgb(223, 223, 223);
+
+    position: relative;
+}
+.top{
+    
+}
+.top h2{
+    color: rgb(38, 117, 219);
+    font-size: 20px;
+    margin-top: 5px;
+    margin-bottom: 3px;
+}
+.top .author{
+    font-size: 15px;
+}
+.top .date{
+    font-size: 12px;
+}
+
+.content{
+    max-height: 220px;
+    overflow: hidden;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    box-shadow: inset 0 -10px 5px -10px rgba(0, 0, 0, 0.5);
+}
+
+.see-more{
+    border: 0;
+    background-color: rgb(38, 117, 219);
+    color: white;
+    padding: 5px 15px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+.see-more:hover{
+    background-color: rgb(22, 86, 170);
+}
+
+.controls{
+    position: absolute;
+    right: 15px;
+    top: -15px;
+}
+.controls button{
+    background-color: rgb(200, 211, 255);
+    border: 0;
+    box-shadow: 0 0 5px black;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-left: 5px;
+    position: relative;
+    
+}
+.controls i{
+    font-size: 18px;
+}
+.controls button:hover{
+
+}
+.controls button:hover i{
+
+}

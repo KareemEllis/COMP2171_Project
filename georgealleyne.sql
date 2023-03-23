@@ -40,12 +40,12 @@ DROP TABLE IF EXISTS `Notices`;
 CREATE TABLE `Notices` (
   `id` int(11) NOT NULL auto_increment,
   `author` int(11) NOT NULL,
-  `post_date` date DEFAULT NULL,
+  `post_date` date NOT NULL,
   `title` varchar(100) NOT NULL default ' ',
-  `date` varchar(100) NOT NULL default ' ',
+  `date` date NULL,
   `time` varchar(100) NOT NULL default ' ',
   `location` varchar(100) NOT NULL default ' ',
-  `description` varchar(500) NOT NULL default ' ',
+  `description` varchar(1500) NOT NULL default ' ',
 PRIMARY KEY (`id`)
 );
 

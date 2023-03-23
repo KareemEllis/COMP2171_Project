@@ -146,7 +146,29 @@ class NoticeBoard {
 
     // Method to display all notices
     public function displayNotices() {
-        // TODO: Implement method to display all notices
+        $dataToDisplay = "";  
+        foreach ($this->noticeList as $notice){
+            $dataToDisplay .= "<div class=\"notice\">";
+            
+            $dataToDisplay .= "<div class=\"controls\">";
+            $dataToDisplay .= "<button><i class=\"material-icons\">edit</i></button>";
+            $dataToDisplay .= "<button><i class=\"material-icons\">delete</i></button>";
+            $dataToDisplay .= "</div>"; //Closing .controls div
+
+            $dataToDisplay .= "<div class=\"top\">";
+            $dataToDisplay .= "<h2>" . $notice->getNoticeDetails()->getTitle() . "</h2>";
+            $dataToDisplay .= "<h3 class=\"author\">Author:" . $notice->getAuthor() . "</h3>";
+            $dataToDisplay .= "<h3 class=\"date\">" . $notice->getPostDate() . "</h3>";
+            $dataToDisplay .= "</div>"; //Closing .top div
+
+            $dataToDisplay .= "<div class=\"content\">";
+            $dataToDisplay .= $notice->getNoticeDetails()->getDescription();
+            $dataToDisplay .= "</div>"; //Closing .content div
+
+            $dataToDisplay .= "<a class=\"see-more\" href=\"\">See More</a>";
+            $dataToDisplay .= "</div>"; //Closing .notice div
+        }
+        return $dataToDisplay;
     }
 }
 

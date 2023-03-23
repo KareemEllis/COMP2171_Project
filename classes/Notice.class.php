@@ -6,7 +6,7 @@ class Notice {
     private $postDate;
     private $noticeDetails;
 
-    public function __construct($noticeID, $author, $postDate, $title, $date, $time, $description, $location) {
+    public function __construct($noticeID, $author, $postDate, $title, $date, $time, $location, $description) {
         $this->noticeID = $noticeID;
         $this->author = $author;
         $this->postDate = $postDate;
