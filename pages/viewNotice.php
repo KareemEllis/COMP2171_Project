@@ -65,6 +65,11 @@ $notice_to_view = $noticeBoard->findNotice($_GET['id']);
             </header>
 
             <section>
+                <div class="controls">
+                    <a class="edit" href="#">Edit Notice</a>
+                    <a class="delete" href="#">Delete</a>
+                </div>
+                
                 <h2 class="notice-title"><?php echo $notice_to_view->getNoticeDetails()->getTitle(); ?></h2>
                 <h3 class="author">Author: <?php echo $notice_to_view->getAuthor()->getFirstName() . " " . $notice_to_view->getAuthor()->getLastName(); ?></h3>
                 <h3 class="post-date"><?php echo $notice_to_view->getPostDate(); ?></h3>

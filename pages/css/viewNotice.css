@@ -1,3 +1,27 @@
+.controls{
+    margin-bottom: 15px;
+    text-align: right;
+}
+.controls a{
+    padding: 5px 15px;
+    color: white;
+    text-decoration: none;
+
+    transition: 0.2s;
+}
+.edit{
+    background-color: rgb(38, 117, 219);
+}
+.edit:hover{
+    background-color: rgb(22, 86, 170);
+}
+.delete{
+    background-color: rgb(255, 56, 56);
+}
+.delete:hover{
+    background-color: rgb(202, 39, 39);
+}
+
 .notice-title{
     color: rgb(38, 117, 219);
     font-size: 30px;

@@ -164,8 +164,8 @@ class NoticeBoard {
             $dataToDisplay .= "<div class=\"notice\">";
             
             $dataToDisplay .= "<div class=\"controls\">";
-            $dataToDisplay .= "<button><i class=\"material-icons\">edit</i></button>";
-            $dataToDisplay .= "<button><i class=\"material-icons\">delete</i></button>";
+            $dataToDisplay .= "<a class=\"control-btn edit\"><i class=\"material-icons\">edit</i></a>";
+            $dataToDisplay .= "<a class=\"control-btn delete\"><i class=\"material-icons\">delete</i></a>";
             $dataToDisplay .= "</div>"; //Closing .controls div
 
             $dataToDisplay .= "<div class=\"top\">";
@@ -178,7 +178,7 @@ class NoticeBoard {
             $dataToDisplay .= $notice->getNoticeDetails()->getDescription();
             $dataToDisplay .= "</div>"; //Closing .content div
 
-            $dataToDisplay .= "<a class=\"see-more\" href=\"\">See More</a>";
+            $dataToDisplay .= "<a class=\"see-more\" href=\"./viewNotice.php?id=". $notice->getNoticeID() ."\">See More</a>";
             $dataToDisplay .= "</div>"; //Closing .notice div
         }
         return $dataToDisplay;
