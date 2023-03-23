@@ -1,12 +1,27 @@
 <?php
-session_start();
-// if(!isset($_SESSION['id'])){
-//     session_destroy();
-//     header('Location: index.php');
-//     exit;
-// }
+
+include 'classAutoloader.php';
+
+
+$roomManager = new RoomManager();
+$loginManagement = new LoginManagement();
+$authentification = new Authentification();
+
+$loginManagement->startSession();
+
+if($loginManagement->checkIfLoggedIn() == false){
+    header("Location: ./login.php");
+}
+if($authentification->authApplicationProcessing() == false){
+    header("Location: ./dashboard.php");
+}
+
+$tableData = $roomManager->displayRooms();
 
 ?>
+
+<!-- html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,12 +53,36 @@ session_start();
         <!-- ENTER CODE HERE -->
         <main>
             <header>
-                <h1 class="title">Rooms</h1>
+                <h1 class="title">Room Assignment</h1>
+
             </header>
 
             <section>
-                <h2>Title</h2>
+
+                <div class="top">
+                    <h2>Rooms</h2>
+                </div>
+
+                <table>
+                    <colgroup>
+                            <col style="width: 25%">
+                            <col style="width: 25%">
+                            <col style="width: 25%">
+                            <col style="width: 15%">
+                            <col style="width: 10%">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>Room Number</th> <th>Room Type</th> <th>Block</th> <th>Resident 1</th> <th>Resident 2</th> <th>Status</th>
+                            </tr> 
+                        </thead>
+                        <tbody>
+                                <?php echo $tableData; ?>     
+                        </tbody>
+                </table>
+                
             </section>
+            
                 
         </main>
     </div>
