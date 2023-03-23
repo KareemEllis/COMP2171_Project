@@ -132,14 +132,14 @@ INSERT INTO `Residents` (`First Name`, `Last Name`, `Middle Initial`, `Resident 
 -- --------------------------------------------------------
 -- Dumping data for table `Rooms`
 INSERT INTO `Rooms` (`Room Number`, `Room Type`, `Block`, `Availability Status`, `Resident ID #1`, `Resident ID #2`) VALUES
-('G-001', 'Single', 'Genus', 'Occupied', '1', '2'),
+('G-001', 'Double', 'Genus', 'Occupied', '1', '2'),
 ('G-002', 'Double', 'Genus', 'Available', '', ''),
-('G-003', 'Double', 'Genus', 'Available', '', ''),
+('G-003', 'Single', 'Genus', 'Available', '', ''),
 ('G-004', 'Double', 'Genus', 'Available', '', ''),
-('G-005', 'Double', 'Genus', 'Available', '', ''),
-('G-006', 'Double', 'Genus', 'Available', '', ''),
+('G-005', 'Single', 'Genus', 'Available', '', ''),
+('G-006', 'Single', 'Genus', 'Available', '', ''),
 ('G-007', 'Double', 'Genus', 'Available', '', ''),
-('G-008', 'Double', 'Genus', 'Available', '', ''),
+('G-008', 'Single', 'Genus', 'Available', '', ''),
 ('G-009', 'Double', 'Genus', 'Available', '', ''),
 ('G-010', 'Double', 'Genus', 'Available', '', ''),
 ('L-001', 'Single', 'Lynx', 'Available', '', ''),
@@ -147,7 +147,7 @@ INSERT INTO `Rooms` (`Room Number`, `Room Type`, `Block`, `Availability Status`,
 ('L-003', 'Single', 'Lynx', 'Available', '', ''),
 ('L-004', 'Double', 'Lynx', 'Available', '', ''),
 ('L-005', 'Double', 'Lynx', 'Available', '', ''),
-('L-006', 'Double', 'Lynx', 'Available', '', ''),
+('L-006', 'Single', 'Lynx', 'Available', '', ''),
 ('L-007', 'Double', 'Lynx', 'Available', '', ''),
 ('L-008', 'Double', 'Lynx', 'Available', '', ''),
 ('L-009', 'Double', 'Lynx', 'Available', '', ''),
@@ -158,10 +158,10 @@ INSERT INTO `Rooms` (`Room Number`, `Room Type`, `Block`, `Availability Status`,
 ('P-004', 'Double', 'Pardus', 'Available', '', ''),
 ('P-005', 'Double', 'Pardus', 'Available', '', ''),
 ('P-006', 'Double', 'Pardus', 'Available', '', ''),
-('P-007', 'Double', 'Pardus', 'Available', '', ''),
-('P-008', 'Double', 'Pardus', 'Available', '', ''),
-('P-009', 'Double', 'Pardus', 'Available', '', ''),
-('P-010', 'Double', 'Pardus', 'Available', '', '');
+('P-007', 'Single', 'Pardus', 'Available', '', ''),
+('P-008', 'Single', 'Pardus', 'Available', '', ''),
+('P-009', 'Single', 'Pardus', 'Available', '', ''),
+('P-010', 'Single', 'Pardus', 'Available', '', '');
 
 -- --------------------------------------------------------
 -- Dumping data for table `notices`
