@@ -65,10 +65,17 @@ $notice_to_view = $noticeBoard->findNotice($_GET['id']);
             </header>
 
             <section>
-                <div class="controls">
-                    <a class="edit" href="./editNotice.php?id=<?php echo $notice_to_view->getNoticeID(); ?>">Edit Notice</a>
-                    <a class="delete" href="#">Delete</a>
-                </div>
+                <?php 
+                    if($editAuthentified == true){
+                        echo (
+                        "<div class=\"controls\">
+                        <a class=\"edit\" href=\"./editNotice.php?id=" . $notice_to_view->getNoticeID() . "\">Edit Notice</a>
+                        <a class=\"delete\" href=\"#\">Delete</a>
+                        </div>"
+                        );
+                    }
+                ?>
+                
 
                 <h2 class="notice-title"><?php echo $notice_to_view->getNoticeDetails()->getTitle(); ?></h2>
                 <h3 class="author">Author: <?php echo $notice_to_view->getAuthor()->getFirstName() . " " . $notice_to_view->getAuthor()->getLastName(); ?></h3>

@@ -158,15 +158,18 @@ class NoticeBoard {
     }
 
     // Method to display all notices
-    public function displayNotices() {
+    public function displayNotices($editAuth) {
         $dataToDisplay = "";  
         foreach ($this->noticeList as $notice){
             $dataToDisplay .= "<div class=\"notice\">";
             
-            $dataToDisplay .= "<div class=\"controls\">";
-            $dataToDisplay .= "<a class=\"control-btn edit\" href=\"./editNotice.php?id=" . $notice->getNoticeID() . "\"><i class=\"material-icons\">edit</i></a>";
-            $dataToDisplay .= "<a class=\"control-btn delete\"><i class=\"material-icons\">delete</i></a>";
-            $dataToDisplay .= "</div>"; //Closing .controls div
+            //Checks if the user is authentificated to Edit and Delete notices
+            if($editAuth == true){
+                $dataToDisplay .= "<div class=\"controls\">";
+                $dataToDisplay .= "<a class=\"control-btn edit\" href=\"./editNotice.php?id=" . $notice->getNoticeID() . "\"><i class=\"material-icons\">edit</i></a>";
+                $dataToDisplay .= "<a class=\"control-btn delete\"><i class=\"material-icons\">delete</i></a>";
+                $dataToDisplay .= "</div>"; //Closing .controls div
+            }
 
             $dataToDisplay .= "<div class=\"top\">";
             $dataToDisplay .= "<h2>" . $notice->getNoticeDetails()->getTitle() . "</h2>";

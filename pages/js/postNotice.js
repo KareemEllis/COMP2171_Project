@@ -34,7 +34,7 @@ window.addEventListener('load', ()=>{
             })
             .then(data => {
                 console.log(data)
-                //window.location.replace("./noticeBoard.php");
+                window.location.replace("./noticeBoard.php");
             })
             .catch(error => {
                 console.log(`ERROR: ${error}`)

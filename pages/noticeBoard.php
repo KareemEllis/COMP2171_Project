@@ -19,7 +19,7 @@ if($authentification->authNoticeBoardEdit() == true){
     $editAuthentified = true;
 }
 
-$notices = $noticeBoard->displayNotices();
+$notices = $noticeBoard->displayNotices($editAuthentified);
 
 ?>
 <!DOCTYPE html>
@@ -59,7 +59,11 @@ $notices = $noticeBoard->displayNotices();
             </header>
 
             <section>
-                <div class="post-notice"><a href="./postNotice.php">Post New Notice</a></div>
+                <?php 
+                    if($editAuthentified == true){
+                        echo "<div class=\"post-notice\"><a href=\"./postNotice.php\">Post New Notice</a></div>";
+                    }
+                ?>
                 <div class="notices">
                     <?php echo $notices; ?>
                 </div>
@@ -69,5 +73,18 @@ $notices = $noticeBoard->displayNotices();
     </div>
 
     <?php include '_footer.php' ?>
+
+    <script>
+        const notices = document.querySelectorAll(".notice")
+
+        notices.forEach(notice => {
+            const content = notice.querySelector(".content")
+            if (content.scrollHeight > content.clientHeight) {
+                // if the content has exceeded the maximum height
+                content.classList.add("overflowed")
+            }
+        });
+
+    </script>
 </body>
 </html>
