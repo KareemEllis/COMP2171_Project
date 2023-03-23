@@ -61,11 +61,6 @@ $notices = $noticeBoard->displayNotices($editAuthentified);
         <main>
             <header>
                 <h1 class="title">Notice Board</h1>
-                <?php
-                    foreach ($noticeBoard->getNoticeList() as $notice) {
-                        echo $notice->getNoticeID();
-                    }
-                ?>
             </header>
 
             <section>
