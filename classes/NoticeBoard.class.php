@@ -51,6 +51,7 @@ class NoticeBoard {
     public function findNotice($noticeID) {
         $found = false;
         $index = 0;
+
         //Find the index of the notice to be deleted
         foreach ($this->noticeList as $notice) {
             if($notice->getNoticeID() == $noticeID){
@@ -60,12 +61,12 @@ class NoticeBoard {
             $index = $index + 1;
         }
 
-        if (!$found) {
-            // If the notice was found
+        if ($found == false) {
+            // If the notice was not found
             return null;
         }
         else {
-            // If the notice was not found
+            // If the notice was found
             return $this->noticeList[$index];
         }
     }
@@ -102,19 +103,12 @@ class NoticeBoard {
 
     // Method to delete a notice by ID
     public function deleteNotice($noticeID) {
-        $index = null;
-        //Find the index of the notice to be deleted
-        foreach ($this->noticeList as $i => $notice) {
-            if($notice->getNoticeID() == $noticeID){
-              $index == $i;
-              break;
-            }
-        }
-
-        if ($index != null) {
-            $notice_to_delete = $this->noticeList[$index];
-
-            $stmt = $this->db->connect()->prepare("DELETE FROM notices WHERE id = $notice_to_delete->getNoticeID();");
+        $notice = null;
+        $notice = $this->findNotice($noticeID);
+        
+        if ($notice != null) {
+            $stmt = $this->db->connect()->prepare("DELETE FROM notices WHERE id = :id");
+            $stmt->bindValue(':id', $notice->getNoticeID(), PDO::PARAM_STR); 
 
             // Executes SQL statement and checks if successful
             if ($stmt->execute() == false) {
@@ -125,7 +119,6 @@ class NoticeBoard {
             else{
                 // If SQL Execution was successful
                 echo "Successfully deleted Notice";
-                unset($this->noticeList[$index]); //Removes Notice from the list
             }
             
             $stmt = null;
@@ -167,7 +160,7 @@ class NoticeBoard {
             if($editAuth == true){
                 $dataToDisplay .= "<div class=\"controls\">";
                 $dataToDisplay .= "<a class=\"control-btn edit\" href=\"./editNotice.php?id=" . $notice->getNoticeID() . "\"><i class=\"material-icons\">edit</i></a>";
-                $dataToDisplay .= "<a class=\"control-btn delete\"><i class=\"material-icons\">delete</i></a>";
+                $dataToDisplay .= "<a onClick=\"deleteNotice(this," . $notice->getNoticeID() . ")\" class=\"control-btn delete\"><i class=\"material-icons\">delete</i></a>";
                 $dataToDisplay .= "</div>"; //Closing .controls div
             }
 

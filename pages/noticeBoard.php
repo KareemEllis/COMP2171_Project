@@ -19,6 +19,10 @@ if($authentification->authNoticeBoardEdit() == true){
     $editAuthentified = true;
 }
 
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $noticeBoard->deleteNotice($_POST['id']);
+    exit;
+}
 $notices = $noticeBoard->displayNotices($editAuthentified);
 
 ?>
@@ -34,6 +38,7 @@ $notices = $noticeBoard->displayNotices($editAuthentified);
     <link rel="stylesheet" href="css/main.css">
 
     <link rel="stylesheet" href="css/noticeBoard.css">
+    <script src="./js/noticeBoard.js"></script>
 </head>
 <body>
     <?php include '_header.php'; ?>
@@ -56,6 +61,11 @@ $notices = $noticeBoard->displayNotices($editAuthentified);
         <main>
             <header>
                 <h1 class="title">Notice Board</h1>
+                <?php
+                    foreach ($noticeBoard->getNoticeList() as $notice) {
+                        echo $notice->getNoticeID();
+                    }
+                ?>
             </header>
 
             <section>
@@ -74,17 +84,11 @@ $notices = $noticeBoard->displayNotices($editAuthentified);
 
     <?php include '_footer.php' ?>
 
-    <script>
-        const notices = document.querySelectorAll(".notice")
+    <dialog class="modal">
+        <h2>Confirm delete</h2>
+        <p>Are you sure you want to delete this notice?</p>
 
-        notices.forEach(notice => {
-            const content = notice.querySelector(".content")
-            if (content.scrollHeight > content.clientHeight) {
-                // if the content has exceeded the maximum height
-                content.classList.add("overflowed")
-            }
-        });
-
-    </script>
+        <button class="confirm">Yes, delete it</button> <button class="close">Cancel</button>
+    </dialog>
 </body>
 </html>
