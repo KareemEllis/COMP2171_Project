@@ -45,7 +45,7 @@ CREATE TABLE `Notices` (
   `date` date NULL,
   `time` varchar(100) NOT NULL default ' ',
   `location` varchar(100) NOT NULL default ' ',
-  `description` varchar(1500) NOT NULL default ' ',
+  `description` varchar(4000) NOT NULL default ' ',
 PRIMARY KEY (`id`)
 );
 

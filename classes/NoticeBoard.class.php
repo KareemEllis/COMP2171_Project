@@ -24,8 +24,21 @@ class NoticeBoard {
 
         foreach ($results as $row){
             //Creating Instances of Notice Class from database data
+            $stmt2 = $this->db->connect()->prepare("SELECT * FROM residents WHERE `Resident ID` = :residentID");
+            $stmt2->bindValue(':residentID', $row['author'], PDO::PARAM_STR);
+            $stmt2->execute();
+            $results2 = $stmt2->fetchAll(PDO::FETCH_ASSOC)[0];
+
+            $author = new Resident(
+                $results2['First Name'], $results2['Last Name'], $results2['Middle Initial'], $results2['Resident ID'], $results2['Position'],
+                $results2['DOB'], $results2['Nationality'], $results2['Gender'], $results2['Marital Status'], $results2['Family Type'], $results2['Home Address'],
+                $results2['Mailing Address'], $results2['Email Address'], $results2['Phone Number'], $results2['ID Number'], $results2['Contact Name'],
+                $results2['Contact Relationship'], $results2['Contact Telephone'], $results2['Contact Address'], $results2['Contact Email'], $results2['Level of Study'],
+                $results2['Year of Study'], $results2['Programme Name'], $results2['Faculty Name'], $results2['Name of School'], $results2['Room Number']
+            );
+
             $notice = new Notice(
-              $row['id'], $row['author'], $row['post_date'], $row['title'], $row['date'],
+              $row['id'], $author, $row['post_date'], $row['title'], $row['date'],
               $row['time'], $row['location'], $row['description']
             );
 
@@ -157,7 +170,7 @@ class NoticeBoard {
 
             $dataToDisplay .= "<div class=\"top\">";
             $dataToDisplay .= "<h2>" . $notice->getNoticeDetails()->getTitle() . "</h2>";
-            $dataToDisplay .= "<h3 class=\"author\">Author:" . $notice->getAuthor() . "</h3>";
+            $dataToDisplay .= "<h3 class=\"author\">Author: " . $notice->getAuthor()->getFirstName() . " " . $notice->getAuthor()->getLastName() . "</h3>";
             $dataToDisplay .= "<h3 class=\"date\">" . $notice->getPostDate() . "</h3>";
             $dataToDisplay .= "</div>"; //Closing .top div
 
