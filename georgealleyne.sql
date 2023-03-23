@@ -39,11 +39,13 @@ PRIMARY KEY (`ApplicationID`)
 DROP TABLE IF EXISTS `Notices`;
 CREATE TABLE `Notices` (
   `id` int(11) NOT NULL auto_increment,
+  `author` int(11) NOT NULL,
+  `post_date` date NOT NULL,
   `title` varchar(100) NOT NULL default ' ',
-  `date` varchar(100) NOT NULL default ' ',
+  `date` date NULL,
   `time` varchar(100) NOT NULL default ' ',
   `location` varchar(100) NOT NULL default ' ',
-  `description` varchar(500) NOT NULL default ' ',
+  `description` varchar(4000) NOT NULL default ' ',
 PRIMARY KEY (`id`)
 );
 
@@ -118,11 +120,6 @@ INSERT INTO `Applicants` (`ApplicationID`, `Status`, `First Name`, `Last Name`, 
 (30, 'Pending', 'Maria', 'Garcia', 'D.', '2004-07-22', 'Mexican', 'Female', 'Single', 'Extended', '3456 Main St,\r\nMexico City,\r\nMexico', '3456 Main St,\r\nMexico City,\r\nMexico', 'maria.garcia@email.com', '456789012', 'Juan Garcia', 'Father', '555-345-6789', '3456 Main St,\r\nMexico City,\r\nMexico', 'juan.garcia@email.com', 'Undergraduate', '2', 'Education', 'Humanities', 'Mexico City University', 'Single', '');
 
 -- --------------------------------------------------------
--- Dumping data for table `Notices`
-INSERT INTO `Notices` (`id`, `title`, `date`, `time`, `location`, `description`) VALUES
-(1, 'Big Party', '2022-12-16', '22:00', 'Student Union', ' Image:\r\nhttps://freepsdflyer.com/wp-content/uploads/2022/11/Elegant-Birthday-Party-Free-Flyer-Template-360x463.webp more');
-
--- --------------------------------------------------------
 
 -- Dumping data for table `Residents`
 INSERT INTO `Residents` (`First Name`, `Last Name`, `Middle Initial`, `Resident ID`, `Position`, `DOB`, `Nationality`, `Gender`, `Marital Status`, `Family Type`, `Home Address`, `Mailing Address`, `Email Address`, `Phone Number`, `ID Number`, `Contact Name`, `Contact Relationship`, `Contact Telephone`, `Contact Address`, `Contact Email`, `Level of Study`, `Year of Study`, `Programme Name`, `Faculty Name`, `Name of School`, `Room Number`) VALUES
@@ -166,6 +163,12 @@ INSERT INTO `Rooms` (`Room Number`, `Room Type`, `Block`, `Availability Status`,
 ('P-009', 'Double', 'Pardus', 'Available', '', ''),
 ('P-010', 'Double', 'Pardus', 'Available', '', '');
 
+-- --------------------------------------------------------
+-- Dumping data for table `notices`
+INSERT INTO `notices` (`id`, `author`, `post_date`, `title`, `date`, `time`, `location`, `description`) VALUES
+(1, 5, '2023-03-22', ' Rat infestation issue', '0000-00-00', 'N/A', 'N/A', 'The place is infested with a lot of rats.'),
+(2, 5, '2023-03-23', 'Washroom closure', '2023-03-22', '10:00 PM', 'Washroom', 'The washroom will be closed until March 23 for maintenance.'),
+(3, 5, '2023-03-23', 'Applications for Accommodation are now open', '2023-03-15', '9:00 AM', '', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquam eleifend elit, non consequat augue aliquam ut. Donec eget iaculis erat. Nulla at vestibulum nibh. Ut rhoncus volutpat urna eu viverra. Nullam interdum, justo id aliquet vulputate, urna sem mollis tortor, vel sagittis est orci non nunc. Morbi ultricies imperdiet ipsum, tempus tempor leo placerat ac. Mauris et ante egestas, ultrices lorem quis, aliquam quam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nulla consectetur eleifend odio, vel viverra sapien pellentesque id. Etiam fringilla nisl a convallis pharetra. Donec et sem et lectus scelerisque consectetur. Nam nec maximus quam, ut aliquam mi.\r\nQuisque in dui ac turpis convallis tempor in sed urna. Curabitur rhoncus lacus vitae ullamcorper luctus. Aliquam pretium lacinia leo, eget dictum tellus ullamcorper vel. Aenean suscipit metus nibh, eget vestibulum tortor semper a. Nulla auctor sem sed sapien elementum pellentesque. Sed consectetur.');
 
 -- --------------------------------------------------------
 -- Dumping data for table `Users`
@@ -176,28 +179,4 @@ INSERT INTO `Users` (`ID`, `Username`, `Password`) VALUES
 (5, 'khayla', '$2y$10$9apzwWjaDTPV3b94jDotDek.iMfIXWsaQW88ZgwiEoP.fXrZXrOE.'),
 (6, 'ash', '$2y$10$DQI3izOpeDur8tJmhl8dg.fAza..RmNT5uIj.VqJA4vxyWf51rMsG');
 
-
--- ALTER TABLE `Applicants`
---   ADD PRIMARY KEY (`ApplicationID`);
-
-
--- ALTER TABLE `Notices`
---   ADD PRIMARY KEY (`id`);
-
-
--- ALTER TABLE `Residents`
---   ADD PRIMARY KEY (`Resident ID`);
-
-
--- ALTER TABLE `Applicants`
---   MODIFY `ApplicationID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
-
-
--- ALTER TABLE `Notices`
---   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
-
--- ALTER TABLE `Residents`
---   MODIFY `Resident ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
--- COMMIT;
 
