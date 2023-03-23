@@ -48,6 +48,18 @@ class Room{
         $this->status = $newStatus;
     }
 
+    //Set resident1
+    //what if resident already there
+    public function setResident1($newResident){
+        $this->resident1 = $newResident;
+    }
+
+    //Set resident2
+    //what if resident already there
+    public function setResident2($newResident){
+        $this->resident2 = $newResident;
+    }
+
     public function __toString()
     {
         echo "Room Number: ".$this->getRoomNumber();
