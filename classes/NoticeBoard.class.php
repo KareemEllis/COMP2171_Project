@@ -138,7 +138,7 @@ class NoticeBoard {
     // Method to update the details of a notice by ID
     public function updateNoticeDetails($noticeID, $title, $date, $time, $description, $location) {
         $stmt = $this->db->connect()->prepare(
-            "UPDATE Applicants 
+            "UPDATE notices
             SET 
             title = :title, 
             date = :date, 
@@ -164,7 +164,7 @@ class NoticeBoard {
             $dataToDisplay .= "<div class=\"notice\">";
             
             $dataToDisplay .= "<div class=\"controls\">";
-            $dataToDisplay .= "<a class=\"control-btn edit\"><i class=\"material-icons\">edit</i></a>";
+            $dataToDisplay .= "<a class=\"control-btn edit\" href=\"./editNotice.php?id=" . $notice->getNoticeID() . "\"><i class=\"material-icons\">edit</i></a>";
             $dataToDisplay .= "<a class=\"control-btn delete\"><i class=\"material-icons\">delete</i></a>";
             $dataToDisplay .= "</div>"; //Closing .controls div
 
