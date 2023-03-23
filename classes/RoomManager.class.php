@@ -34,7 +34,7 @@ class RoomManager{
 
     public function findRoom($roomNumber){
 
-        foreach($this->roomsList as $room){
+        foreach($this->getRoomsList() as $room){
 
             if ($room->getRoomNumber() == $roomNumber){
                 return $room;
