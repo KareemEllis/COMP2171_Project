@@ -45,9 +45,25 @@ class RoomManager{
         
     }
 
-    // public function updateStatus(){
+    
+    public function updateResidents($roomNum, $res1, $res2) {
 
-    // }
+
+        // Note: Add logic to make res1 REQUIRED, res2 OPTIONAL
+        // Add logic to identify if the resident ids are actually in the database
+
+        $stmt = $this->db->connect()->prepare("UPDATE Rooms SET `Resident ID #1` = :res1, `Resident ID #2` = :res2  WHERE `Room Number` = :roomNum");
+        $stmt->bindValue(':res1', $res1, PDO::PARAM_STR);
+        $stmt->bindValue(':res2', $res2, PDO::PARAM_STR);
+        $stmt->bindValue(':roomNum', $roomNum, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+
+        $room = $this->findRoom($roomNum);
+        $room->setResident1($res1);
+        $room->setResident2($res2);
+    }
 
 
     public function displayRooms(){     
