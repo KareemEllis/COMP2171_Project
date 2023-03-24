@@ -17,12 +17,21 @@ if($authentification->authApplicationProcessing() == false){
     header("Location: ./dashboard.php");
 }
 
-$roomName = $selectedRoom->getRoomNumber();
+$roomNum = $selectedRoom->getRoomNumber();
 $roomType = $selectedRoom->getRoomType();
 $roomStatus = $selectedRoom->getStatus();
 $roomBlock = $selectedRoom->getBlock();
 $roomRes1 = $selectedRoom->getResident1();
 $roomRes2 = $selectedRoom->getResident2();
+
+if(isset($_POST['submit'])){
+    
+    $resident1 = $_POST['res1'];
+    $resident2 = $_POST['res2'];
+
+
+    $roomManager->updateResident1($roomNum, $resident1, $resident2);
+}
 
 ?>
 
@@ -63,7 +72,7 @@ $roomRes2 = $selectedRoom->getResident2();
             <section>
                 <div>
                     <div>
-                        <h2><?php echo $roomName?></h2>
+                        <h2><?php echo $roomNum?></h2>
                     </div>
 
                     <div>
@@ -84,36 +93,74 @@ $roomRes2 = $selectedRoom->getResident2();
                     
                 </div>
 
-                <?php if($roomType == 'Double') : ?>
+
+                <!-- LOGIC FOR WHAT INPUT FIELDS ARE DISPLAYED -->
+
+                <?php if($roomType == 'Single'&& $roomStatus == 'Available') : ?>
+
+                    <form action="" method="post">
+                        <label>Enter the Resident's ID</label>
+                        <input type="text" name='res1' value="" placeholder="eg. 1">
+
+                        <!-- Since single room, hid res2 input so it can be posted-->
+                        <!-- Complete -->
+                        <input type="hidden" name="res2" value="" />
+
+                        <input name= "submit" type="submit" value="Assign Resident">
+                    </form>
+                    
+                <?php endif; ?>
+                
+
+                <?php if($roomType == 'Double' && $roomStatus == 'Available') : ?>
+                    <!-- If the room is a double room and resident1 is already there -->
 
                     <?php if($roomRes1 != '' && $roomRes2 == '') : ?>
 
-                        <label>Enter the Resident's ID</label>
-                        <input type="text" name='res1' placeholder="eg. 1">
+                        <form action="" method="post">
+                            <label>Enter the Resident's ID</label>
+                            <input type="text" name='res1' value="" placeholder="eg. 1">
+
+                            <input name= "submit" type="submit" value="Assign Resident">
+                        </form>
 
                     <?php endif; ?>
+
+                    <!-- If the room is a double room and resident2 is already there -->
+                    <!-- NOTE: Might change cause resident1 will be required if both 
+                    input fields empty so it wouldn't be possible for resident1 to be empty but
+                    resident2 has a number-->
 
                     <?php if($roomRes2 != '' && $roomRes1 == '') : ?>
 
-                        <label>Enter the Resident's ID</label>
-                        <input type="text" name='res2' placeholder="eg. 1">
+                        <form action="" method="post">
+                            <label>Enter the Resident's ID</label>
+                            <input type="text" name='res2' value="" placeholder="eg. 1">
+
+                            <input name= "submit" type="submit" value="Assign Resident">
+                        </form>
 
                     <?php endif; ?>
 
+                    <!-- If the room is a double room and and both fields empty -->
                     <?php if($roomRes1 == '' && $roomRes2 == '') : ?>
 
-                        <label>Enter the first Resident's ID</label>
-                        <input type="text" name='res1' placeholder="eg. 1" value="">
+                        <form action="" method="post">
+                            <label>Enter the first Resident's ID</label>
+                            <input type="text" name='res1' placeholder="eg. 1" value="">
 
-                        <label>Enter the second Resident's ID</label>
-                        <input type="text" name='res2' placeholder="eg. 2" value="">
+                            <label>Enter the second Resident's ID</label>
+                            <input type="text" name='res2' placeholder="eg. 2" value="">
+
+                            <input name= "submit" type="submit" value="Assign Resident">
+                        </form>
 
                     <?php endif; ?>
 
                 <?php endif; ?>
 
                 
-                <button>Assign Resident</button>
+                
 
             </section>
                 
