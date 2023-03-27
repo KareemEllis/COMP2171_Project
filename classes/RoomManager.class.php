@@ -46,23 +46,113 @@ class RoomManager{
     }
 
     
-    public function updateResidents($roomNum, $res1, $res2) {
+    public function updateResident1($roomNum, $res1) {
 
+        $duplicate = FALSE;
 
-        // Note: Add logic to make res1 REQUIRED, res2 OPTIONAL
-        // Add logic to identify if the resident ids are actually in the database
-
-        $stmt = $this->db->connect()->prepare("UPDATE Rooms SET `Resident ID #1` = :res1, `Resident ID #2` = :res2  WHERE `Room Number` = :roomNum");
+        $stmt = $this->db->connect()->prepare("SELECT `Resident ID` FROM `Residents` WHERE `Resident ID`= :res1");
         $stmt->bindValue(':res1', $res1, PDO::PARAM_STR);
-        $stmt->bindValue(':res2', $res2, PDO::PARAM_STR);
-        $stmt->bindValue(':roomNum', $roomNum, PDO::PARAM_STR);
 
         $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (count($results)==0){
+            echo "Sorry, ID Number $res1 not found";
+            echo "<br>\n";
+        }
+
+        
+        else{
+
+            $query = $this->db->connect()->prepare("SELECT * FROM `Rooms`");
+            $query->execute();
+            $results = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            
+            foreach ($results as $row){
+                
+                //checking if the entered resident id is already assigned to a room
+                if ($row['Resident ID #1'] == $res1 || $row['Resident ID #2'] == $res1){
+                    echo "Resident ID $res1 is already assigned to a room";
+                    echo "<br>\n";
+                    $duplicate = TRUE;
+                }
+                
+            }
+
+            if($duplicate == FALSE){
+                $query = $this->db->connect()->prepare("UPDATE `Rooms` SET `Resident ID #1`= :res1 WHERE `Room Number`=:roomNum");
+                $query->bindValue(':res1', $res1, PDO::PARAM_STR);
+                $query->bindValue(':roomNum', $roomNum, PDO::PARAM_STR);
+
+                if($query->execute()==false){
+                    echo "Error, That ID doesn't belong to a Resident";
+                }
+
+                else{
+                    echo "Successful";
+                    echo "\r\n";
+                }
+            }
 
 
-        $room = $this->findRoom($roomNum);
-        $room->setResident1($res1);
-        $room->setResident2($res2);
+        }   
+        
+    }
+
+    public function updateResident2($roomNum, $res2) {
+
+        $duplicate = FALSE;
+
+        $stmt = $this->db->connect()->prepare("SELECT `Resident ID` FROM `Residents` WHERE `Resident ID`= :res2");
+        $stmt->bindValue(':res2', $res2, PDO::PARAM_STR);
+
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (count($results)==0){
+            echo "Sorry, ID Number $res2 not found";
+            echo "<br>\n";
+        }
+
+        else{
+
+            $query = $this->db->connect()->prepare("SELECT * FROM `Rooms`");
+            $query->execute();
+            $results = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            
+            foreach ($results as $row){
+                
+                //checking if the entered resident id is already assigned to a room
+                if ($row['Resident ID #1'] == $res2 || $row['Resident ID #2'] == $res2){
+                    echo "Resident ID $res2 is already assigned to a room";
+                    echo "<br>\n";
+                    $duplicate = TRUE;
+                }
+                
+            }
+
+            if($duplicate == FALSE){
+                $query = $this->db->connect()->prepare("UPDATE `Rooms` SET `Resident ID #1`= :res2 WHERE `Room Number`=:roomNum");
+                $query->bindValue(':res2', $res2, PDO::PARAM_STR);
+                $query->bindValue(':roomNum', $roomNum, PDO::PARAM_STR);
+
+                if($query->execute()==false){
+                    echo "Error, That ID doesn't belong to a Resident";
+                }
+
+                else{
+                    echo "Successful";
+                    echo "\r\n";
+                }
+            }
+
+
+        }   
+        
+
+        
     }
 
 
