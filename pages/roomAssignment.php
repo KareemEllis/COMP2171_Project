@@ -16,7 +16,22 @@ if($authentification->authApplicationProcessing() == false){
     header("Location: ./dashboard.php");
 }
 
+// checks if the residents in a room are filled and
+// updates the status
+$roomList = $roomManager->getRoomsList();
+
+foreach ($roomList as $room){
+    if ($room->getRoomType() == 'Double' && $room->getResident1()!= null && $room->getResident2() != null){
+        $roomManager->updateStatus($room, 'Occupied');
+    }
+    elseif ($room->getRoomType() == 'Single' && $room->getResident1()!= null ){
+        $roomManager->updateStatus($room, 'Occupied');
+    }
+}
+
+//display data
 $tableData = $roomManager->displayRooms();
+
 
 ?>
 
