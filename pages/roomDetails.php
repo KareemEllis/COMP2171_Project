@@ -24,7 +24,11 @@ $roomBlock = $selectedRoom->getBlock();
 $roomRes1 = $selectedRoom->getResident1();
 $roomRes2 = $selectedRoom->getResident2();
 
+
+
+
 if(isset($_POST['submit'])){
+
 
     if(!empty($_POST['res1'])){
 
@@ -42,6 +46,7 @@ if(isset($_POST['submit'])){
     if (empty($_POST['res1'])== true && empty($_POST['res2']) == true){
         echo "Please enter a resident";
     }
+
     
 }
 
@@ -115,7 +120,7 @@ if(isset($_POST['submit'])){
                         <input type="text" name='res1' value=" " placeholder="eg. 1">
 
 
-                        <input name= "submit" type="submit" value="Assign Resident">
+                        <input class= "assign" name= "submit" type="submit" value="Assign Resident">
                     </form>
                     
                 <?php endif; ?>
@@ -131,7 +136,7 @@ if(isset($_POST['submit'])){
                         <label>Enter the second Resident's ID</label>
                         <input type="text" name='res2' placeholder="eg. 2">
 
-                        <input name= "submit" type="submit" value="Assign Resident">
+                        <input class= "assign" name= "submit" type="submit" value="Assign Residents">
                     </form>
 
                     
