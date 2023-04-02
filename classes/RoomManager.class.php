@@ -45,10 +45,21 @@ class RoomManager{
         
     }
 
+    public function updateStatus($room, $newStatus){
+        $room->setStatus($newStatus);
+        $roomNum = $room->getRoomNumber();
+
+        $stmt = $this->db->connect()->prepare("UPDATE `Rooms` SET `Availability Status` = :newStatus WHERE `Room Number`= :roomNum");
+        $stmt->bindValue(':newStatus', $newStatus, PDO::PARAM_STR);
+        $stmt->bindValue(':roomNum', $roomNum, PDO::PARAM_STR);
+
+        $stmt->execute();
+    }
+
     
     public function updateResident1($roomNum, $res1) {
 
-        $duplicate = FALSE;
+        
 
         $stmt = $this->db->connect()->prepare("SELECT `Resident ID` FROM `Residents` WHERE `Resident ID`= :res1");
         $stmt->bindValue(':res1', $res1, PDO::PARAM_STR);
@@ -68,19 +79,24 @@ class RoomManager{
             $query->execute();
             $results = $query->fetchAll(PDO::FETCH_ASSOC);
 
-            
+            $duplicate = FALSE;
             foreach ($results as $row){
                 
                 //checking if the entered resident id is already assigned to a room
                 if ($row['Resident ID #1'] == $res1 || $row['Resident ID #2'] == $res1){
-                    echo "Resident ID $res1 is already assigned to a room";
-                    echo "<br>\n";
+                    
                     $duplicate = TRUE;
                 }
                 
             }
 
-            if($duplicate == FALSE){
+
+            if ($duplicate == TRUE){
+                echo "Resident ID $res1 is already assigned to a room";
+                echo "<br>\n";
+            }
+
+            else{
                 $query = $this->db->connect()->prepare("UPDATE `Rooms` SET `Resident ID #1`= :res1 WHERE `Room Number`=:roomNum");
                 $query->bindValue(':res1', $res1, PDO::PARAM_STR);
                 $query->bindValue(':roomNum', $roomNum, PDO::PARAM_STR);
@@ -90,8 +106,10 @@ class RoomManager{
                 }
 
                 else{
+                    $room = $this->findRoom($roomNum);
+                    $room->setResident1($res1);
                     echo "Successful";
-                    echo "\r\n";
+                    echo "<br>\n";
                 }
             }
 
@@ -102,7 +120,6 @@ class RoomManager{
 
     public function updateResident2($roomNum, $res2) {
 
-        $duplicate = FALSE;
 
         $stmt = $this->db->connect()->prepare("SELECT `Resident ID` FROM `Residents` WHERE `Resident ID`= :res2");
         $stmt->bindValue(':res2', $res2, PDO::PARAM_STR);
@@ -117,6 +134,8 @@ class RoomManager{
 
         else{
 
+            $duplicate = FALSE;
+
             $query = $this->db->connect()->prepare("SELECT * FROM `Rooms`");
             $query->execute();
             $results = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -126,15 +145,18 @@ class RoomManager{
                 
                 //checking if the entered resident id is already assigned to a room
                 if ($row['Resident ID #1'] == $res2 || $row['Resident ID #2'] == $res2){
-                    echo "Resident ID $res2 is already assigned to a room";
-                    echo "<br>\n";
                     $duplicate = TRUE;
                 }
                 
             }
 
+            if ($duplicate == TRUE){
+                echo "Resident ID $res2 is already assigned to a room";
+                echo "<br>\n";
+            }
+
             if($duplicate == FALSE){
-                $query = $this->db->connect()->prepare("UPDATE `Rooms` SET `Resident ID #1`= :res2 WHERE `Room Number`=:roomNum");
+                $query = $this->db->connect()->prepare("UPDATE `Rooms` SET `Resident ID #2`= :res2 WHERE `Room Number`=:roomNum");
                 $query->bindValue(':res2', $res2, PDO::PARAM_STR);
                 $query->bindValue(':roomNum', $roomNum, PDO::PARAM_STR);
 
@@ -143,8 +165,10 @@ class RoomManager{
                 }
 
                 else{
+                    $room = $this->findRoom($roomNum);
+                    $room->setResident2($res2);
                     echo "Successful";
-                    echo "\r\n";
+                    echo "<br>\n";
                 }
             }
 
@@ -170,6 +194,7 @@ class RoomManager{
                                     <td><a href="./roomDetails.php?roomNum={$dorm->getRoomNumber()}" .>Select</a></td>
                                     END;
             $dataToDisplay .= "</tr>";
+            
         }
         return $dataToDisplay;
     }
