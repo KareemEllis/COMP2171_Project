@@ -1,10 +1,22 @@
 <?php
-session_start();
-// if(!isset($_SESSION['id'])){
-//     session_destroy();
-//     header('Location: index.php');
-//     exit;
-// }
+
+include 'classAutoloader.php';
+
+$residentManager = new ResidentManager();
+$loginManagement = new LoginManagement();
+$authentification = new Authentification();
+
+$loginManagement->startSession();
+
+if($loginManagement->checkIfLoggedIn() == false){
+    header("Location: ./login.php");
+}
+if($authentification->authApplicationProcessing() == false){
+    header("Location: ./dashboard.php");
+}
+
+$tableData = $residentManager->displayResidents();
+
 
 ?>
 <!DOCTYPE html>
@@ -38,11 +50,33 @@ session_start();
         <!-- ENTER CODE HERE -->
         <main>
             <header>
-                <h1 class="title">Residents</h1>
+                <h1 class="title">Resident Processing</h1>
             </header>
 
             <section>
-                <h2>Title</h2>
+                <h2>Residents</h2>
+
+                <table>
+                    <colgroup>
+                            <col style="width: 10%">
+                            <col style="width: 25%">
+                            <col style="width: 25%">
+                            <col style="width: 25%">
+                            <col style="width: 10%">
+                            <col style="width: 25%">
+                            <col style="width: 15%">
+                            <col style="width: 10%">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>Resident ID</th> <th>Position</th> <th>First Name</th> <th>Last Name</th> <th>Middle Initial</th>
+                                <th>Home Address</th> <th>Telephone Number</th> <th>Room Number</th>
+                            </tr> 
+                        </thead>
+                        <tbody>
+                                <?php echo $tableData; ?>     
+                        </tbody>
+                </table>
             </section>
                 
         </main>
