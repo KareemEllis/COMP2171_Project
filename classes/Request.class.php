@@ -77,7 +77,7 @@ class Request {
         echo "Service Type: ".$this->getServiceType();
         echo "Status: ".$this->getStatus();
         echo "Details: ".$this->getDetails();
-        echo "Appointment Date: ".$this->getAppointmentDate;
-        echo "Appointment Time: ".$this->getAppointmentTime;
+        echo "Appointment Date: ".$this->getAppointmentDate();
+        echo "Appointment Time: ".$this->getAppointmentTime();
     }
 }

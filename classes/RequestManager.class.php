@@ -118,6 +118,39 @@ class RequestManager {
         $stmt->execute();
     }
 
+    //Add a new request to the database
+    public function addRequest($dateSubmitted, $residentID, $serviceType, 
+                                $resident, $details, $apptDate, $apptTime)
+    {
+        $stmt = $this->db->connect()->prepare(
+            "INSERT INTO requests (`Date Submitted`, ResidentID, Resident, Status, `Service Type`, `Details`, `Appointment Date`, `Appointment Time`) 
+            
+            VALUES (:dateSubmitted, :residentID, :resident, :status, :serviceType, :details, :apptDate, :apptTime)
+        ");
+
+        $status = "Pending";
+        $stmt->bindValue(':dateSubmitted', $dateSubmitted, PDO::PARAM_STR);
+        $stmt->bindValue(':residentID', $residentID, PDO::PARAM_STR);
+        $stmt->bindValue(':resident', $resident, PDO::PARAM_STR);
+        $stmt->bindValue(':status', $status, PDO::PARAM_STR);
+        $stmt->bindValue(':serviceType', $serviceType, PDO::PARAM_STR);
+        $stmt->bindValue(':details', $details, PDO::PARAM_STR);
+        $stmt->bindValue(':apptDate', $apptDate, PDO::PARAM_STR);
+        $stmt->bindValue(':apptTime', $apptTime, PDO::PARAM_STR);
+
+        // Executes SQL statement and checks if successful
+        if($stmt->execute() == false){
+            //If adding the service request to the database was unsuccessful
+            echo "Failure";
+            echo "ERROR: " . $stmt->errorInfo();
+        }
+        else{
+            //If the service request was successfully added to the database
+            echo "Success";
+        }
+
+        $stmt = null;
+    }
 
     //Delete a request from the database and removes from array
     public function deleteRequest($requestID) {

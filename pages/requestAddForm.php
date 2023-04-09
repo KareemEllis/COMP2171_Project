@@ -4,27 +4,36 @@ include 'classAutoloader.php';
 
 $loginManagement = new LoginManagement();
 $authentification = new Authentification();
-$noticeBoard = new NoticeBoard();
+$requestManager = new RequestManager();
 
 $loginManagement->startSession();
-
-$editAuthentified = false;
 
 if($loginManagement->checkIfLoggedIn() == false){
     header("Location: ./login.php");
 }
 
-//Checks if user is authenticated to edit the notice board
-if($authentification->authNoticeBoardEdit() == false){
-    header("Location: ./dashboard.php");
-}
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $noticeBoard->addNotice($_POST['notice-title'], $_POST['date'], $_POST['time'], $_POST['description'], $_POST['location'], $_SESSION['id'], date('Y-m-d'));
+    $residentName = $_SESSION['firstName'] . " " . $_SESSION['lastName'];
+    $time = $_POST['apptTime'];
+    $formattedTime = "";
+    
+    if($time == ""){
+        $formattedTime = "NA";
+    }
+    else{
+        $formattedTime = date('g:i A', strtotime($time));
+    }
+
+    $requestManager->addRequest(
+        date('Y-m-d'), $_SESSION['id'], $_POST['serviceType'], $residentName,
+        $_POST['details'], $_POST['apptDate'], $formattedTime
+    );
+
     exit;
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,8 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     <link rel="shortcut icon" href="../resources/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/main.css">
 
-    <link rel="stylesheet" href="css/postNotice.css">
-    <script src="./js/postNotice.js"></script>
+    <link rel="stylesheet" href="css/requestService.css">
+    <script src="./js/requestService.js"></script>
 </head>
 <body>
     <?php include '_header.php'; ?>
@@ -47,11 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             <ul>
                 <a href="./dashboard.php"><li><i class="material-icons">home</i>Home</li></a>
                 <a href="./applicationProcessing.php"><li><i class="material-icons">assignment</i>Application Processing</li></a>
-                <a href="./requestAddForm.php"><i class="material-icons">build</i>Request Service</a>
+                <a href="./requestAddForm.php" class="currentPage"><i class="material-icons">build</i>Request Service</a>
                 <a href="./requestProcessing.php"><li><i class="material-icons">home_repair_service</i>Request Processing</li></a>
                 <a href="./roomAssignment.php"><li><i class="material-icons">hotel</i>Room Assignment</li></a>
                 <a href="./residentProcessing.php"><li><i class="material-icons">people_outline</i>Residents</li></a>
-                <a href="./noticeBoard.php" class="currentPage"><li><i class="material-icons">web</i>Notice Board</li></a>
+                <a href="./noticeBoard.php"><li><i class="material-icons">web</i>Notice Board</li></a>
                 <a href="./reportGeneration.php"><li><i class="material-icons">assessment</i>Report Generation</li></a>
                 <hr>
                 <a href="./logout.php"><li><i class="material-icons">exit_to_app</i>Logout</li></a>
@@ -61,31 +70,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         <!-- ENTER CODE HERE -->
         <main>
             <header>
-                <h1 class="title">Post New Notice</h1>
+                <h1 class="title">Request Service</h1>
             </header>
 
             <section>   
+                <div class="fetchMsg hide"></div>
 
                 <form>
-                    <label>Title <span>*</span></label>         
-                    <input type="text" class="notice-title" name="notice-title" id="notice-title">
-                    <div class="titleMsg error"></div>
+                    <label>Service Type</label>
+                    <select name="serviceType" id="serviceType">
+                        <option value="Maintenance">Maintenance</option>
+                        <option value="Laundry">Laundry</option>
+                    </select>
 
-                    <label>Date</label>
-                    <input type="date" name="date" id="date">
-                    
-                    <label>Time</label>
-                    <input type="text" name="time" id="time">
-                    
-                    <label>Location</label>
-                    <input type="text" name="location" id="location" >
-                    
-                    <label>Description</label>
+                    <label>Appointment Date</label>
+                    <input type="date" name="apptDate" id="apptDate">
 
-                    <textarea name="description" id="description" cols="30" rows="10"></textarea>
+                    <label>Appointment Time</label>
+                    <input type="time" id="apptTime" name="apptTime">
+                    
+                    <label>Details</label>
+                    <textarea name="details" id="details" cols="30" rows="10"></textarea>
+                    <div class="detailsMsg error"></div>
 
                     <div class="controls">
-                        <button type="submit">Post Notice</button>
+                        <button type="submit">Send Request</button>
                     </div>
                 </form>   
 
