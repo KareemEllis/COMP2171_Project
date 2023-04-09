@@ -50,16 +50,16 @@ h3{
     opacity: 0.8;
 }
 
-.top.btn-accept{
+.btn-accept{
     background: rgb(41, 172, 41);
 }
-.top.btn-reject{
+.btn-reject{
     background: rgb(221, 66, 66);
 }
-.top.btn-pending{
+.btn-pending{
     background: rgb(68, 68, 68);
 }
-.top.btn-complete{
+.btn-complete{
     background: rgb(1, 110, 1);
 }
 
