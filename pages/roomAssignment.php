@@ -45,8 +45,10 @@ $tableData = $roomManager->displayRooms();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="../resources/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/roomAssignment.css">
 </head>
 <body>
     <?php include '_header.php'; ?>
@@ -76,16 +78,10 @@ $tableData = $roomManager->displayRooms();
 
                 <div class="top">
                     <h2>Rooms</h2>
+                    <i class="fa fa-bed"></i>
                 </div>
 
-                <table>
-                    <colgroup>
-                            <col style="width: 25%">
-                            <col style="width: 25%">
-                            <col style="width: 25%">
-                            <col style="width: 15%">
-                            <col style="width: 10%">
-                        </colgroup>
+                <table class="roomTable">
                         <thead>
                             <tr>
                                 <th>Room Number</th> <th>Room Type</th> <th>Block</th> <th>Resident 1</th> <th>Resident 2</th> <th>Status</th>

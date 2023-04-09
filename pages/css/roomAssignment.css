@@ -1,0 +1,81 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    column-gap: 10px;
+    padding: 15px;
+}
+
+.top i {
+    margin-top:4px;
+    font-size: larger;
+  }
+
+/* TABLE STYLES */
+
+.roomTable{
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+}
+
+.roomTable td{
+    padding: 15px;
+}
+
+.roomTable tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+.roomTable tr:hover {
+    background-color: #ddd;
+}
+
+.roomTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #3b80ef;
+  color: rgb(255, 255, 255);
+  text-align: center;
+}
+
+/* ROOM NUMBER STYLES */
+
+.roomTable td:nth-child(1){
+    font-weight: bold;
+}
+
+.roomTable a{
+    color: #0321cb;
+    text-decoration: none;
+    transition: color 0.5s ease;
+}
+
+.roomTable a:hover{
+    color: #43a1ff;
+    
+}
+
+/* ROOM STATUS STYLES */
+
+.Occupied{
+    background-color: rgb(254, 58, 58);
+    color: white;
+
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.Available{
+    background-color: rgb(23, 164, 77);
+    color: white;
+
+    padding: 8px;
+    border-radius: 5px;
+}

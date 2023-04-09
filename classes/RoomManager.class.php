@@ -183,16 +183,32 @@ class RoomManager{
     public function displayRooms(){     
         $dataToDisplay = "";  
         foreach ($this->roomsList as $dorm){
+
+            
+
             $dataToDisplay .= "<tr>";
-            $dataToDisplay .= "<td>".$dorm->getRoomNumber()."</td>";
+            $dataToDisplay .= <<<END
+                                    <td>
+                                        <a href="./roomDetails.php?roomNum={$dorm->getRoomNumber()}" .>{$dorm->getRoomNumber()}</a>
+                                    </td>
+                                    END;
+            // $dataToDisplay .= "<td>".$dorm->getRoomNumber()."</td>";
             $dataToDisplay .= "<td>".$dorm->getRoomType()."</td>";
             $dataToDisplay .= "<td>".$dorm->getBlock()."</td>";
             $dataToDisplay .= "<td>".$dorm->getResident1()."</td>";
             $dataToDisplay .= "<td>".$dorm->getResident2()."</td>";
-            $dataToDisplay .= "<td>".$dorm->getStatus()."</td>";
-            $dataToDisplay .= <<<END
-                                    <td><a href="./roomDetails.php?roomNum={$dorm->getRoomNumber()}" .>Select</a></td>
-                                    END;
+
+            $status = $dorm->getStatus();
+            if ($status == 'Occupied'){
+                $dataToDisplay .= "<td><span class='Occupied'>".$dorm->getStatus()."</span></td>";
+            }
+            elseif($status == 'Available'){
+                $dataToDisplay .= "<td><span class='Available'>".$dorm->getStatus()."</span></td>";
+            }
+            
+
+
+
             $dataToDisplay .= "</tr>";
             
         }
