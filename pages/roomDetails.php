@@ -71,6 +71,7 @@ if(isset($_POST['submit'])){
             <ul>
                 <a href="./dashboard.php"><li><i class="material-icons">home</i>Home</li></a>
                 <a href="./applicationProcessing.php"><li><i class="material-icons">assignment</i>Application Processing</li></a>
+                <a href="./requestAddForm.php"><i class="material-icons">build</i>Request Service</a>
                 <a href="./roomAssignment.php" class="currentPage"><li><i class="material-icons">hotel</i>Room Assignment</li></a>
                 <a href="./residentProcessing.php"><li><i class="material-icons">people_outline</i>Residents</li></a>
                 <a href="./noticeBoard.php"><li><i class="material-icons">web</i>Notice Board</li></a>

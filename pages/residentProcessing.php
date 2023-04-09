@@ -26,6 +26,7 @@ session_start();
             <ul>
                 <a href="./dashboard.php"><li><i class="material-icons">home</i>Home</li></a>
                 <a href="./applicationProcessing.php"><li><i class="material-icons">assignment</i>Application Processing</li></a>
+                <a href="./requestAddForm.php"><i class="material-icons">build</i>Request Service</a>
                 <a href="./requestProcessing.php"><li><i class="material-icons">home_repair_service</i>Request Processing</li></a>
                 <a href="./roomAssignment.php"><li><i class="material-icons">hotel</i>Room Assignment</li></a>
                 <a href="#" class="currentPage"><li><i class="material-icons">people_outline</i>Residents</li></a>
