@@ -3,7 +3,7 @@
 include 'classAutoloader.php';
 
 $loginManagement = new LoginManagement();
-$applicationManagement = new ApplicationManagement();
+$requestManager = new RequestManager();
 $authentification = new Authentification();
 
 $loginManagement->startSession();
@@ -15,42 +15,41 @@ if($authentification->authApplicationProcessing() == false){
     header("Location: ./dashboard.php");
 }
 
-$tableData = $applicationManagement->displayApplicants();
+$tableData = $requestManager->displayRequests();
 $filter = 'all';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     if(isset($_GET['filter'])){
         if($_GET['filter'] == "all"){
-            $tableData = $applicationManagement->displayApplicants();
+            $tableData = $requestManager->displayRequests();
             $filter = 'all';
         }
-        if($_GET['filter'] == "accepted"){
-            $tableData = $applicationManagement->displayApplicantsByStatus("Accepted");
-            $filter = 'accepted';
+        if($_GET['filter'] == "progress"){
+            $tableData = $requestManager->displayRequestsByStatus("In Progress");
+            $filter = 'progress';
         }
         if($_GET['filter'] == "rejected"){
-            $tableData = $applicationManagement->displayApplicantsByStatus("Rejected");
+            $tableData = $requestManager->displayRequestsByStatus("Rejected");
             $filter = 'rejected';
         }
         if($_GET['filter'] == "pending"){
-            $tableData = $applicationManagement->displayApplicantsByStatus("Pending");
+            $tableData = $requestManager->displayRequestsByStatus("Pending");
             $filter = 'pending';
+        }
+        if($_GET['filter'] == "completed"){
+            $tableData = $requestManager->displayRequestsByStatus("Completed");
+            $filter = 'completed';
         }
     }
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(isset($_POST['query'])){
-        if($_POST['query'] == 'convert'){
-            $applicationManagement->convertToResident();
-        }
-
-        elseif($_POST['query'] == 'delete'){
-            $applicationManagement->deleteRejectedApplicants();
+        if($_POST['query'] == 'delete'){
+            $requestManager->deleteRejectedRequests();
         }
     }
 }
-
 
 ?>
 <!DOCTYPE html>
@@ -63,8 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="shortcut icon" href="../resources/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/applicationProcessing.css">
-    <script src="./js/applicationProcessing.js"></script>
+    <link rel="stylesheet" href="css/requestProcessing.css">
+    <script src="./js/requestProcessing.js"></script>
 
 </head>
 <body>
@@ -74,8 +73,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         <aside class="sidebar">
             <ul>
                 <a href="./dashboard.php"><li><i class="material-icons">home</i>Home</li></a>
-                <a href="#" class="currentPage"><li><i class="material-icons">assignment</i>Application Processing</li></a>
-                <a href="./requestProcessing.php"><li><i class="material-icons">home_repair_service</i>Request Processing</li></a>
+                <a href="./applicationProcessing.php"><li><i class="material-icons">assignment</i>Application Processing</li></a>
+                <a href="#" class="currentPage"><li><i class="material-icons">home_repair_service</i>Request Processing</li></a>
                 <a href="./roomAssignment.php"><li><i class="material-icons">hotel</i>Room Assignment</li></a>
                 <a href="./residentProcessing.php"><li><i class="material-icons">people_outline</i>Residents</li></a>
                 <a href="./noticeBoard.php"><li><i class="material-icons">web</i>Notice Board</li></a>
@@ -88,39 +87,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         <!-- ENTER CODE HERE -->
         <main>
             <header>
-                <h1 class="title">Application Processing</h1>
+                <h1 class="title">Service Request Processing</h1>
             </header>
 
             <section>
                 <div class="top">
-                    <h2>Applications</h2>
+                    <h2>Requests</h2>
                     <div>
-                        <button class="btn-convert">Convert to Residents</button>
+                        <?php include 'requestSearchForm.php'; ?>
+                    </div>
+                    <div>
                         <button class="btn-delete">Delete Rejected Applicants</button>
                     </div>
                 </div>
                 <div class="controls">
                     <i class="material-icons">filter_list</i>
                     <h3>Filter By:</h3>
-                    <a href="./applicationProcessing.php?filter=all" class="<?php if($filter == 'all'){echo 'active';} ?>  filter-all">All</a>
-                    <a href="./applicationProcessing.php?filter=rejected" class="<?php if($filter == 'rejected'){echo 'active';} ?> filter-rejected">Rejected</a>
-                    <a href="./applicationProcessing.php?filter=pending" class="<?php if($filter == 'pending'){echo 'active';} ?> filter-pending">Pending</a>
-                    <a href="./applicationProcessing.php?filter=accepted" class="<?php if($filter == 'accepted'){echo 'active';} ?> filter-accepted">Accepted</a>
+                    <a href="./requestProcessing.php?filter=all" class="<?php if($filter == 'all'){echo 'active';} ?>  filter-all">All</a>
+                    <a href="./requestProcessing.php?filter=rejected" class="<?php if($filter == 'rejected'){echo 'active';} ?> filter-rejected">Rejected</a>
+                    <a href="./requestProcessing.php?filter=pending" class="<?php if($filter == 'pending'){echo 'active';} ?> filter-pending">Pending</a>
+                    <a href="./requestProcessing.php?filter=progress" class="<?php if($filter == 'progress'){echo 'active';} ?> filter-progress">In Progress</a>
+                    <a href="./requestProcessing.php?filter=completed" class="<?php if($filter == 'completed'){echo 'active';} ?> filter-completed">Completed</a>
                 </div>
-                <table>
+                <table id = "table">
                     <colgroup>
-                        <col style="width: 25%">
-                        <col style="width: 25%">
-                        <col style="width: 25%">
-                        <col style="width: 15%">
-                        <col style="width: 10%">
+                        <col style="width: 20%">
+                        <col style="width: 20%">
+                        <col style="width: 20%">
+                        <col style="width: 20%">
+                        <col style="width: 20%">
                     </colgroup>
                     <thead>
                         <tr>
-                            <th>Application ID</th> <th>Name</th> <th>Gender</th> <th>Status</th> <th></th>
+                        <th class="sort-by" id ="dateSubmittedHeader"> Date Submitted</th><th>Request ID</th><th>Resident ID</th> <th>Resident Name</th> <th>Service Type</th> <th>Status</th> <th></th>
                         </tr> 
                     </thead>
-                    <tbody>
+                    <tbody class = "tableData">
                             <?php echo $tableData; ?>     
                     </tbody>
                 </table>

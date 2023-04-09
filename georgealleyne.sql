@@ -91,6 +91,20 @@ CREATE TABLE `Rooms` (
 PRIMARY KEY (`Room Number`) 
 );
 
+-- Table structure for table `Requests`
+CREATE TABLE `Requests` (
+  `Date Submitted` date NULL,
+  `RequestID` int(11) NOT NULL auto_increment,
+  `ResidentID` int(11) default null,
+  `Resident` varchar(100) NOT NULL default ' ',
+  `Status` varchar(15) NOT NULL default ' ',
+  `Service Type` varchar(50) NOT NULL default ' ',
+  `Details` varchar(200) NOT NULL default ' ',
+  `Appointment Date` date NULL,
+  `Appointment Time` varchar(100) NOT NULL default ' ',
+PRIMARY KEY (`RequestID`) 
+);
+
 -- Table structure for table `Users`
 CREATE TABLE `Users` (
   `ID` int(11) NOT NULL auto_increment,
@@ -162,6 +176,15 @@ INSERT INTO `Rooms` (`Room Number`, `Room Type`, `Block`, `Availability Status`,
 ('P-008', 'Single', 'Pardus', 'Available', null, null),
 ('P-009', 'Single', 'Pardus', 'Available', null, null),
 ('P-010', 'Single', 'Pardus', 'Available', null, null);
+
+-- --------------------------------------------------------
+
+-- Dumping data for table `Requests`
+INSERT INTO `Requests` (`Date Submitted`, `RequestID`, `ResidentID`, `Resident`, `Status`, `Service Type`, `Details`, `Appointment Date`, `Appointment Time`) VALUES
+('2023-04-05', '4', '5', 'Khayla Malcolm', 'In Progress', 'Maintenance', 'Fix bathroom pipe leakage', 'NA', 'NA'),
+('2023-03-06', '2', '1', 'Alexia2 Brooks', 'Pending', 'Laundry', 'Wash and Dry', '2023-03-17', '3:00 PM'),
+('2023-03-07', '3', '6', 'Ash Ketchum', 'Rejected', 'Laundry', 'Wash and Dry', '2023-03-17', '3:00 PM'),
+('2023-02-05', '1', '3', 'Leon Fray', 'Completed', 'Maintenance', 'Fix broken light switch', 'NA', 'NA');
 
 -- --------------------------------------------------------
 -- Dumping data for table `notices`

@@ -1,0 +1,36 @@
+form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+  
+input[type="text"] {
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+    width: 270px;
+}
+  
+button[type="submit"] {
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #003b79;
+    color: #fff;
+    cursor: pointer;
+}
+  
+button[type="submit"]:hover {
+    background-color: #0062cc;
+}
+  
+input[type="text"]:focus {
+    outline: none;
+    border: 1px solid #007bff;
+    box-shadow: 0 0 5px #007bff;
+}

@@ -62,6 +62,7 @@ class Resident {
         $this->school = $school;
         $this->roomNumber = $roomNumber;
 
+
     }
 
     ///////////////////////////
