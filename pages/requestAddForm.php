@@ -29,10 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $_POST['details'], $_POST['apptDate'], $formattedTime
     );
 
-    echo "Successfully Added Request:";
-    echo "\nUser - ". $residentName;
-    echo "\nService Type - ". $_POST['serviceType'];
-    echo "\nDetails - " . $_POST['details'];
     exit;
 }
 
@@ -77,7 +73,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             </header>
 
             <section>   
-
+                <div class="fetchMsg hide"></div>
+                
                 <form>
                     <label>Service Type</label>
                     <select name="serviceType" id="serviceType">

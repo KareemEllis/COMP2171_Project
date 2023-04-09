@@ -1,6 +1,7 @@
 window.addEventListener('load', ()=>{
     const form = document.querySelector("form")
     const details = document.querySelector("#details")
+    const fetchMsg = document.querySelector(".fetchMsg")
 
     form.addEventListener("submit", (e)=>{
         e.preventDefault()
@@ -23,7 +24,6 @@ window.addEventListener('load', ()=>{
 
         if(fieldsOK == true){
             const formData = new FormData(form)
-            console.log(document.querySelector("#apptTime").value)
 
             fetch('./requestAddForm.php', {
                 method: 'POST',
@@ -35,7 +35,17 @@ window.addEventListener('load', ()=>{
             })
             .then(data => {
                 console.log(data)
-                //window.location.replace("./.php");
+                fetchMsg.classList.remove("hide")
+                if(data == "Success"){
+                    fetchMsg.textContent = "Request Successful"
+                    fetchMsg.classList.add("success")
+                    fetchMsg.classList.remove("failure")
+                }
+                else{
+                    fetchMsg.textContent = "Failed to Request Service"
+                    fetchMsg.classList.add("failure")
+                    fetchMsg.classList.remove("success")
+                }
             })
             .catch(error => {
                 console.log(`ERROR: ${error}`)

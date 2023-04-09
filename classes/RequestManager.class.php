@@ -141,12 +141,12 @@ class RequestManager {
         // Executes SQL statement and checks if successful
         if($stmt->execute() == false){
             //If adding the service request to the database was unsuccessful
-            echo "Notice not posted";
+            echo "Failure";
             echo "ERROR: " . $stmt->errorInfo();
         }
         else{
             //If the service request was successfully added to the database
-            echo "Notice Successfully Posted";
+            echo "Success";
         }
 
         $stmt = null;
