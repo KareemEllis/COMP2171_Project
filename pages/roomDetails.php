@@ -62,6 +62,7 @@ if(isset($_POST['submit'])){
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="shortcut icon" href="../resources/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/roomDetails.css">
 </head>
 <body>
     <?php include '_header.php'; ?>
@@ -87,63 +88,80 @@ if(isset($_POST['submit'])){
             </header>
 
             <section>
-                <div>
-                    <div>
-                        <h2><?php echo $roomNum?></h2>
-                    </div>
-
-                    <div>
-                        <h3><?php echo $roomType?> , <?php echo $roomBlock?></h3>
-                    </div>
-
-                    <?php if($roomType == 'Double' && $roomStatus == 'Occupied') : ?>
+                <div class="details">
+                    <div class="header">
                         <div>
-                            <h3>Residents: <?php echo $roomRes1?>, <?php echo $roomRes2?></h3>
+                            <h2 class="roomNum"><?php echo $roomNum?></h2>
                         </div>
-                    <?php endif; ?>
 
-                    
+                        <div class="head_sec2">
+                            <div>
+                                <h3><?php echo $roomType?> , <?php echo $roomBlock?></h3>
+                            </div>
 
-                    <div>
-                        <h3><?php echo $roomStatus?></h3>
+                            <?php if($roomType == 'Double' && $roomStatus == 'Occupied') : ?>
+                                <div>
+                                    <h3>Residents: <?php echo $roomRes1?>, <?php echo $roomRes2?></h3>
+                                </div>
+                            <?php endif; ?>
+                            
+                            <div>
+                                <h3><?php echo $roomStatus?></h3>
+                            </div>
+                        </div>
+                        
+
+                        
+
+                        
+                        
                     </div>
-                    
+
+                    <div class="roomForm">
+                        <!-- LOGIC FOR WHAT INPUT FIELDS ARE DISPLAYED -->
+
+                        <?php if($roomType == 'Single') : ?>
+
+                        <form action="" method="post">
+                            <div class="resID">
+                                <label>Enter the Resident's ID:</label>
+                                <input type="text" name='res1' value=" " placeholder="eg. 1">
+                            </div>
+                            
+                            <div class="assignBtn_div">
+                                <input class= "assignBtn" name= "submit" type="submit" value="Assign Resident">
+                            </div>
+                            
+                        </form>
+
+                        <?php endif; ?>
+
+
+                        <?php if($roomType == 'Double') : ?>
+
+
+                        <form action="" method="post">
+
+                            <div class="resID">
+                                <label>Enter the first Resident's ID:</label>
+                                <input type="text" name='res1' placeholder="eg. 1">
+                            </div>
+                            
+
+                            <div class="resID">
+                                <label>Enter the second Resident's ID:</label>
+                                <input type="text" name='res2' placeholder="eg. 2">
+                            </div>
+                            
+                            <div class="assignBtn_div">
+                                <input class= "assignBtn" name= "submit" type="submit" value="Assign Residents">
+                            </div>
+                        </form>
+
+
+                        <?php endif; ?>
+                    </div>
                 </div>
-
-
-                <!-- LOGIC FOR WHAT INPUT FIELDS ARE DISPLAYED -->
-
-                <?php if($roomType == 'Single') : ?>
-
-                    <form action="" method="post">
-                        <label>Enter the Resident's ID</label>
-                        <input type="text" name='res1' value=" " placeholder="eg. 1">
-
-
-                        <input class= "assign" name= "submit" type="submit" value="Assign Resident">
-                    </form>
-                    
-                <?php endif; ?>
-                
-
-                <?php if($roomType == 'Double') : ?>
-    
-
-                    <form action="" method="post">
-                        <label>Enter the first Resident's ID</label>
-                        <input type="text" name='res1' placeholder="eg. 1">
-
-                        <label>Enter the second Resident's ID</label>
-                        <input type="text" name='res2' placeholder="eg. 2">
-
-                        <input class= "assign" name= "submit" type="submit" value="Assign Residents">
-                    </form>
-
-                    
-                <?php endif; ?>
-
-                
-                
 
             </section>
                 
