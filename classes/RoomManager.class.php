@@ -45,6 +45,38 @@ class RoomManager{
         
     }
 
+    public function removeResidents($roomNum){
+
+        $room = $this->findRoom($roomNum);
+        $res = null;
+
+        if ($room->getStatus()=='Available'){
+            echo "There are no residents to remove";
+            echo "<br>\n";
+        }
+
+        else{
+            $stmt = $this->db->connect()->prepare("UPDATE `Rooms` SET `Resident ID #1` = NULL WHERE `Room Number`= :roomNum");
+            $stmt->bindValue(':roomNum', $roomNum, PDO::PARAM_STR);
+            $stmt->execute();
+
+            $stmt = null;
+
+            $stmt = $this->db->connect()->prepare("UPDATE `Rooms` SET `Resident ID #2` = NULL WHERE `Room Number`= :roomNum");
+            $stmt->bindValue(':roomNum', $roomNum, PDO::PARAM_STR);
+            $stmt->execute();
+
+            
+            $room->setResident1($res);
+            $room->setResident2($res);
+            echo "Successfully Removed Current Residents";
+            echo "<br>\n";
+
+        }
+
+        
+    }
+
     public function updateStatus($room, $newStatus){
         $room->setStatus($newStatus);
         $roomNum = $room->getRoomNumber();

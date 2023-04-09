@@ -58,6 +58,14 @@ form{
     margin-bottom: 8px;
 }
 
+/* BUTTON STYLES */
+
+.buttonBox{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    column-gap: 8px;
+}
 
 .assignBtn{
     padding: 8px;
@@ -72,5 +80,22 @@ form{
 .assignBtn:hover{
     cursor: pointer;
     background-color: #437efd;
+    transition: background-color 0.5s ease-in;
+}
+
+
+.removeBtn{
+    padding: 8px;
+    border-radius: 0.6em;
+    border: none;
+    
+
+    background-color: #bb0000;
+    color: white;
+}
+
+.removeBtn:hover{
+    cursor: pointer;
+    background-color: #fc1e1e;
     transition: background-color 0.5s ease-in;
 }

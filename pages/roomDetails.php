@@ -50,6 +50,10 @@ if(isset($_POST['submit'])){
     
 }
 
+if (isset($_POST['remove'])){
+    $roomManager->removeResidents($roomNum);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -117,11 +121,19 @@ if(isset($_POST['submit'])){
                                 <input type="text" name='res1' value=" " placeholder="eg. 1">
                             </div>
                             
-                            <div class="assignBtn_div">
-                                <input class= "assignBtn" name= "submit" type="submit" value="Assign Resident">
+                            <div class="buttonBox">
+                                <div class="assignBtn_div">
+                                    <input class= "assignBtn" name= "submit" type="submit" value="Assign Resident">
+                                </div>
+
+                                <div class="removeBtn_div">
+                                    <input class= "removeBtn" name= "remove" type="submit" value="Remove Current Residents">
+                                </div>
                             </div>
                             
+                            
                         </form>
+
 
                         <?php endif; ?>
 
@@ -142,9 +154,16 @@ if(isset($_POST['submit'])){
                                 <input type="text" name='res2' placeholder="eg. 2">
                             </div>
                             
-                            <div class="assignBtn_div">
-                                <input class= "assignBtn" name= "submit" type="submit" value="Assign Residents">
+                            <div class="buttonBox">
+                                <div class="assignBtn_div">
+                                    <input class= "assignBtn" name= "submit" type="submit" value="Assign Resident">
+                                </div>
+
+                                <div class="removeBtn_div">
+                                    <input class= "removeBtn" name= "remove" type="submit" value="Remove Current Residents">
+                                </div>
                             </div>
+                            
                         </form>
 
 

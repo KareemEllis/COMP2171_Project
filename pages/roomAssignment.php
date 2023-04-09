@@ -20,13 +20,27 @@ if($authentification->authApplicationProcessing() == false){
 // updates the status
 $roomList = $roomManager->getRoomsList();
 
+
 foreach ($roomList as $room){
-    if ($room->getRoomType() == 'Double' && $room->getResident1()!= null && $room->getResident2() != null){
+
+
+    if ($room->getRoomType() == 'Double' && $room->getResident1() != null && $room->getResident2() != null){
         $roomManager->updateStatus($room, 'Occupied');
     }
-    elseif ($room->getRoomType() == 'Single' && $room->getResident1()!= null ){
+
+    if ($room->getRoomType() == 'Double' && empty($room->getResident1()) && empty($room->getResident2())){
+        $roomManager->updateStatus($room, 'Available');
+    }
+
+
+    if ($room->getRoomType() == 'Single' && $room->getResident1()!= null ){
         $roomManager->updateStatus($room, 'Occupied');
     }
+
+    if ($room->getRoomType() == 'Single' && empty($room->getResident1()) ){
+        $roomManager->updateStatus($room, 'Available');
+    }
+
 }
 
 //display data
