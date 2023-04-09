@@ -3,6 +3,7 @@ window.addEventListener('load', ()=>{
   const searchBtn = document.querySelector(".searchBtn");
   const searchField = document.querySelector(".searchField");
   const tableBody = document.querySelector(".tableData");
+  const deleteBtn = document.querySelector(".btn-delete");
 
   searchBtn.addEventListener("click", (e)=>{
     e.preventDefault();
@@ -30,6 +31,29 @@ window.addEventListener('load', ()=>{
     })
     .catch(error => console.log('There was an error: ' + error));
   })
+
+  deleteBtn.addEventListener("click", ()=>{
+    console.log("Deleting Rejected Applications")
+
+    const formData = new FormData();
+    formData.append('query', 'delete')
+
+    fetch('./requestProcessing.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if(response.ok){return response.text()}
+        else{return Promise.reject('Something was wrong with fetch request!')}
+    })
+    .then(data => {
+        console.log(data)
+        location.reload()
+    })
+    .catch(error => {
+        console.log(`ERROR: ${error}`)
+    })
+})
   
   
   function sortTable(n) {
@@ -86,8 +110,6 @@ window.addEventListener('load', ()=>{
       }
     }
   }
-
-
 
   document.getElementById("dateSubmittedHeader").addEventListener("click", ()=> {
     sortTable(0);
