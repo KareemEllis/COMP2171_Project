@@ -20,13 +20,13 @@ h3{
     color: white;
 }
 .status.Accepted{
-    background: rgb(41, 172, 41);
+    background: rgb(23, 164, 77);
 }
 .status.Pending{
-    background: rgb(68, 68, 68);
+    background: rgb(172, 172, 172);
 }
 .status.Rejected{
-    background: rgb(221, 66, 66);
+    background: rgb(254, 58, 58);
 
 }
 
@@ -44,13 +44,13 @@ h3{
     opacity: 0.8;
 }
 .top .btn-accept{
-    background: rgb(41, 172, 41);
+    background: rgb(23, 164, 77);
 }
 .top .btn-reject{
-    background: rgb(221, 66, 66);
+    background: rgb(254, 58, 58);
 }
 .top .btn-pending{
-    background: rgb(68, 68, 68);
+    background: rgb(172, 172, 172);
 }
 
 .category-title{

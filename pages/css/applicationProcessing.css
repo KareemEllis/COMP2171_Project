@@ -20,10 +20,10 @@ h2{
     opacity: 0.8;
 }
 .btn-convert{
-    background: linear-gradient(90deg, rgb(38, 117, 219) 0%, rgb(0, 62, 87) 100%);
+    background: rgb(23, 164, 77);
 }
 .btn-delete{
-    background: rgb(158, 42, 42);
+    background: rgb(254, 58, 58);
 }
 
 .controls{
@@ -48,16 +48,16 @@ h2{
     color: rgba(0,113,156,1);
 }
 .controls .filter-rejected:hover{
-    border-bottom: 3px solid rgb(235, 76, 76);
-    color: rgb(235, 76, 76);
+    border-bottom: 3px solid rgb(254, 58, 58);
+    color: rgb(254, 58, 58);
 }
 .controls .filter-pending:hover{
     border-bottom: 3px solid rgba(0,113,156,1);
     color: rgba(0,113,156,1);
 }
 .controls .filter-accepted:hover{
-    border-bottom: 3px solid rgb(0, 156, 13);
-    color: rgb(0, 156, 13);
+    border-bottom: 3px solid rgb(23, 164, 77);
+    color: rgb(23, 164, 77);
 }
 
 .controls .filter-all.active{
@@ -65,16 +65,16 @@ h2{
     color: rgba(0,113,156,1);
 }
 .controls .filter-rejected.active{
-    border-bottom: 3px solid rgb(235, 76, 76);
-    color: rgb(235, 76, 76);
+    border-bottom: 3px solid rgb(254, 58, 58);
+    color: rgb(254, 58, 58);
 }
 .controls .filter-pending.active{
     border-bottom: 3px solid rgba(0,113,156,1);
     color: rgba(0,113,156,1);
 }
 .controls .filter-accepted.active{
-    border-bottom: 3px solid rgb(0, 156, 13);
-    color: rgb(0, 156, 13);
+    border-bottom: 3px solid rgb(23, 164, 77);
+    color: rgb(23, 164, 77);
 }
 
 
@@ -91,8 +91,8 @@ table{
     font-size: 16px;
 }
 thead tr{
-    background-color: rgb(233, 233, 233);
-    color: black;
+    background-color: #3b80ef;
+    color: rgb(255, 255, 255);
     font-weight: bold;
 }
 th,td{
@@ -100,22 +100,22 @@ th,td{
 }
 
 .Accepted{
-    padding: 5px;
+    padding: 8px;
     border-radius: 5px;
     color: white;
-    background-color: rgb(41, 172, 41);
+    background-color: rgb(23, 164, 77);
 }
 .Rejected{
-    padding: 5px;
+    padding: 8px;
     border-radius: 5px;
     color: white;
-    background: rgb(221, 66, 66);
+    background: rgb(254, 58, 58);
 }
 .Pending{
-    padding: 5px;
+    padding: 8px;
     border-radius: 5px;
     color: white;
-    background: rgb(68, 68, 68);
+    background: rgb(172, 172, 172);
 }
 
 tbody tr{
@@ -136,6 +136,10 @@ td:first-child{
 }
 
 table a{
-    color: rgb(89, 86, 255);
-
+    color: #0321cb;
+    text-decoration: none;
+    transition: color 0.5s ease;
+}
+table a:hover{
+    color: #43a1ff;
 }
