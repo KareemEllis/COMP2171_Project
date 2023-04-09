@@ -14,11 +14,25 @@ if($loginManagement->checkIfLoggedIn() == false){
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $residentName = $_SESSION['firstName'] . " " . $_SESSION['lastName'];
+    $time = $_POST['apptTime'];
+    $formattedTime = "";
+    
+    if($time == ""){
+        $formattedTime = "NA";
+    }
+    else{
+        $formattedTime = date('g:i A', strtotime($time));
+    }
 
     $requestManager->addRequest(
         date('Y-m-d'), $_SESSION['id'], $_POST['serviceType'], $residentName,
-        $_POST['details'], $_POST['apptDate'], $_POST['apptTime']
+        $_POST['details'], $_POST['apptDate'], $formattedTime
     );
+
+    echo "Successfully Added Request:";
+    echo "\nUser - ". $residentName;
+    echo "\nService Type - ". $_POST['serviceType'];
+    echo "\nDetails - " . $_POST['details'];
     exit;
 }
 
@@ -79,6 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                     
                     <label>Details</label>
                     <textarea name="details" id="details" cols="30" rows="10"></textarea>
+                    <div class="detailsMsg error"></div>
 
                     <div class="controls">
                         <button type="submit">Send Request</button>
