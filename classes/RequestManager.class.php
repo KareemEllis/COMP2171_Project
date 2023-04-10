@@ -116,6 +116,9 @@ class RequestManager {
         $stmt->bindValue(':id', $requestID, PDO::PARAM_STR);
 
         $stmt->execute();
+
+        $request = findRequest($requestID);
+        $request->setStatus($newStatus);
     }
 
     //Add a new request to the database
