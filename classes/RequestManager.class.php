@@ -92,10 +92,20 @@ class RequestManager {
         return $dataToDisplay;
     }
 
-    public function displayRequestsBySearch($id){
+    public function displayRequestsBySearch($id, $searchType) {
         $dataToDisplay = "";
-        foreach ($this->requestList as $request){
-            if($request->getRequestID() == $id or $request->getResidentID() == $id){
+        foreach ($this->requestList as $request) {
+            if ($searchType == 'residentID' && $request->getResidentID() == $id) {
+                $dataToDisplay .= "<tr>";
+                $dataToDisplay .= "<td>".$request->getDateSubmitted()."</td>";
+                $dataToDisplay .= "<td>".$request->getRequestID()."</td>";
+                $dataToDisplay .= "<td>".$request->getResidentID()."</td>";
+                $dataToDisplay .= "<td>".$request->getResident()."</td>";
+                $dataToDisplay .= "<td>".$request->getServiceType()."</td>";
+                $dataToDisplay .= "<td> <span class=\"" . $request->getStatus() . "\">" . $request->getStatus(). "<span> </td>"; 
+                $dataToDisplay .= "<td> <a href=\" ./requestDetails.php?id=". $request->getRequestID() ."\" target=\"_blank\">View</a></td>"; 
+                $dataToDisplay .= "</tr>";
+            } elseif ($searchType == 'requestID' && $request->getRequestID() == $id) {
                 $dataToDisplay .= "<tr>";
                 $dataToDisplay .= "<td>".$request->getDateSubmitted()."</td>";
                 $dataToDisplay .= "<td>".$request->getRequestID()."</td>";
@@ -109,6 +119,7 @@ class RequestManager {
         }
         return $dataToDisplay;
     }
+    
 
     public function updateRequestStatus($requestID, $newStatus) {
         $stmt = $this->db->connect()->prepare("UPDATE Requests SET Status = :status WHERE RequestID = :id");

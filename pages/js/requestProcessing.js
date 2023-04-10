@@ -1,16 +1,46 @@
 window.addEventListener('load', ()=>{
 
-  const searchBtn = document.querySelector(".searchBtn");
+  const residentSearchBtn = document.querySelector(".residentSearchBtn");
+  const requestSearchBtn = document.querySelector(".requestSearchBtn");
   const searchField = document.querySelector(".searchField");
   const tableBody = document.querySelector(".tableData");
   const deleteBtn = document.querySelector(".btn-delete");
 
-  searchBtn.addEventListener("click", (e)=>{
+  residentSearchBtn.addEventListener("click", (e)=>{
     e.preventDefault();
     console.log("Searching for Request")
   
     const formData = new FormData();
     formData.append('ID', `${searchField.value}`)
+    formData.append('search_type', 'residentID');
+    console.log(formData)
+    
+    fetch('./requestSearch.php', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.text()
+      } else {
+        return Promise.reject('something went wrong!')
+      }
+    })
+    .then(data => {
+      console.log(data)
+      tableBody.innerHTML = ''; //clears all data from table
+      tableBody.insertAdjacentHTML('beforeend', data);
+    })
+    .catch(error => console.log('There was an error: ' + error));
+  })
+
+  requestSearchBtn.addEventListener("click", (e)=>{
+    e.preventDefault();
+    console.log("Searching for Request")
+  
+    const formData = new FormData();
+    formData.append('ID', `${searchField.value}`)
+    formData.append('search_type', 'requestID');
     console.log(formData)
     
     fetch('./requestSearch.php', {

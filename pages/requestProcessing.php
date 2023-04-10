@@ -96,11 +96,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <div class="top">
                     <h2>Requests</h2>
                     <div>
-                        <?php include 'requestSearchForm.php'; ?>
+                        <button class="btn-delete">Delete Rejected Requests</button>
                     </div>
-                    <div>
-                        <button class="btn-delete">Delete Rejected Applicants</button>
-                    </div>
+                </div>
+                <div>
+                    <?php include 'requestSearchForm.php'; ?>
                 </div>
                 <div class="controls">
                     <i class="material-icons">filter_list</i>
