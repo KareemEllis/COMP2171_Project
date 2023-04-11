@@ -6,6 +6,7 @@ session_start();
 //     exit;
 // }
 include 'classAutoloader.php';
+if ($_SERVER['REQUEST_METHOD'] == 'GET'){
 function generate_table($residents) {
   $table = '<table><tr><th>Resident ID</th><th>First Name</th><th>Last Name</th><th>Middle Initial</th><th>Position</th><th>Nationality</th><th>Room Number</th></tr>';
 
@@ -36,6 +37,7 @@ if (isset($_GET['resident_button'])) {
   // handle genus button
 } else if (isset($_GET['pardus_button'])) {
   // handle pardus button
+}
 }
 ?>
 

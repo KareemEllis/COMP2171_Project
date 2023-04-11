@@ -98,6 +98,7 @@ window.addEventListener('load', () => {
         return columns
     }
  //******************************************HAS ISSUES******************************************
+ /*
  function fetchTable() {
     resultContainer.innerHTML = `<div>${spinner}</div>`;
   
@@ -119,7 +120,7 @@ window.addEventListener('load', () => {
         console.log(`ERROR: ${error}`);
       });
   }
-  
+*/  
   
 //******************************************COMPLETED******************************************
     //CLOSE MODAL
