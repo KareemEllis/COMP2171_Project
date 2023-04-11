@@ -20,7 +20,6 @@ function generate_table($residents) {
     $table .= '<td>' . $resident->getRoomNumber() . '</td>';
     $table .= '</tr>';
   }
-
   $table .= '</table>';
 
   return $table;
@@ -38,7 +37,6 @@ if (isset($_GET['resident_button'])) {
 } else if (isset($_GET['pardus_button'])) {
   // handle pardus button
 }
-
 ?>
 
 <!DOCTYPE html>

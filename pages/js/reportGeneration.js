@@ -98,25 +98,29 @@ window.addEventListener('load', () => {
         return columns
     }
  //******************************************HAS ISSUES******************************************
-    function fetchTable(){
-        resultContainer.innerHTML = `<div>${spinner}</div>`
-        
-        fetch(`../pages/reportGeneration.php?view=${viewType}&${getFilterParamters()}`)
-        .then(response => {
-            if(response.ok){return response.text()}
-            else{return Promise.reject('Something was wrong with fetch request!')}
-        }) 
-        .then(data => {
-            resultContainer.innerHTML = `<h1>Report of ${viewType}</h1>`
-            resultContainer.innerHTML += data
-            console.log(data)
-        })
-        .catch(error => {
-            console.log(`ERROR: ${error}`)
-        })
-    }
-
-
+ function fetchTable() {
+    resultContainer.innerHTML = `<div>${spinner}</div>`;
+  
+    fetch(`../pages/reportGeneration.php?view=${viewType}&${getFilterParamters()}`)
+      .then((response) => {
+        if (response.ok) {
+          return response.text();
+        } else {
+          return Promise.reject("Something went wrong with the fetch request!");
+        }
+      })
+      .then((data) => {
+        const tableContainer = document.getElementById("table-container");
+        tableContainer.innerHTML = `<h1>Report of ${viewType}</h1>`;
+        tableContainer.innerHTML += data;
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(`ERROR: ${error}`);
+      });
+  }
+  
+  
 //******************************************COMPLETED******************************************
     //CLOSE MODAL
     closeModalBtn.addEventListener('click', () => {
