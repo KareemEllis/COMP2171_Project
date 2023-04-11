@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $lname = $_POST['lname'];
     $initial = $_POST['initial'];
     $dob = $_POST['dob'];
+    $phoneNumber = $_POST['phoneNumber'];
     $nationality = $_POST['nationality'];
     $gender = $_POST['gender'];
     $maritalStatus = $_POST['maritalStatus'];
@@ -32,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $roommatePreference = $_POST['roommatePref'];
 
     $applicationManagement->addApplicant(
-        $fname, $lname, $initial, $dob, $nationality,
+        $fname, $lname, $initial, $dob, $phoneNumber, $nationality,
         $gender, $maritalStatus, $familyType, $homeAddress, 
         $mailingAddress, $email, $id, $contactName, $contactRelationship,
         $contactPhone, $contactAddress, $contactEmail, $levelOfStudy, $yearOfStudy, 
@@ -82,6 +83,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             <label>DOB <span class="required">*</span></label>
             <input type="date" name="dob" id="dob">
             <div class="dobMsg error"></div>
+
+            <label>Phone Number <span class="required">*</span></label>
+            <input type="text" name="phoneNumber" id="phoneNumber">
+            <div class="phoneMsg error"></div>
+
+            <!-- Note: implement phoneMsg Error -->
 
             <label>Nationality <span class="required">*</span></label>
             <input type="text" name="nationality" id="nationality">

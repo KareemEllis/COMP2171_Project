@@ -72,6 +72,11 @@ if($authentification->authApplicationProcessing() == false){
                     <div class="category-box">
                         <h4>DOB: </h4> <p> <?php echo $application_to_view->getPersonalDetails()->getDOB(); ?> </p>
                     </div>
+
+                    <div class="category-box">
+                        <h4>Phone Number: </h4> <p> <?php echo $application_to_view->getPersonalDetails()->getPhoneNumber(); ?> </p>
+                    </div>
+
                     <div class="category-box">
                         <h4>Nationality: </h4> <p> <?php echo $application_to_view->getPersonalDetails()->getNationality(); ?> </p>
                     </div>
