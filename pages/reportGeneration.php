@@ -31,6 +31,7 @@ if (isset($_GET['resident_button'])) {
   $rm = new ResidentManager();
   $residents = $rm->getResidentList();
   echo generate_table($residents);
+  exit;
 } else if (isset($_GET['lynx_button'])) {
   // handle lynx button
 } else if (isset($_GET['genus_button'])) {
@@ -39,6 +40,8 @@ if (isset($_GET['resident_button'])) {
   // handle pardus button
 }
 }
+
+
 ?>
 
 <!DOCTYPE html>

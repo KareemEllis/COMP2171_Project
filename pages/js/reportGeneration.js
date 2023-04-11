@@ -98,10 +98,8 @@ window.addEventListener('load', () => {
         return columns
     }
  //******************************************HAS ISSUES******************************************
- /*
+
  function fetchTable() {
-    resultContainer.innerHTML = `<div>${spinner}</div>`;
-  
     fetch(`../pages/reportGeneration.php?view=${viewType}&${getFilterParamters()}`)
       .then((response) => {
         if (response.ok) {
@@ -111,16 +109,15 @@ window.addEventListener('load', () => {
         }
       })
       .then((data) => {
-        const tableContainer = document.getElementById("table-container");
-        tableContainer.innerHTML = `<h1>Report of ${viewType}</h1>`;
-        tableContainer.innerHTML += data;
+        resultContainer.innerHTML = `<h1>Report of ${viewType}</h1>`;
+        resultContainer.innerHTML += data;
         console.log(data);
       })
       .catch((error) => {
         console.log(`ERROR: ${error}`);
       });
   }
-*/  
+
   
 //******************************************COMPLETED******************************************
     //CLOSE MODAL
