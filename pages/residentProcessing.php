@@ -61,6 +61,8 @@ if (isset($_GET['filter_position'])) {
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="shortcut icon" href="../resources/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/main.css">
+
+    <link rel="stylesheet" href="css/residentProcessing.css">
 </head>
 
 <body>
@@ -171,6 +173,7 @@ if (isset($_GET['filter_position'])) {
                             <th>Telephone Number</th>
                             <th>Room Number</th>
                             <th>Action</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
