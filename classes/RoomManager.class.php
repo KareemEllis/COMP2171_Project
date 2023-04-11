@@ -66,6 +66,12 @@ class RoomManager{
             $stmt->bindValue(':roomNum', $roomNum, PDO::PARAM_STR);
             $stmt->execute();
 
+            $stmt = null;
+
+            $stmt = $this->db->connect()->prepare("UPDATE `Residents` SET `Room Number` = ' ' WHERE `Room Number`= :roomNum");
+            $stmt->bindValue(':roomNum', $roomNum, PDO::PARAM_STR);
+            $stmt->execute();
+
             
             $room->setResident1($res);
             $room->setResident2($res);
