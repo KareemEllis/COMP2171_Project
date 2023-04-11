@@ -29,7 +29,7 @@ window.addEventListener('load', () => {
     let viewType
 
     let spinner = '<div class="loader"></div>'
-
+//******************************************COMPLETED******************************************
     //Change filter Button Colors when clicked
     let allFilterButtons = document.querySelectorAll(".filters button")
     
@@ -39,7 +39,7 @@ window.addEventListener('load', () => {
             btn.classList.toggle("off")
         })
     });
-
+//******************************************HAS ISSUES******************************************
     //Download PDF FILE
     downloadBtn.addEventListener('click', () => {
         html2pdf()
@@ -72,10 +72,10 @@ window.addEventListener('load', () => {
         if(filterNationality.classList.contains("on")){nationality = 'Nationality'}
         else{nationality=''}
 
-        if(filterRoom.classList.contains("on")){roomS = 'Room Number'}
-        else{roomS=''}
+        if(filterRoom.classList.contains("on")){roomNumber = 'Room Number'}
+        else{roomNumber=''}
 
-        let parameters = `fname=${firstName}&mname=${middleInitial}&lname=${lastName}&position=${position}&nationality=${nationality}&room=${roomS}`
+        let parameters = `fname=${firstName}&mname=${middleInitial}&lname=${lastName}&position=${position}&nationality=${nationality}&room=${roomNumber}`
         
         return parameters
     }
@@ -97,7 +97,7 @@ window.addEventListener('load', () => {
         
         return columns
     }
-    
+ //******************************************HAS ISSUES******************************************
     function fetchTable(){
         resultContainer.innerHTML = `<div>${spinner}</div>`
         
@@ -105,7 +105,7 @@ window.addEventListener('load', () => {
         .then(response => {
             if(response.ok){return response.text()}
             else{return Promise.reject('Something was wrong with fetch request!')}
-        })
+        }) 
         .then(data => {
             resultContainer.innerHTML = `<h1>Report of ${viewType}</h1>`
             resultContainer.innerHTML += data

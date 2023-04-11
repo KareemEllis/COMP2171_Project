@@ -6,49 +6,38 @@ session_start();
 //     exit;
 // }
 include 'classAutoloader.php';
-        
-$resManager = new ResidentManager();
-
-// check which button was clicked and filter the residentList accordingly
-if (isset($_POST['block_lynx'])) {
-    $filtered_resident_list = array_filter($resManager->getresidentList(), function($resident) {
-        return $resident->getRoomNumber() === 'Lynx Block';
-    });
-} elseif (isset($_POST['block_genus'])) {
-    $filtered_resident_list = array_filter($resManager->getresidentList(), function($resident) {
-        return $resident->getRoomNumber() === 'Genus Block';
-    });
-} elseif (isset($_POST['block_pardus'])) {
-    $filtered_resident_list = array_filter($resManager->getresidentList(), function($resident) {
-        return $resident->getRoomNumber() === 'Pardus Block';
-    });
-} else {
-    $filtered_resident_list = $resManager->getresidentList();
-}
-
-// display the filtered data in a table
-if (!empty($filtered_resident_list)) {
-    echo '<table>';
-    echo '<thead>';
-    echo '<tr>';
-    echo '<th>First Name</th>';
-    echo '<th>Last Name</th>';
-    echo '<th>Room Number</th>';
-    echo '</tr>';
-    echo '</thead>';
-    echo '<tbody>';
-    foreach ($filtered_resident_list as $resident) {
-        echo '<tr>';
-        echo '<td>' . $resident->getFirstName() . '</td>';
-        echo '<td>' . $resident->getLastName() . '</td>';
-        echo '<td>' . $resident->getRoomNumber() . '</td>';
-        echo '</tr>';
+function generate_table($residents) {
+    $table = '<table><tr><th>Resident ID</th><th>First Name</th><th>Last Name</th><th>Middle Initial</th><th>Position</th><th>Nationality</th><th>Room Number</th></tr>';
+  
+    foreach ($residents as $resident) {
+      $table .= '<tr>';
+      $table .= '<td>' . $resident->getResidentID() . '</td>';
+      $table .= '<td>' . $resident->getFirstName() . '</td>';
+      $table .= '<td>' . $resident->getLastName() . '</td>';
+      $table .= '<td>' . $resident->getMiddleInitial() . '</td>';
+      $table .= '<td>' . $resident->getPosition() . '</td>';
+      $table .= '<td>' . $resident->getNationality() . '</td>';
+      $table .= '<td>' . $resident->getRoomNumber() . '</td>';
+      $table .= '</tr>';
     }
-    echo '</tbody>';
-    echo '</table>';
-} else {
-    echo 'No data found.';
-}
+  
+    $table .= '</table>';
+  
+    return $table;
+  }
+  
+  // check which button is pressed
+  if (isset($_GET['resident_button'])) {
+    $rm = new ResidentManager();
+    $residents = $rm->getResidentList();
+    echo generate_table($residents);
+  } else if (isset($_GET['lynx_button'])) {
+    // handle lynx button
+  } else if (isset($_GET['genus_button'])) {
+    // handle genus button
+  } else if (isset($_GET['pardus_button'])) {
+    // handle pardus button
+  }
 
 ?>
 
