@@ -12,7 +12,7 @@ class Applicant {
     
 
     public function __construct(
-        $applicantID, $status, $firstName, $lastName, $middleInitial, 
+        $applicantID, $status, $firstName, $lastName, $middleInitial, $phoneNum,
         $DOB, $nationality, $gender, $maritalStatus, $familyType, 
         $homeAddress, $mailingAddress, $emailAddress, $studentID, $contactName, 
         $contactRelationship, $contactPhone, $contactAddress, $contactEmail, $levelOfStudy,
@@ -22,7 +22,7 @@ class Applicant {
         $this->applicantID = $applicantID;
 
         $this->personalDetails = new PersonalDetails(
-            $firstName, $lastName, $middleInitial, $DOB, $nationality, 
+            $firstName, $lastName, $middleInitial, $phoneNum, $DOB, $nationality, 
             $gender, $maritalStatus, $familyType, $homeAddress, $mailingAddress, $emailAddress
         );
 

@@ -27,7 +27,7 @@ class ApplicationManagement {
             //Creating Instances of Application Class from database data
             $application = new Applicant(
               $row['ApplicationID'], $row['Status'], $row['First Name'], $row['Last Name'], $row['Middle Initial'],
-              $row["DOB"], $row['Nationality'], $row['Gender'], $row['Marital Status'], $row['Family Type'], $row['Home Address'],
+              $row["DOB"], $row['Phone Number'], $row['Nationality'], $row['Gender'], $row['Marital Status'], $row['Family Type'], $row['Home Address'],
               $row['Mailing Address'], $row['Email Address'], $row['ID Number'], $row['Contact Name'], $row['Contact Relationship'],
               $row['Contact Telephone'], $row['Contact Address'], $row['Contact Email'], $row['Level of Study'], $row['Year of Study'],
               $row['Programme Name'], $row['Faculty Name'], $row['Name of School'], $row['Room Type'], $row['Roommate Preference']
@@ -98,7 +98,7 @@ class ApplicationManagement {
     //Cretes an instance of an Application and adds it to the Database
     public function addApplicant(
         $firstName, $lastName, $middleInitial, 
-        $DOB, $nationality, $gender, $maritalStatus, $familyType, 
+        $DOB, $phoneNumber, $nationality, $gender, $maritalStatus, $familyType, 
         $homeAddress, $mailingAddress, $emailAddress, $studentID, $contactName, 
         $contactRelationship, $contactPhone, $contactAddress, $contactEmail, $levelOfStudy,
         $yearOfStudy, $programme, $faculty, $school, $roomType, $roommatePreference
@@ -107,12 +107,12 @@ class ApplicationManagement {
         //ADD APPLICATION TO THE DATABASE
         //Add default status of Pending to status
         $stmt = $this->db->connect()->prepare(
-            "INSERT INTO Applicants (Status, `First Name`, `Last Name`, `Middle Initial`, `DOB`, `Nationality`, 
+            "INSERT INTO Applicants (Status, `First Name`, `Last Name`, `Middle Initial`, `DOB`, `Phone Number`, `Nationality`, 
             `Gender`, `Marital Status`, `Family Type`, `Home Address`, `Mailing Address`, `Email Address`,
             `ID Number`, `Contact Name`, `Contact Relationship`, `Contact Telephone`, `Contact Address`, `Contact Email`, 
             `Level of Study`, `Year of Study`, `Programme Name`, `Faculty Name`, `Name of School`, `Room Type`, `Roommate Preference`) 
             
-            VALUES ('Pending', :firstName, :lastName, :middleInitial, :dob, :nationality, :gender, :maritalStatus, :familyType, :homeAddress,
+            VALUES ('Pending', :firstName, :lastName, :middleInitial, :dob, :phoneNum, :nationality, :gender, :maritalStatus, :familyType, :homeAddress,
             :mailingAddress, :emailAddress, :studentID, :contactName, :contactRelationship, :contactTelephone, :contactAddress, 
             :contactEmail, :levelOfStudy, :yearOfStudy, :programme, :faculty, :school, :roomType, :roommatePref)");
 
@@ -120,6 +120,7 @@ class ApplicationManagement {
         $stmt->bindValue(':lastName', $lastName, PDO::PARAM_STR);
         $stmt->bindValue(':middleInitial', $middleInitial, PDO::PARAM_STR);
         $stmt->bindValue(':dob', $DOB, PDO::PARAM_STR);   
+        $stmt->bindValue(':phoneNum', $phoneNumber, PDO::PARAM_STR); 
         $stmt->bindValue(':nationality', $nationality, PDO::PARAM_STR);
         $stmt->bindValue(':gender', $gender, PDO::PARAM_STR);
         $stmt->bindValue(':maritalStatus', $maritalStatus, PDO::PARAM_STR);
@@ -232,10 +233,10 @@ class ApplicationManagement {
 
     public function convertToResident(){
         $stmt = $this->db->connect()->prepare(
-            "INSERT INTO Residents (`First Name`, `Last Name`, `Middle Initial`, `DOB`, `Nationality`, `Gender`, 
+            "INSERT INTO Residents (`First Name`, `Last Name`, `Middle Initial`, `DOB`, `Phone Number`, `Nationality`, `Gender`, 
             `Marital Status`, `Family Type`, `Home Address`, `Mailing Address`, `Email Address`, `ID Number`, `Contact Name`, 
             `Contact Relationship`, `Contact Telephone`, `Contact Address`, `Contact Email`, `Level of Study`, `Year of Study`, `Programme Name`, `Faculty Name`, `Name of School`)
-            SELECT `First Name`, `Last Name`, `Middle Initial`, `DOB`, `Nationality`, `Gender`, 
+            SELECT `First Name`, `Last Name`, `Middle Initial`, `DOB`, `Phone Number`, `Nationality`, `Gender`, 
             `Marital Status`, `Family Type`, `Home Address`, `Mailing Address`, `Email Address`, `ID Number`, `Contact Name`,
             `Contact Relationship`, `Contact Telephone`, `Contact Address`, `Contact Email`, `Level of Study`, `Year of Study`, `Programme Name`, `Faculty Name`, `Name of School`
             FROM Applicants
