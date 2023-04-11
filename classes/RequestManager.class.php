@@ -128,7 +128,7 @@ class RequestManager {
 
         $stmt->execute();
 
-        $request = findRequest($requestID);
+        $request = $this->findRequest($requestID);
         $request->setStatus($newStatus);
     }
 
