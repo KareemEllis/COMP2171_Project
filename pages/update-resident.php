@@ -200,18 +200,6 @@ $rooms = $roomManager->getRoomsList();
                             value="<?= $resident['Year of Study'] ?>">
                     </div>
 
-                    <div class="mb-4">
-                        <label for="room">Select Room</label>
-                        <select name="room_no" id="">
-                            <option value="">Select Room</option>
-                            <?php
-                            foreach ($rooms as $room) { ?>
-                                <option value="<?= $room->getRoomNumber() ?>" <?= ($room->getRoomNumber() == $resident['Room Number']) ? 'selected' : '' ?>>
-                                    <?= $room->getRoomNumber() . ' ' . $room->getRoomType() . " - " . $room->getStatus() ?>
-                                </option>
-                            <?php } ?>
-                        </select>
-                    </div>
 
                     <div class="mb-4">
                         <label for="">Programme Name</label>
