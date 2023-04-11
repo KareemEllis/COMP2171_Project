@@ -138,6 +138,12 @@ class RoomManager{
                 }
 
                 else{
+                    $query = $this->db->connect()->prepare("UPDATE `Residents` SET `Room Number` = :roomNum WHERE `Resident ID` = :res1");
+                    $query->bindValue(':res1', $res1, PDO::PARAM_STR);
+                    $query->bindValue(':roomNum', $roomNum, PDO::PARAM_STR);
+                    $query->execute();
+
+
                     $room = $this->findRoom($roomNum);
                     $room->setResident1($res1);
                     echo "Successful";
@@ -197,6 +203,11 @@ class RoomManager{
                 }
 
                 else{
+                    $query = $this->db->connect()->prepare("UPDATE `Residents` SET `Room Number` = :roomNum WHERE `Resident ID` = :res2");
+                    $query->bindValue(':res2', $res2, PDO::PARAM_STR);
+                    $query->bindValue(':roomNum', $roomNum, PDO::PARAM_STR);
+                    $query->execute();
+
                     $room = $this->findRoom($roomNum);
                     $room->setResident2($res2);
                     echo "Successful";
