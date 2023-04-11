@@ -233,8 +233,8 @@ class ApplicationManagement {
 
     public function convertToResident(){
         $stmt = $this->db->connect()->prepare(
-            "INSERT INTO Residents (`First Name`, `Last Name`, `Middle Initial`, `DOB`, `Nationality`, `Gender`, 
-            `Marital Status`, `Family Type`, `Home Address`, `Mailing Address`, `Email Address`, `Phone Number`, `ID Number`, `Contact Name`, 
+            "INSERT INTO Residents (`First Name`, `Last Name`, `Middle Initial`, `DOB`, `Phone Number`, `Nationality`, `Gender`, 
+            `Marital Status`, `Family Type`, `Home Address`, `Mailing Address`, `Email Address`, `ID Number`, `Contact Name`, 
             `Contact Relationship`, `Contact Telephone`, `Contact Address`, `Contact Email`, `Level of Study`, `Year of Study`, `Programme Name`, `Faculty Name`, `Name of School`)
             SELECT `First Name`, `Last Name`, `Middle Initial`, `DOB`, `Phone Number`, `Nationality`, `Gender`, 
             `Marital Status`, `Family Type`, `Home Address`, `Mailing Address`, `Email Address`, `ID Number`, `Contact Name`,
