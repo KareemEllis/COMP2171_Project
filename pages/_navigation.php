@@ -28,6 +28,20 @@
             </li>
         </a>
 
+        <a href="./requestAddForm.php" <?php if(basename($_SERVER['PHP_SELF']) == "requestAddForm.php"){echo "class=\"currentPage\"";} ?>>
+            <li>
+                <i class="material-icons">build</i>
+                Request Service
+            </li>
+        </a>
+
+        <a href="./requestProcessing.php" <?php if(basename($_SERVER['PHP_SELF']) == "requestProcessing.php"){echo "class=\"currentPage\"";} ?>>
+            <li>
+                <i class="material-icons">home_repair_service</i>
+                Process Requests
+            </li>
+        </a>
+
         <a href="./noticeBoard.php" <?php if(basename($_SERVER['PHP_SELF']) == "noticeBoard.php"){echo "class=\"currentPage\"";} ?>>
             <li>
                 <i class="material-icons">web</i>

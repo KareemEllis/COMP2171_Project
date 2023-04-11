@@ -5,7 +5,6 @@ class PersonalDetails {
     private $lastName;
     private $middleInitial;
     private $DOB;
-    private $phoneNumber;
     private $nationality;
     private $gender;
     private $maritalStatus;
@@ -15,7 +14,7 @@ class PersonalDetails {
     private $emailAddress;
 
     public function __construct(
-        $firstName, $lastName, $middleInitial, $phoneNumber,
+        $firstName, $lastName, $middleInitial, 
         $DOB, $nationality, $gender, $maritalStatus, $familyType, 
         $homeAddress, $mailingAddress, $emailAddress
     )
@@ -23,7 +22,6 @@ class PersonalDetails {
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->middleInitial = $middleInitial;
-        $this->phoneNumber = $phoneNumber;
         $this->DOB = $DOB;
         $this->nationality = $nationality;
         $this->gender = $gender;
@@ -47,12 +45,6 @@ class PersonalDetails {
     public function getDOB(){
         return $this->DOB;
     }
-
-    public function getPhoneNumber(){
-        return $this->phoneNumber;
-    }
-
-
     public function getNationality(){
         return $this->nationality;
     }
