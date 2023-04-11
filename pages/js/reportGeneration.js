@@ -97,7 +97,7 @@ window.addEventListener('load', () => {
         
         return columns
     }
-
+   
     function fetchTable(){
         resultContainer.innerHTML = `<div>${spinner}</div>`
         

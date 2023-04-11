@@ -6,7 +6,7 @@ session_start();
 //     exit;
 // }
 include 'classAutoloader.php';
-
+       
 $resManager = new ResidentManager();
 
 // check which button was clicked and filter the residentList accordingly
