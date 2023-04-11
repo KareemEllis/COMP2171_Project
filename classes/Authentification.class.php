@@ -11,6 +11,15 @@ class Authentification {
         }
     }
 
+    public function authServiceProcessing(){
+        if($_SESSION['position'] == "Resident Advisor"){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     public function authRoomAssignment(){
         if($_SESSION['position'] == "Resident Advisor"){
             return true;
