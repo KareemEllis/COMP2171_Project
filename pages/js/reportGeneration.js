@@ -7,7 +7,7 @@ window.addEventListener('load', () => {
     const viewBlockLynxBtn = document.querySelector(".view-blockL")
     const viewBlockGenusBtn = document.querySelector(".view-blockG")
     const viewBlockPardusBtn = document.querySelector(".view-blockP")
-    
+      
     const filterFName = document.querySelector(".filter-fName")
     const filterMName = document.querySelector(".filter-mName")
     const filterlName = document.querySelector(".filter-lName")

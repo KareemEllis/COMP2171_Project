@@ -7,37 +7,37 @@ session_start();
 // }
 include 'classAutoloader.php';
 function generate_table($residents) {
-    $table = '<table><tr><th>Resident ID</th><th>First Name</th><th>Last Name</th><th>Middle Initial</th><th>Position</th><th>Nationality</th><th>Room Number</th></tr>';
-  
-    foreach ($residents as $resident) {
-      $table .= '<tr>';
-      $table .= '<td>' . $resident->getResidentID() . '</td>';
-      $table .= '<td>' . $resident->getFirstName() . '</td>';
-      $table .= '<td>' . $resident->getLastName() . '</td>';
-      $table .= '<td>' . $resident->getMiddleInitial() . '</td>';
-      $table .= '<td>' . $resident->getPosition() . '</td>';
-      $table .= '<td>' . $resident->getNationality() . '</td>';
-      $table .= '<td>' . $resident->getRoomNumber() . '</td>';
-      $table .= '</tr>';
-    }
-  
-    $table .= '</table>';
-  
-    return $table;
+  $table = '<table><tr><th>Resident ID</th><th>First Name</th><th>Last Name</th><th>Middle Initial</th><th>Position</th><th>Nationality</th><th>Room Number</th></tr>';
+
+  foreach ($residents as $resident) {
+    $table .= '<tr>';
+    $table .= '<td>' . $resident->getResidentID() . '</td>';
+    $table .= '<td>' . $resident->getFirstName() . '</td>';
+    $table .= '<td>' . $resident->getLastName() . '</td>';
+    $table .= '<td>' . $resident->getMiddleInitial() . '</td>';
+    $table .= '<td>' . $resident->getPosition() . '</td>';
+    $table .= '<td>' . $resident->getNationality() . '</td>';
+    $table .= '<td>' . $resident->getRoomNumber() . '</td>';
+    $table .= '</tr>';
   }
-  
-  // check which button is pressed
-  if (isset($_GET['resident_button'])) {
-    $rm = new ResidentManager();
-    $residents = $rm->getResidentList();
-    echo generate_table($residents);
-  } else if (isset($_GET['lynx_button'])) {
-    // handle lynx button
-  } else if (isset($_GET['genus_button'])) {
-    // handle genus button
-  } else if (isset($_GET['pardus_button'])) {
-    // handle pardus button
-  }
+
+  $table .= '</table>';
+
+  return $table;
+}
+
+// check which button is pressed
+if (isset($_GET['resident_button'])) {
+  $rm = new ResidentManager();
+  $residents = $rm->getResidentList();
+  echo generate_table($residents);
+} else if (isset($_GET['lynx_button'])) {
+  // handle lynx button
+} else if (isset($_GET['genus_button'])) {
+  // handle genus button
+} else if (isset($_GET['pardus_button'])) {
+  // handle pardus button
+}
 
 ?>
 
