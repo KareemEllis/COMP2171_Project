@@ -116,6 +116,8 @@ window.addEventListener('load', () => {
         })
     }
 
+
+//******************************************COMPLETED******************************************
     //CLOSE MODAL
     closeModalBtn.addEventListener('click', () => {
         modal.close()
@@ -127,7 +129,7 @@ window.addEventListener('load', () => {
         modal.close()
         
     })
-
+//******************************************COMPLETED******************************************
     //VIEW RESIDENTS REPORT
     viewResidentsBtn.addEventListener('click', ()=>{
         viewType = 'Resident'

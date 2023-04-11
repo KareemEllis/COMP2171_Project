@@ -5,34 +5,51 @@ session_start();
 //     header('Location: index.php');
 //     exit;
 // }
-
 include 'classAutoloader.php';
-//include 'ResidentManager.class.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET'){
-    $resView = new ResidentManager();
-    $filters = [
-        "firstName" => $_POST['firstName'] ?? "",
-        "middleInitial" => $_POST['middleInitial'] ?? "",
-        "lastName" => $_POST['lastName'] ?? "",
-        "position" => $_POST['position'] ?? "",
-        "nationality" => $_POST['nationality'] ?? "",
-        "roomNumber" => $_POST['roomNumber'] ?? ""
-    ];
-    if (isset($_POST['button'])) {
-        $resView = new ResidentManager();
-        if ($_POST['button'] == "Residents") {
-            $table = $resView->displayResidents();
-            echo $table;
-        } elseif ($_POST['button'] == "Block Lynx") {
-            // logic for displaying Lynx block residents
-        } elseif ($_POST['button'] == "Block Genus") {
-            // logic for displaying Genus block residents
-        } elseif ($_POST['button'] == "Block Pardus") {
-            // logic for displaying Pardus block residents
-        }
-    }
+$resManager = new ResidentManager();
+
+// check which button was clicked and filter the residentList accordingly
+if (isset($_POST['block_lynx'])) {
+    $filtered_resident_list = array_filter($resManager->getresidentList(), function($resident) {
+        return $resident->getRoomNumber() === 'Lynx Block';
+    });
+} elseif (isset($_POST['block_genus'])) {
+    $filtered_resident_list = array_filter($resManager->getresidentList(), function($resident) {
+        return $resident->getRoomNumber() === 'Genus Block';
+    });
+} elseif (isset($_POST['block_pardus'])) {
+    $filtered_resident_list = array_filter($resManager->getresidentList(), function($resident) {
+        return $resident->getRoomNumber() === 'Pardus Block';
+    });
+} else {
+    $filtered_resident_list = $resManager->getresidentList();
 }
+
+// display the filtered data in a table
+if (!empty($filtered_resident_list)) {
+    echo '<table>';
+    echo '<thead>';
+    echo '<tr>';
+    echo '<th>First Name</th>';
+    echo '<th>Last Name</th>';
+    echo '<th>Room Number</th>';
+    echo '</tr>';
+    echo '</thead>';
+    echo '<tbody>';
+    foreach ($filtered_resident_list as $resident) {
+        echo '<tr>';
+        echo '<td>' . $resident->getFirstName() . '</td>';
+        echo '<td>' . $resident->getLastName() . '</td>';
+        echo '<td>' . $resident->getRoomNumber() . '</td>';
+        echo '</tr>';
+    }
+    echo '</tbody>';
+    echo '</table>';
+} else {
+    echo 'No data found.';
+}
+
 ?>
 
 <!DOCTYPE html>
