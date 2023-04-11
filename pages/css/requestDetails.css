@@ -1,0 +1,90 @@
+.top{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+h2{
+    font-size: 35px;
+    font-weight: bolder;
+    color: rgb(38, 117, 219);
+}
+h3{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.status{
+    padding: 3px 10px;
+    border-radius: 3px;
+    color: white;
+}
+
+.status.Progress{
+    background: rgb(231, 228, 19);
+}
+
+.status.Pending{
+    background: rgb(68, 68, 68);
+}
+
+.status.Rejected{
+    background: rgb(221, 66, 66);
+}
+
+.status.Completed{
+    background: rgb(41, 172, 41);
+}
+
+.top button{
+    width: 100px;
+    height: 35px;
+    font-size: 15px;
+    font-weight: 300;
+    color: white;
+    border: 0;
+    border-radius: 3px;
+    transition: 0.2s;
+}
+.top button:hover{
+    opacity: 0.8;
+}
+
+.btn-accept{
+    background: rgb(41, 172, 41);
+}
+.btn-reject{
+    background: rgb(221, 66, 66);
+}
+.btn-pending{
+    background: rgb(68, 68, 68);
+}
+.btn-complete{
+    background: rgb(1, 110, 1);
+}
+
+.category-title{
+    margin-bottom: 5px;
+    margin-top: 15px;
+}
+
+.category{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px;
+    background-color: rgb(234, 234, 234);
+    border-radius: 5px;
+    height: 100%;
+}
+.category-box{
+    width: 50%;
+    margin: 5px 0;
+}
+
+.requestInfo{
+    background-color: rgb(209, 229, 255);
+}
+
+.Details{
+    background-color: rgb(209, 229, 255);
+}

@@ -20,10 +20,10 @@ h2{
     opacity: 0.8;
 }
 .btn-convert{
-    background: rgb(23, 164, 77);
+    background: linear-gradient(90deg, rgb(38, 117, 219) 0%, rgb(0, 62, 87) 100%);
 }
 .btn-delete{
-    background: rgb(254, 58, 58);
+    background: rgb(158, 42, 42);
 }
 
 .controls{
@@ -48,35 +48,21 @@ h2{
     color: rgba(0,113,156,1);
 }
 .controls .filter-rejected:hover{
-    border-bottom: 3px solid rgb(254, 58, 58);
-    color: rgb(254, 58, 58);
+    border-bottom: 3px solid rgb(235, 76, 76);
+    color: rgb(235, 76, 76);
 }
 .controls .filter-pending:hover{
-    border-bottom: 3px solid rgba(0,113,156,1);
-    color: rgba(0,113,156,1);
+    border-bottom: 3px solid rgb(103, 103, 104);
+    color: rgb(103, 103, 104);
 }
-.controls .filter-accepted:hover{
-    border-bottom: 3px solid rgb(23, 164, 77);
-    color: rgb(23, 164, 77);
+.controls .filter-progress:hover{
+    border-bottom: 3px solid rgb(231, 228, 19);
+    color: rgb(231, 228, 19);
 }
-
-.controls .filter-all.active{
-    border-bottom: 3px solid rgba(0,113,156,1);
-    color: rgba(0,113,156,1);
+.controls .filter-completed:hover{
+    border-bottom: 3px solid rgb(41, 172, 41);
+    color: rgb(41, 172, 41);
 }
-.controls .filter-rejected.active{
-    border-bottom: 3px solid rgb(254, 58, 58);
-    color: rgb(254, 58, 58);
-}
-.controls .filter-pending.active{
-    border-bottom: 3px solid rgba(0,113,156,1);
-    color: rgba(0,113,156,1);
-}
-.controls .filter-accepted.active{
-    border-bottom: 3px solid rgb(23, 164, 77);
-    color: rgb(23, 164, 77);
-}
-
 
 table{
     margin-top: 20px;
@@ -91,31 +77,37 @@ table{
     font-size: 16px;
 }
 thead tr{
-    background-color: #3b80ef;
-    color: rgb(255, 255, 255);
+    background-color: rgb(233, 233, 233);
+    color: black;
     font-weight: bold;
 }
 th,td{
     padding: 12px 15px;
 }
 
-.Accepted{
-    padding: 8px;
+.Completed{
+    padding: 5px;
     border-radius: 5px;
     color: white;
-    background-color: rgb(23, 164, 77);
+    background-color: rgb(41, 172, 41);
 }
 .Rejected{
-    padding: 8px;
+    padding: 5px;
     border-radius: 5px;
     color: white;
-    background: rgb(254, 58, 58);
+    background: rgb(221, 66, 66);
 }
 .Pending{
-    padding: 8px;
+    padding: 5px;
     border-radius: 5px;
     color: white;
-    background: rgb(172, 172, 172);
+    background: rgb(68, 68, 68);
+}
+.Progress{
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background: rgb(231, 228, 19);
 }
 
 tbody tr{
@@ -136,32 +128,32 @@ td:first-child{
 }
 
 table a{
-    color: #0321cb;
-    text-decoration: none;
-    transition: color 0.5s ease;
-}
-table a:hover{
-    color: #43a1ff;
+    color: rgb(89, 86, 255);
+
 }
 
-.table-sortable th {
-    cursor: pointer;
+.sort-by { 
+	padding-right: 18px;
+	position: relative;
+}
+.sort-by:before,
+.sort-by:after {
+	border: 4px solid transparent;
+	content: "";
+	display: block;
+	height: 0;
+	right: 5px;
+	top: 50%;
+	position: absolute;
+	width: 0;
+}
+.sort-by:before {
+	border-bottom-color: #666;
+	margin-top: -9px;
+}
+.sort-by:after {
+	border-top-color: #666;
+	margin-top: 1px;
 }
   
-.table-sortable .th-sort-asc::after {
-    content: "\25b4";
-}
   
-.table-sortable .th-sort-desc::after {
-    content: "\25be";
-}
-  
-.table-sortable .th-sort-asc::after,
-.table-sortable .th-sort-desc::after {
-    margin-left: 5px;
-}
-  
-.table-sortable .th-sort-asc,
-.table-sortable .th-sort-desc {
-    background: rgba(0, 0, 0, 0.1);
-}
