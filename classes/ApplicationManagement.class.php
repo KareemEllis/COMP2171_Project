@@ -27,7 +27,7 @@ class ApplicationManagement {
             //Creating Instances of Application Class from database data
             $application = new Applicant(
               $row['ApplicationID'], $row['Status'], $row['First Name'], $row['Last Name'], $row['Middle Initial'],
-              $row["DOB"], $row['Nationality'], $row['Gender'], $row['Marital Status'], $row['Family Type'], $row['Home Address'],
+              $row["DOB"], $row['Phone Number'], $row['Nationality'], $row['Gender'], $row['Marital Status'], $row['Family Type'], $row['Home Address'],
               $row['Mailing Address'], $row['Email Address'], $row['ID Number'], $row['Contact Name'], $row['Contact Relationship'],
               $row['Contact Telephone'], $row['Contact Address'], $row['Contact Email'], $row['Level of Study'], $row['Year of Study'],
               $row['Programme Name'], $row['Faculty Name'], $row['Name of School'], $row['Room Type'], $row['Roommate Preference']
