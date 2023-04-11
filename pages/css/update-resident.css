@@ -1,0 +1,41 @@
+/******RESIDENT PAGE */
+.resident_page .row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.resident_page .search-field input {
+    width: 260px;
+}
+
+.resident_page .no-record {
+    text-align: center;
+    font-weight: bold;
+    color: red
+}
+
+#update_resident_form {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.mb-4 {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.mb-4 input,
+.mb-4 select {
+    height: 30px;
+}
+
+#update_resident_form button {
+    color: white;
+    height: 48px;
+    border: none;
+    border-radius: 10px;
+    background: rgb(38, 117, 219);
+}

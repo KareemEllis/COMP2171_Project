@@ -43,6 +43,7 @@ $rooms = $roomManager->getRoomsList();
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="shortcut icon" href="../resources/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/update-resident.css">
     <script src="./js/updateResident.js"></script>
 </head>
 

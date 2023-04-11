@@ -1,35 +1,28 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
-
-* {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+* { 
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+     box-sizing: border-box; 
 }
 
-body {
+body{
     margin: 0;
     background-color: rgb(233, 233, 233);
 
     font-family: 'Lato', sans-serif;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-p {
+h1, h2, h3, h4, h5, p{
     margin: 0;
 }
 
-a,
-button {
+a, button{
     cursor: pointer;
 }
 
 
 /******HEADER******/
-nav {
+nav{
     display: flex;
     z-index: -10px;
     justify-content: flex-start;
@@ -44,18 +37,17 @@ nav {
 
     box-shadow: 0 0px 5px rgb(0, 5, 36);
 }
-
-nav img {
+nav img{
     margin-right: 15px;
     width: 50px;
 }
 
-.container {
+.container{
     display: flex;
 }
 
 /***********SIDEBAR**************/
-.sidebar {
+.sidebar{
     min-width: 245px;
     background-color: white;
     height: 100vh;
@@ -63,26 +55,23 @@ nav img {
     top: 0;
     padding: 20px;
 }
-
-.sidebar i {
+.sidebar i{
     margin-right: 10px;
 }
 
-.sidebar ul {
+.sidebar ul{
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-.sidebar .currentPage {
+.sidebar .currentPage{
     color: rgb(42, 119, 219);
 }
-
-.sidebar hr {
+.sidebar hr{
     margin-top: 30px 0;
 }
-
-.sidebar a {
+.sidebar a{
     display: flex;
     align-items: center;
     height: 40px;
@@ -93,40 +82,40 @@ nav img {
     transition: 0.2s;
 }
 
-.sidebar a:hover {
+.sidebar a:hover{
     margin-left: 10px;
-    color: rgba(0, 113, 156, 1);
+    color: rgba(0,113,156,1);
 }
 
-.sidebar li {
+.sidebar li{
     display: flex;
     align-items: center;
 }
 
 
 /***********MAIN CONTENT***************/
-main {
+main{
     padding: 50px;
     width: 100%;
-
+    
     box-shadow: 0 0 10px rgba(black, black, black, 0.5);
 }
 
-header {
+header{
     display: flex;
     justify-content: space-between;
 }
 
-header button:hover {
-    background-color: rgba(0, 113, 156, 1)
+header button:hover{
+    background-color: rgba(0,113,156,1)
 }
 
-.title {
+.title{
     margin-bottom: 20px;
     font-weight: bold;
 }
 
-section {
+section{
     background-color: white;
     padding: 20px;
     width: 100%;
@@ -136,7 +125,7 @@ section {
 }
 
 /*******FOOTER********/
-footer {
+footer{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -144,46 +133,4 @@ footer {
     height: 25px;
     color: white;
     background-color: rgb(3, 0, 32);
-}
-
-/******RESIDENT PAGE */
-.resident_page .row {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.resident_page .search-field input {
-    width: 260px;
-}
-
-.resident_page .no-record {
-    text-align: center;
-    font-weight: bold;
-    color: red
-}
-
-#update_resident_form {
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-.mb-4 {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-}
-
-.mb-4 input,
-.mb-4 select {
-    height: 30px;
-}
-
-#update_resident_form button {
-    color: white;
-    height: 48px;
-    border: none;
-    border-radius: 10px;
-    background: rgb(38, 117, 219);
 }
