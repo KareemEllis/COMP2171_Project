@@ -109,7 +109,7 @@ class ResidentManager
         $stmt->bindParam(':programme', $programme);
         $stmt->bindParam(':faculty', $faculty);
         $stmt->bindParam(':school', $school);
-        $stmt->bindParam(':roomNumber', $roomNumber);
+        // $stmt->bindParam(':roomNumber', $roomNumber);
         $stmt->execute();
 
     }
@@ -152,7 +152,7 @@ class ResidentManager
         $stmt->bindParam(':position', $_POST['position']);
         $stmt->bindParam(':homeAddress', $_POST['home_address']);
         $stmt->bindParam(':phoneNumber', $_POST['phone_number']);
-        $stmt->bindParam(':roomNumber', $_POST['room_no']);
+        // $stmt->bindParam(':roomNumber', $_POST['room_no']);
         $stmt->bindParam(':dob', $_POST['dob']);
         $stmt->bindParam(':nationality', $_POST['nationality']);
         $stmt->bindParam(':gender', $_POST['gender']);

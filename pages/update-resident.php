@@ -65,10 +65,9 @@ $rooms = $roomManager->getRoomsList();
                     <div class="mb-4">
 
                         <label for="">Select Position</label>
-                        <select name="position" id="">
-                            <option value="">Select position</option>
-                            <option <?= ($resident['Position']) == 'Standard Resident' ? 'selected' : '' ?>
-                                value="Standard Resident">Standard Resident</option>
+                        <select name="position" id="" value="Resident">
+                            <option <?= ($resident['Position']) == 'Resident' ? 'selected' : '' ?>
+                                value="Resident">Resident</option>
                             <option <?= ($resident['Position']) == 'Block Representative' ? 'selected' : '' ?>
                                 value="Block Representative">Block Representative
                             </option>
