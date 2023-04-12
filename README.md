@@ -1,5 +1,5 @@
 
-![Logo](https://raw.githubusercontent.com/KareemEllis/SWEN_Project/main/images/Branding/repoBanner.jpg)
+![Logo](https://raw.githubusercontent.com/KareemEllis/COMP2171_Project/main/resources/repoBanner.jpg)
 
 
 # George Alleyne Hall Application
@@ -26,6 +26,20 @@ The application is built using the following technologies:
 - PHP
 - MySQL Database
 - Apache Web Server
+## Screenshots
+#### Login Page
+![App Screenshot](https://raw.githubusercontent.com/KareemEllis/COMP2171_Project/main/resources/snapshots/ss_login.png)
+
+#### Application Processing Page
+![App Screenshot](https://raw.githubusercontent.com/KareemEllis/COMP2171_Project/main/resources/snapshots/ss_appProcess.png)
+
+#### Notice Board
+![App Screenshot](https://raw.githubusercontent.com/KareemEllis/COMP2171_Project/main/resources/snapshots/ss_notice.png)
+
+#### Room Assignment Page
+![App Screenshot](https://raw.githubusercontent.com/KareemEllis/COMP2171_Project/main/resources/snapshots/ss_room.png)
+
+
 ## Acknowledgements
 
 This project was developed as part of a student project at the University of the West Indies Mona Campus. We would like to thank our supervisor for his guidance and support throughout the development process.
